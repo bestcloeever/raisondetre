@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About RE — Ideas for progress</title>
+    <style>
+        @font-face {
+            font-family: 'Apercu Pro Bold';
+            src: url('fonts/Apercu Pro Font/apercu_bold_pro.otf') format('opentype');
+            font-weight: bold;
+            font-style: normal;
+        }
+        
+        @font-face {
+            font-family: 'Apercu Pro Italic';
+            src: url('fonts/Apercu Pro Font/apercu_regular_italic_pro.otf') format('opentype');
+            font-weight: normal;
+            font-style: italic;
+        }
+        
+        @font-face {
+            font-family: 'Apercu Pro Medium';
+            src: url('fonts/Apercu Pro Font/apercu_medium_pro.otf') format('opentype');
+            font-weight: 500;
+            font-style: normal;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: url('brand/RE-cursor-blue.svg'), auto;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: white;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            cursor: url('brand/RE-cursor-blue.svg'), auto;
+            transition: background-color 0.3s ease;
+        }
+        
+        body.dark-mode {
+            background: #0000FF;
+        }
+        
+        header {
+            padding: 40px 40px 40px 40px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            text-align: center;
+            background: transparent;
+            pointer-events: none;
+        }
+        
+        .logo {
+            height: 57.88125px;
+            width: auto;
+            display: block;
+            margin: 0 auto;
+            pointer-events: auto;
+        }
+        
+        nav {
+            display: none; /* Hidden for now */
+        }
+        
+        nav a {
+            color: #0000FF;
+            text-decoration: none;
+            font-family: 'Apercu Pro Medium', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
+            font-size: 15px;
+            letter-spacing: 0.3px;
+            transition: opacity 0.3s ease;
+            cursor: pointer;
+        }
+        
+        nav a:hover {
+            opacity: 0.7;
+        }
+        
+        body.dark-mode nav a {
+            color: white;
+        }
+        
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 180px 60px 100px;
+        }
+        
+        .page-title {
+            font-family: 'Apercu Pro Bold', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
+            font-size: 32px;
+            color: #0000FF;
+            margin-bottom: 40px;
+            text-transform: lowercase;
+            text-align: center;
+        }
+        
+        body.dark-mode .page-title {
+            color: white;
+        }
+        
+        .about-text {
+            max-width: 550px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .about-text p {
+            font-family: 'Apercu Pro Italic', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
+            font-size: 20px;
+            font-style: italic;
+            color: #0000FF;
+            line-height: 1.4;
+            margin-bottom: 20px;
+        }
+        
+        body.dark-mode .about-text p {
+            color: white;
+        }
+        
+        .hero-section {
+            margin-bottom: 100px;
+        }
+        
+        .hero-section h1 {
+            font-family: 'Apercu Pro Bold', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
+            font-size: 72px;
+            line-height: 1.1;
+            color: #0000FF;
+            margin-bottom: 30px;
+        }
+        
+        .hero-section .subtitle {
+            font-family: 'Apercu Pro Medium', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
+            font-size: 24px;
+            color: #0000FF;
+            opacity: 0.8;
+            line-height: 1.4;
+        }
+        
+        body.dark-mode .hero-section h1,
+        body.dark-mode .hero-section .subtitle {
+            color: white;
+        }
+        
+        .content-section {
+            margin-bottom: 80px;
+        }
+        
+        .content-section h2 {
+            font-family: 'Apercu Pro Bold', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
+            font-size: 36px;
+            color: #0000FF;
+            margin-bottom: 25px;
+        }
+        
+        .content-section p {
+            font-family: 'Apercu Pro Medium', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
+            font-size: 18px;
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        
+        body.dark-mode .content-section h2 {
+            color: white;
+        }
+        
+        body.dark-mode .content-section p {
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .grid-section {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin: 80px 0;
+        }
+        
+        .grid-item {
+            padding: 40px;
+            background: rgba(0, 0, 255, 0.03);
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .grid-item:hover {
+            background: rgba(0, 0, 255, 0.08);
+            transform: translateY(-5px);
+        }
+        
+        body.dark-mode .grid-item {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        body.dark-mode .grid-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .grid-item h3 {
+            font-family: 'Apercu Pro Bold', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
+            font-size: 24px;
+            color: #0000FF;
+            margin-bottom: 15px;
+        }
+        
+        .grid-item p {
+            font-family: 'Apercu Pro Medium', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
+            font-size: 16px;
+            line-height: 1.6;
+            color: #666;
+        }
+        
+        body.dark-mode .grid-item h3 {
+            color: white;
+        }
+        
+        body.dark-mode .grid-item p {
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .bottom-logo {
+            width: 60px;
+            height: auto;
+            cursor: url('brand/RE-cursor-blue.svg'), pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .bottom-logo:hover {
+            transform: scale(1.1);
+        }
+        
+        .menu-container {
+            position: fixed;
+            bottom: 50px;
+            left: 40px;
+            z-index: 99;
+            display: flex;
+            align-items: flex-end;
+            gap: 20px;
+        }
+        
+        .menu-popup {
+            position: absolute;
+            bottom: 70px;
+            left: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+        }
+        
+        .menu-container:hover .menu-popup {
+            visibility: visible;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .menu-item {
+            font-family: 'Apercu Pro Medium', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            font-size: 20px;
+            font-weight: 500;
+            color: #0000FF;
+            text-transform: uppercase;
+            margin: 5px 0;
+            cursor: url('brand/RE-cursor-blue.svg'), pointer;
+            transition: transform 0.2s ease, opacity 0.2s ease, color 0.3s ease;
+            white-space: nowrap;
+            letter-spacing: 0.02em;
+            text-decoration: none;
+            display: block;
+        }
+        
+        .menu-item:hover {
+            transform: translateX(5px);
+            opacity: 0.8;
+        }
+        
+        body.dark-mode .menu-item {
+            color: white;
+        }
+        
+        .contact-info {
+            position: fixed;
+            bottom: 50px;
+            right: 40px;
+            font-family: 'Apercu Pro Medium', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            font-size: 14.7px;
+            font-weight: 500;
+            color: #0000FF;
+            text-align: right;
+            line-height: 1.4;
+            z-index: 100;
+        }
+        
+        body.dark-mode .contact-info {
+            color: white;
+        }
+        
+        .cta-button {
+            position: fixed;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #0000FF;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            font-family: 'Apercu Pro Medium', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            font-size: 15px;
+            font-weight: 500;
+            text-transform: lowercase;
+            cursor: url('brand/RE-cursor-blue.svg'), pointer;
+            transition: all 0.3s ease;
+            z-index: 100;
+            border-radius: 20px;
+            box-shadow: 0 2px 10px rgba(0, 41, 255, 0.2);
+        }
+        
+        body.dark-mode .cta-button {
+            background: white;
+            color: #0000FF;
+            box-shadow: 0 2px 10px rgba(255, 255, 255, 0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateX(-50%) scale(1.05);
+            box-shadow: 0 3px 15px rgba(0, 41, 255, 0.3);
+            background: #0033FF;
+        }
+        
+        body.dark-mode .cta-button:hover {
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 3px 15px rgba(255, 255, 255, 0.3);
+        }
+        
+        .back-button {
+            display: inline-block;
+            margin-top: 40px;
+            padding: 15px 30px;
+            background: #0000FF;
+            color: white;
+            font-family: 'Apercu Pro Medium', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
+            font-size: 16px;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+        
+        .back-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 0, 255, 0.3);
+        }
+        
+        body.dark-mode .back-button {
+            background: white;
+            color: #0000FF;
+        }
+        
+        body.dark-mode .back-button:hover {
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
+        }
+        
+        @media (max-width: 768px) {
+            .grid-section {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-section h1 {
+                font-size: 48px;
+            }
+            
+            .main-content {
+                padding: 140px 30px 100px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="stripe-press-final.html" style="text-decoration: none;">
+            <img src="brand/RE-logo-text-blue.svg" alt="RE" class="logo" id="header-logo">
+        </a>
+    </header>
+    
+    <div class="main-content">
+        <h1 class="page-title">about raison d'être:</h1>
+        <div class="about-text">
+            <p>raison d'être is a concept-first editorial design studio. we know the cover is your book's first argument so we make it decisive, pairing literary insight with market sense to create covers that get picked up and remembered.</p>
+            <p>our approach blends editorial rigor with commercial clarity—concept development, art direction, illustrator scouting, series systems, and rock-solid prepress. we keep the process simple, the thinking sharp, and the delivery on time.</p>
+            <p>we collaborate in english, spanish, and french with publishers and authors worldwide to deliver memorable, market-smart design.</p>
+        </div>
+    </div>
+    
+    <!-- CTA Button -->
+    <button class="cta-button">get yours!</button>
+    
+    <div class="contact-info">
+        @raisondetrebooks<br>
+        info@raisondetrebooks.com
+    </div>
+    
+    <!-- Menu Container with Logo -->
+    <div class="menu-container">
+        <a href="stripe-press-final.html" style="text-decoration: none;">
+            <img src="brand/RE-logo-icon-blue.svg" alt="Logo Icon" class="bottom-logo" id="bottom-logo-icon">
+        </a>
+        <div class="menu-popup">
+            <a href="#" class="menu-item">GET YOURS</a>
+            <a href="stripe-press-final.html" class="menu-item">BOOKS</a>
+        </div>
+    </div>
+    
+    <script>
+        // Generate crisp PNG fallbacks (1x/2x/3x) from the SVG and inject CSS with image-set
+        function applyPngCursorFromSvg(svgPath, size = 32, hotspot = [0, 0]) {
+            const img = new Image();
+            img.onload = () => {
+                try {
+                    const [hx, hy] = hotspot;
+                    // 1x canvas
+                    const c1 = document.createElement('canvas');
+                    c1.width = size; c1.height = size;
+                    const x1 = c1.getContext('2d');
+                    x1.clearRect(0, 0, size, size);
+                    x1.drawImage(img, 0, 0, size, size);
+                    const url1x = c1.toDataURL('image/png');
+
+                    // 2x canvas for retina
+                    const c2 = document.createElement('canvas');
+                    c2.width = size * 2; c2.height = size * 2;
+                    const x2 = c2.getContext('2d');
+                    x2.clearRect(0, 0, size * 2, size * 2);
+                    x2.drawImage(img, 0, 0, size * 2, size * 2);
+                    const url2x = c2.toDataURL('image/png');
+
+                    // 3x canvas for super-retina
+                    const c3 = document.createElement('canvas');
+                    c3.width = size * 3; c3.height = size * 3;
+                    const x3 = c3.getContext('2d');
+                    x3.clearRect(0, 0, size * 3, size * 3);
+                    x3.drawImage(img, 0, 0, size * 3, size * 3);
+                    const url3x = c3.toDataURL('image/png');
+
+                    const useImageSet = CSS && (CSS.supports('cursor', 'image-set(url("data:image/png;base64,AAA=") 1x) 0 0, auto') || CSS.supports('cursor', '-webkit-image-set(url("data:image/png;base64,AAA=") 1x) 0 0, auto'));
+
+                    const rules = [];
+                    const base = useImageSet
+                        ? `cursor: image-set(url('${url1x}') 1x, url('${url2x}') 2x, url('${url3x}') 3x) ${hx} ${hy}, auto !important; cursor: -webkit-image-set(url('${url1x}') 1x, url('${url2x}') 2x, url('${url3x}') 3x) ${hx} ${hy}, auto !important;`
+                        : `cursor: url('${url2x}') ${hx} ${hy}, auto !important;`;
+                    const basePointer = useImageSet
+                        ? `cursor: image-set(url('${url1x}') 1x, url('${url2x}') 2x, url('${url3x}') 3x) ${hx} ${hy}, pointer !important; cursor: -webkit-image-set(url('${url1x}') 1x, url('${url2x}') 2x, url('${url3x}') 3x) ${hx} ${hy}, pointer !important;`
+                        : `cursor: url('${url2x}') ${hx} ${hy}, pointer !important;`;
+
+                    // Base rule for everything first (so it overrides early SVG cursor rules)
+                    rules.push(`* { ${base} }`);
+                    // Then override with pointer variants where needed
+                    rules.push(`.bottom-logo, .menu-item, .logo, a, .cta-button { ${basePointer} }`);
+
+                    const css = rules.join('\n');
+                    let style = document.getElementById('cursor-fallback-style');
+                    if (!style) {
+                        style = document.createElement('style');
+                        style.id = 'cursor-fallback-style';
+                        document.head.appendChild(style);
+                    }
+                    style.textContent = css;
+                } catch (e) {
+                    console.warn('Failed to apply PNG cursor fallback:', e);
+                }
+            };
+            img.onerror = () => console.warn('Could not load SVG cursor at', svgPath);
+            img.src = svgPath;
+        }
+
+        // Apply after DOM is ready
+        document.addEventListener('DOMContentLoaded', () => {
+            // Always apply high-DPI PNG fallback for maximum sharpness across browsers
+            const cssSize = 28; // visual size in CSS pixels
+            applyPngCursorFromSvg('brand/RE-cursor-blue.svg', cssSize, [0, 0]);
+        });
+
+        // Check for saved dark mode preference
+        const savedDarkMode = localStorage.getItem('darkMode') === 'true';
+        if (savedDarkMode) {
+            document.body.classList.add('dark-mode');
+            document.getElementById('header-logo').src = 'brand/RE-logo-text-white.svg';
+            document.getElementById('bottom-logo-icon').src = 'brand/RE-logo-icon-white.svg';
+        }
+        
+        // Function to toggle dark mode (if needed later)
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const isDarkMode = document.body.classList.contains('dark-mode');
+            
+            const headerLogo = document.getElementById('header-logo');
+            const bottomLogo = document.getElementById('bottom-logo-icon');
+            
+            if (isDarkMode) {
+                headerLogo.src = 'brand/RE-logo-text-white.svg';
+                bottomLogo.src = 'brand/RE-logo-icon-white.svg';
+            } else {
+                headerLogo.src = 'brand/RE-logo-text-blue.svg';
+                bottomLogo.src = 'brand/RE-logo-icon-blue.svg';
+            }
+            
+            localStorage.setItem('darkMode', isDarkMode);
+        }
+    </script>
+</body>
+</html>

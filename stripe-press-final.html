@@ -1,0 +1,1901 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stripe Press — Ideas for progress</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style>
+        @font-face {
+            font-family: 'Apercu Pro Bold';
+            src: url('fonts/Apercu Pro Font/apercu_bold_pro.otf') format('opentype');
+            font-weight: bold;
+            font-style: normal;
+        }
+        
+        @font-face {
+            font-family: 'Apercu Pro Italic';
+            src: url('fonts/Apercu Pro Font/apercu_regular_italic_pro.otf') format('opentype');
+            font-weight: normal;
+            font-style: italic;
+        }
+        
+        @font-face {
+            font-family: 'Apercu Pro Medium';
+            src: url('fonts/Apercu Pro Font/apercu_medium_pro.otf') format('opentype');
+            font-weight: 500;
+            font-style: normal;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: url('brand/RE-cursor-blue.svg'), auto;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: white;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            min-height: 100vh;
+            cursor: url('brand/RE-cursor-blue.svg'), auto;
+            transition: background-color 0.3s ease;
+        }
+        
+        body.dark-mode {
+            background: #0000FF;
+        }
+
+        #loading {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.7);
+            z-index: 1000;
+            transition: opacity 0.5s;
+        }
+
+        #loading.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        header {
+            padding: 40px 40px 40px 40px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            text-align: center;
+            background: transparent;
+            pointer-events: none;
+        }
+        
+        header * {
+            pointer-events: auto;
+        }
+
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto;
+        }
+
+        .logo {
+            height: 57.88125px;
+            width: auto;
+            display: block;
+        }
+        
+        .dark-mode-toggle {
+            display: none; /* Hidden for now */
+            position: fixed;
+            top: 40px;
+            right: 40px;
+            z-index: 1001;
+            background: transparent;
+            border: 2px solid #0000FF;
+            border-radius: 50px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-family: 'Apercu Pro Medium', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
+            font-size: 14px;
+            color: #0000FF;
+            transition: all 0.3s ease;
+        }
+        
+        .dark-mode-toggle:hover {
+            background: #0000FF;
+            color: white;
+        }
+        
+        body.dark-mode .dark-mode-toggle {
+            border-color: white;
+            color: white;
+        }
+        
+        body.dark-mode .dark-mode-toggle:hover {
+            background: white;
+            color: #0000FF;
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: 600;
+        }
+        
+        .main-title {
+            font-family: 'Apercu Pro Bold', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            font-size: 42px;
+            font-weight: bold;
+            color: #0000FF;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            margin-top: 35px;
+            margin-bottom: 0;
+            transition: color 0.3s ease;
+        }
+        
+        body.dark-mode .main-title {
+            color: white;
+        }
+
+        .subtitle {
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 18px;
+        }
+        
+        .main-subtitle {
+            font-family: 'Apercu Pro Italic', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            font-size: 18px;
+            font-style: italic;
+            color: #0000FF;
+            line-height: 1.3;
+            margin-top: 12px;
+            margin-bottom: 0;
+            letter-spacing: 0.01em;
+            transition: color 0.3s ease;
+        }
+        
+        body.dark-mode .main-subtitle {
+            color: white;
+        }
+        
+        .contact-info {
+            position: fixed;
+            bottom: 50px;
+            right: 40px;
+            font-family: 'Apercu Pro Medium', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            font-size: 14.7px;
+            font-weight: 500;
+            color: #0000FF;
+            text-align: right;
+            line-height: 1.4;
+            z-index: 100;
+            transition: color 0.3s ease;
+        }
+        
+        body.dark-mode .contact-info {
+            color: white;
+        }
+        
+        .bottom-logo {
+            width: 60px;
+            height: auto;
+            cursor: url('brand/RE-cursor-blue.svg'), pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .bottom-logo:hover {
+            transform: scale(1.1);
+        }
+        
+        .menu-container {
+            position: fixed;
+            bottom: 50px;
+            left: 40px;
+            z-index: 99;
+            display: flex;
+            align-items: flex-end;
+            gap: 20px;
+        }
+        
+        .menu-popup {
+            position: absolute;
+            bottom: 70px;
+            left: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+        }
+        
+        
+        .menu-item {
+            font-family: 'Apercu Pro Medium', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            font-size: 20px;
+            font-weight: 500;
+            color: #0000FF;
+            text-transform: uppercase;
+            margin: 5px 0;
+            cursor: url('brand/RE-cursor-blue.svg'), pointer;
+            transition: transform 0.2s ease, opacity 0.2s ease, color 0.3s ease;
+            white-space: nowrap;
+            letter-spacing: 0.02em;
+            text-decoration: none;
+            display: block;
+        }
+        
+        body.dark-mode .menu-item {
+            color: white;
+        }
+        
+        .menu-item:hover {
+            transform: translateX(5px);
+            opacity: 0.8;
+        }
+        
+        .menu-container:hover .menu-popup,
+        .menu-container.auto-show .menu-popup {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        @keyframes menuPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .menu-container.attention {
+            animation: menuPulse 0.5s ease-in-out;
+        }
+
+        nav {
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px 0;
+        }
+
+        nav button {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            color: white;
+            cursor: url('brand/RE-cursor-blue.svg'), pointer;
+            transition: all 0.3s;
+            margin-left: 10px;
+            font-size: 18px;
+        }
+
+        nav button:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(5px);
+        }
+
+        #canvas-container {
+            width: 100%;
+            height: 100vh;
+            position: relative;
+            cursor: url('brand/RE-cursor-blue.svg'), auto;
+            padding-top: 0px;
+            margin-top: -10px;
+            box-sizing: border-box;
+        }
+
+        canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        .book-info {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            opacity: 1;
+            transition: opacity 0.3s;
+        }
+
+        .book-title {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .book-author {
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .nav-arrow {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 30%;
+            height: 60%;
+            background: transparent;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: url('brand/RE-cursor-blue.svg'), pointer;
+            transition: all 0.2s ease;
+            z-index: 100;
+            color: transparent;
+            font-size: 0;
+            opacity: 0;
+        }
+
+        .nav-arrow:hover {
+            opacity: 0;
+        }
+
+        .nav-arrow.left {
+            left: 0;
+        }
+
+        .nav-arrow.right {
+            right: 0;
+        }
+
+        .nav-arrow img {
+            width: 24px;
+            height: 24px;
+        }
+
+        .cta-button {
+            position: fixed;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #0000FF;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            font-family: 'Apercu Pro Medium', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            font-size: 15px;
+            font-weight: 500;
+            text-transform: lowercase;
+            cursor: url('brand/RE-cursor-blue.svg'), pointer;
+            transition: all 0.3s ease;
+            z-index: 100;
+            border-radius: 20px;
+            box-shadow: 0 2px 10px rgba(0, 41, 255, 0.2);
+        }
+        
+        body.dark-mode .cta-button {
+            background: white;
+            color: #0000FF;
+            box-shadow: 0 2px 10px rgba(255, 255, 255, 0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateX(-50%) scale(1.05);
+            box-shadow: 0 3px 15px rgba(0, 41, 255, 0.3);
+            background: #0033FF;
+        }
+        
+        body.dark-mode .cta-button:hover {
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 3px 15px rgba(255, 255, 255, 0.3);
+        }
+
+        .menu-button {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            width: 60px;
+            height: 60px;
+            background: #FDB92C;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(253, 185, 44, 0.4);
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+
+        .menu-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 30px rgba(253, 185, 44, 0.6);
+        }
+
+        .menu-button svg {
+            width: 30px;
+            height: 30px;
+            fill: #2a2d4a;
+        }
+
+        /* Upload UI removed: was add-covers button and upload panel */
+    </style>
+    <script>
+        // Generate crisp PNG fallbacks (1x/2x/3x) from the SVG and inject CSS with image-set
+        function applyPngCursorFromSvg(svgPath, size = 32, hotspot = [0, 0]) {
+            const img = new Image();
+            img.onload = () => {
+                try {
+                    const [hx, hy] = hotspot;
+                    // 1x canvas
+                    const c1 = document.createElement('canvas');
+                    c1.width = size; c1.height = size;
+                    const x1 = c1.getContext('2d');
+                    x1.clearRect(0, 0, size, size);
+                    x1.drawImage(img, 0, 0, size, size);
+                    const url1x = c1.toDataURL('image/png');
+
+                    // 2x canvas for retina
+                    const c2 = document.createElement('canvas');
+                    c2.width = size * 2; c2.height = size * 2;
+                    const x2 = c2.getContext('2d');
+                    x2.clearRect(0, 0, size * 2, size * 2);
+                    x2.drawImage(img, 0, 0, size * 2, size * 2);
+                    const url2x = c2.toDataURL('image/png');
+
+                    // 3x canvas for super-retina
+                    const c3 = document.createElement('canvas');
+                    c3.width = size * 3; c3.height = size * 3;
+                    const x3 = c3.getContext('2d');
+                    x3.clearRect(0, 0, size * 3, size * 3);
+                    x3.drawImage(img, 0, 0, size * 3, size * 3);
+                    const url3x = c3.toDataURL('image/png');
+
+                    const useImageSet = CSS && (CSS.supports('cursor', 'image-set(url("data:image/png;base64,AAA=") 1x) 0 0, auto') || CSS.supports('cursor', '-webkit-image-set(url("data:image/png;base64,AAA=") 1x) 0 0, auto'));
+
+                    const rules = [];
+                    const base = useImageSet
+                        ? `cursor: image-set(url('${url1x}') 1x, url('${url2x}') 2x, url('${url3x}') 3x) ${hx} ${hy}, auto !important; cursor: -webkit-image-set(url('${url1x}') 1x, url('${url2x}') 2x, url('${url3x}') 3x) ${hx} ${hy}, auto !important;`
+                        : `cursor: url('${url2x}') ${hx} ${hy}, auto !important;`;
+                    const basePointer = useImageSet
+                        ? `cursor: image-set(url('${url1x}') 1x, url('${url2x}') 2x, url('${url3x}') 3x) ${hx} ${hy}, pointer !important; cursor: -webkit-image-set(url('${url1x}') 1x, url('${url2x}') 2x, url('${url3x}') 3x) ${hx} ${hy}, pointer !important;`
+                        : `cursor: url('${url2x}') ${hx} ${hy}, pointer !important;`;
+                    const baseGrab = useImageSet
+                        ? `cursor: image-set(url('${url1x}') 1x, url('${url2x}') 2x, url('${url3x}') 3x) ${hx} ${hy}, grab !important; cursor: -webkit-image-set(url('${url1x}') 1x, url('${url2x}') 2x, url('${url3x}') 3x) ${hx} ${hy}, grab !important;`
+                        : `cursor: url('${url2x}') ${hx} ${hy}, grab !important;`;
+                    const baseGrabbing = useImageSet
+                        ? `cursor: image-set(url('${url1x}') 1x, url('${url2x}') 2x, url('${url3x}') 3x) ${hx} ${hy}, grabbing !important; cursor: -webkit-image-set(url('${url1x}') 1x, url('${url2x}') 2x, url('${url3x}') 3x) ${hx} ${hy}, grabbing !important;`
+                        : `cursor: url('${url2x}') ${hx} ${hy}, grabbing !important;`;
+
+                    // Base rule for everything first (so it overrides early SVG cursor rules)
+                    rules.push(`* { ${base} }`);
+                    // Then override with pointer/grab variants where needed
+                    rules.push(`.bottom-logo, .menu-item, nav button, .nav-arrow { ${basePointer} }`);
+                    // Dragging disabled: canvas uses default cursor
+
+                    const css = rules.join('\n');
+                    let style = document.getElementById('cursor-fallback-style');
+                    if (!style) {
+                        style = document.createElement('style');
+                        style.id = 'cursor-fallback-style';
+                        document.head.appendChild(style);
+                    }
+                    style.textContent = css;
+                } catch (e) {
+                    console.warn('Failed to apply PNG cursor fallback:', e);
+                }
+            };
+            img.onerror = () => console.warn('Could not load SVG cursor at', svgPath);
+            img.src = svgPath;
+        }
+
+        // Apply after DOM is ready
+        document.addEventListener('DOMContentLoaded', () => {
+            // Always apply high-DPI PNG fallback for maximum sharpness across browsers
+            const cssSize = 28; // visual size in CSS pixels
+            applyPngCursorFromSvg('brand/RE-cursor-blue.svg', cssSize, [0, 0]);
+            
+            // Auto-show menu immediately on page load to draw attention
+            setTimeout(() => {
+                const menuContainer = document.querySelector('.menu-container');
+                if (menuContainer) {
+                    // Add attention animation
+                    menuContainer.classList.add('attention');
+                    
+                    // Show menu after a very short delay
+                    setTimeout(() => {
+                        menuContainer.classList.add('auto-show');
+                        
+                        // Hide menu after 2 seconds
+                        setTimeout(() => {
+                            menuContainer.classList.remove('auto-show');
+                            menuContainer.classList.remove('attention');
+                        }, 2000);
+                    }, 200);
+                }
+            }, 100); // Start animation almost immediately after page load
+        });
+    </script>
+</head>
+<body>
+    <!-- Dark Mode Toggle -->
+    <button class="dark-mode-toggle" onclick="toggleDarkMode()">Dark Mode</button>
+    
+    <header>
+        <div class="logo-container">
+            <img src="brand/RE-logo-text-blue.svg" alt="Logo" class="logo" id="header-logo">
+        </div>
+        <h1 class="main-title">DESIGNED TO BE PICKED UP</h1>
+        <p class="main-subtitle">editorial &amp; book cover design<br>for publishers and authors worldwide</p>
+    </header>
+
+    <main id="canvas-container"></main>
+    
+    <!-- Navigation Arrows -->
+    <div class="nav-arrow left" id="prevArrow">‹</div>
+    <div class="nav-arrow right" id="nextArrow">›</div>
+    
+    <!-- CTA Button -->
+    <button class="cta-button">get yours!</button>
+    
+    <!-- Contact Info -->
+    <div class="contact-info">
+        @raisondetrebooks<br>
+        info@raisondetrebooks.com
+    </div>
+    
+    <!-- Menu Container with Logo -->
+    <div class="menu-container">
+        <img src="brand/RE-logo-icon-blue.svg" alt="Logo Icon" class="bottom-logo" id="bottom-logo-icon">
+        <div class="menu-popup">
+            <a href="#" class="menu-item">GET YOURS</a>
+            <a href="about-re.html" class="menu-item">ABOUT RAISON D'ÊTRE</a>
+        </div>
+    </div>
+
+
+    <script>
+        let scene, camera, renderer;
+        let books = [];
+        let currentBook = 0;
+        let targetRotation = 0;
+        let currentRotation = 0;
+        let dragVelocity = 0; // dragging disabled
+        // One-by-one scroll lock
+        let isWheelLocked = false;
+        const wheelStepCooldown = 450; // ms between steps
+        const minWheelDelta = 8; // ignore micro jitter
+        let booksData = []; // Will be loaded from JSON
+        let rotationPositions = []; // Optional preset rotations from JSON
+
+        // Resolve the center target (Position 4) from loaded presets/JSON
+        function getCenterRotation() {
+            // Return EXACT values from JSON for Position 4 without normalization
+            // so edits to degrees/radians reflect precisely in the end pose.
+            try {
+                const preset = (rotationPositions || []).find(p => String(p.name).trim().toLowerCase() === 'position 4');
+                const fallback = (defaultRotationPositions[3] && defaultRotationPositions[3].rotation) || { x: 0, y: 0, z: 0 };
+                const rot = (preset && preset.rotation) ? preset.rotation : fallback;
+                return { x: rot.x || 0, y: rot.y || 0, z: rot.z || 0 };
+            } catch (_) {
+                const fallback = (defaultRotationPositions[3] && defaultRotationPositions[3].rotation) || { x: 0, y: 0, z: 0 };
+                return { x: fallback.x || 0, y: fallback.y || 0, z: fallback.z || 0 };
+            }
+        }
+
+        // Ensure applied rotations keep books upright (avoid upside-down results)
+        function normalizeUprightRotation(rot) {
+            try {
+                const e = new THREE.Euler(rot.x || 0, rot.y || 0, rot.z || 0, 'XYZ');
+                const q = new THREE.Quaternion().setFromEuler(e);
+                const up = new THREE.Vector3(0, 1, 0).applyQuaternion(q);
+                if (up.y < 0) {
+                    // Pre-rotate 180° around Z to flip upright while preserving facing
+                    const qFix = new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0, 0, 1), Math.PI);
+                    q.premultiply(qFix);
+                    const e2 = new THREE.Euler().setFromQuaternion(q, 'XYZ');
+                    return { x: e2.x, y: e2.y, z: e2.z };
+                }
+            } catch (_) {}
+            return { x: rot.x || 0, y: rot.y || 0, z: rot.z || 0 };
+        }
+        const defaultRotationPositions = [
+            { name: 'Position 1', rotation: { x: -3.289999999999977, y: 2.539999999999988, z: 0 } },
+            { name: 'Position 2', rotation: { x: -3.6899999999999684, y: 3.749999999999974, z: 0 } },
+            { name: 'Position 3', rotation: { x: -0.25, y: 1.58, z: 0 } },
+            { name: 'Position 4', rotation: { x: -3.6299999999999697, y: 2.669999999999973, z: 0.19 } },
+            { name: 'Position 5', rotation: { x: -3.13999999999998, y: 2.5799999999999588, z: -0.5700000000000003 } },
+            { name: 'Position 6', rotation: { x: -3.759999999999974, y: 3.6500000000000012, z: 0 } },
+        ];
+
+        // Simple deterministic hash for strings (kept for potential future use)
+        function hashString(str) {
+            let h = 0;
+            for (let i = 0; i < str.length; i++) {
+                h = ((h << 5) - h) + str.charCodeAt(i);
+                h |= 0; // Convert to 32bit integer
+            }
+            return Math.abs(h);
+        }
+
+        // Rotation similarity helpers
+        const SIMILARITY_THRESHOLD = 0.35; // radians, Euclidean distance threshold
+        function rotationDistance(a, b) {
+            if (!a || !b) return Infinity;
+            const dx = a.x - b.x;
+            const dy = a.y - b.y;
+            const dz = a.z - b.z;
+            return Math.sqrt(dx*dx + dy*dy + dz*dz);
+        }
+        function pickPresetIndex(prevRotation, presets, forbiddenIdx = -1) {
+            // Random: pick any preset except the forbiddenIdx and Position 4 (index 3)
+            if (!presets || presets.length === 0) return 0;
+            const candidates = [];
+            for (let i = 0; i < presets.length; i++) {
+                // Exclude Position 4 (index 3) from being assigned as default
+                if (i !== forbiddenIdx && i !== 3) candidates.push(i);
+            }
+            // If no candidates left (unlikely), use any except Position 4
+            if (candidates.length === 0) {
+                for (let i = 0; i < presets.length; i++) {
+                    if (i !== 3) candidates.push(i);
+                }
+            }
+            const r = Math.floor(Math.random() * candidates.length);
+            return candidates[r] ?? 0;
+        }
+
+        // Build a full-cycle assignment of preset indices for N books such that
+        // no two adjacent books (including wrap-around) share the same preset.
+        function buildAssignedPresetIndices(presets, count) {
+            const indices = new Array(count).fill(0);
+            let prevRot = null;
+            let prevIdx = -1;
+            for (let i = 0; i < count; i++) {
+                const idx = pickPresetIndex(prevRot, presets, prevIdx);
+                indices[i] = idx;
+                prevRot = presets[idx].rotation;
+                prevIdx = idx;
+            }
+            // Ensure wrap-around also differs: last vs first
+            if (count > 1 && indices[0] === indices[count - 1]) {
+                // Choose an alternative for the last that differs from both neighbors, farthest from previous
+                const beforeLastIdx = indices[count - 2];
+                let bestIdx = indices[count - 1];
+                let bestDist = -1;
+                for (let i = 0; i < presets.length; i++) {
+                    // Also exclude Position 4 (index 3) from wrap-around reassignment
+                    if (i === indices[0] || i === beforeLastIdx || i === 3) continue;
+                    const d = rotationDistance(presets[i].rotation, presets[indices[count - 2]].rotation);
+                    if (d > bestDist) { bestDist = d; bestIdx = i; }
+                }
+                indices[count - 1] = bestIdx;
+            }
+            return indices;
+        }
+
+        // Persist assigned preset indices in localStorage keyed by the presets signature
+        function presetsSignature(presets) {
+            try { return String(hashString(JSON.stringify(presets.map(p => p.rotation)))); } catch { return 'no-sig'; }
+        }
+        function loadAssignedIndices(sig) {
+            try {
+                const raw = localStorage.getItem('rotationAssignment:' + sig);
+                if (!raw) return null;
+                const parsed = JSON.parse(raw);
+                if (!parsed || typeof parsed !== 'object') return null;
+                return parsed; // { byId: { [bookId]: presetIndex } }
+            } catch { return null; }
+        }
+        function saveAssignedIndices(sig, mapping) {
+            try { localStorage.setItem('rotationAssignment:' + sig, JSON.stringify(mapping)); } catch {}
+        }
+        let globalSettings = {};
+
+        // Helper function to get image dimensions
+        async function getImageDimensions(url) {
+            return new Promise((resolve) => {
+                const img = new Image();
+                img.onload = function() {
+                    resolve({ width: this.width, height: this.height });
+                };
+                img.onerror = function() {
+                    resolve({ width: 400, height: 600 }); // Default fallback
+                };
+                img.src = url;
+            });
+        }
+
+        // Load books data from JSON with image size detection
+        async function loadBooksData() {
+            try {
+                // Always fetch fresh JSON (avoid browser cache when editing locally)
+                const response = await fetch('books-data.json?ts=' + Date.now(), { cache: 'no-store' });
+                const data = await response.json();
+                
+                // Process each book with image dimension detection
+                const processedBooks = await Promise.all(data.books.map(async (book) => {
+                    // Get cover and spine dimensions
+                    const coverDimensions = await getImageDimensions(book.images.cover);
+                    const spineDimensions = book.images.spine ? 
+                        await getImageDimensions(book.images.spine) : 
+                        { width: 50, height: coverDimensions.height };
+                    
+                    // Calculate proportional 3D dimensions
+                    const maxHeight = 2.8; // Maximum height in 3D units
+                    const scale = maxHeight / coverDimensions.height;
+                    
+                    return {
+                        ...book,
+                        colors: {
+                            backCover: parseInt(book.colors.backCover.replace('#', '0x')),
+                            spine: parseInt(book.colors.spine.replace('#', '0x')),
+                            pages: parseInt(book.colors.pages.replace('#', '0x'))
+                        },
+                        dimensions: {
+                            width: coverDimensions.width * scale,
+                            height: maxHeight,
+                            depth: spineDimensions.width * scale // Direct proportion to spine image width
+                        },
+                        imageDimensions: {
+                            cover: coverDimensions,
+                            spine: spineDimensions
+                        }
+                    };
+                }));
+                
+                booksData = processedBooks;
+                globalSettings = data.globalSettings || {};
+                rotationPositions = Array.isArray(data.positions) && data.positions.length > 0 
+                    ? data.positions 
+                    : defaultRotationPositions;
+                // Debug: log the loaded rotation presets to verify they match catalog
+                try {
+                    console.log('[Rotations] Loaded', rotationPositions.length, 'presets');
+                    console.table(rotationPositions.map((p, i) => ({ i, name: p.name, x: p.rotation.x, y: p.rotation.y, z: p.rotation.z })));
+                } catch (e) {}
+                return true;
+            } catch (error) {
+                console.error('Failed to load books data:', error);
+                return false;
+            }
+        }
+
+        // Fallback book data (uses local files in covers/ and spines/)
+        const fallbackBooksData = [
+            {
+                title: "No vas a heredar la empresa",
+                author: "",
+                images: {
+                    cover: "covers/001_No vas a heredar la empresa_Cover.jpg",
+                    spine: "spines/001_No vas a heredar la empresa_Spine.jpg",
+                    backCover: null
+                },
+                colors: {
+                    backCover: 0xE74C3C,
+                    spine: 0xF5F5F5,
+                    pages: 0xF5E6D3
+                },
+                dimensions: { width: 1.8, height: 2.8, depth: 0.25 },
+                rotation: { angle: Math.PI / 24 }
+            },
+            {
+                title: "Regula tu estrés, encuentra tu equilibrio",
+                author: "",
+                images: {
+                    cover: "covers/002_Regula tu estrés, encuentra tu equilibrio_Cover.jpg",
+                    spine: "spines/002_Regula tu estrés, encuentra tu equilibrio_Spine.jpg",
+                    backCover: null
+                },
+                colors: {
+                    backCover: 0x7FB069,
+                    spine: 0xF5F5F5,
+                    pages: 0xF5E6D3
+                },
+                dimensions: { width: 1.8, height: 2.8, depth: 0.25 },
+                rotation: { angle: Math.PI / 24 }
+            },
+            {
+                title: "Cuñadismo",
+                author: "",
+                images: {
+                    cover: "covers/003_Cuñadismo_Cover.jpg",
+                    spine: "spines/003_Cuñadismo_Spine.jpg",
+                    backCover: null
+                },
+                colors: {
+                    backCover: 0xF39C12,
+                    spine: 0xF5F5F5,
+                    pages: 0xF5E6D3
+                },
+                dimensions: { width: 1.8, height: 2.8, depth: 0.25 },
+                rotation: { angle: Math.PI / 24 }
+            },
+            {
+                title: "Escape Book",
+                author: "",
+                images: {
+                    cover: "covers/004_Escape Book_Cover.jpg",
+                    spine: "spines/004_Escape Book_Spine.jpg",
+                    backCover: null
+                },
+                colors: {
+                    backCover: 0x8B4513,
+                    spine: 0xF5F5F5,
+                    pages: 0xF5E6D3
+                },
+                dimensions: { width: 1.8, height: 2.8, depth: 0.25 },
+                rotation: { angle: Math.PI / 24 }
+            },
+            {
+                title: "Hellfriend",
+                author: "",
+                images: {
+                    cover: "covers/005_Hellfriend_Cover.jpg",
+                    spine: "spines/005_Hellfriend_Spine.jpg",
+                    backCover: null
+                },
+                colors: {
+                    backCover: 0xDC143C,
+                    spine: 0xF5F5F5,
+                    pages: 0xF5E6D3
+                },
+                dimensions: { width: 1.8, height: 2.8, depth: 0.25 },
+                rotation: { angle: Math.PI / 24 }
+            },
+            {
+                title: "Dioses y Monstruos",
+                author: "",
+                images: {
+                    cover: "covers/006_Dioses y Monstruos_Cover.jpg",
+                    spine: "spines/006_Dioses y Monstruos_Spine.jpg",
+                    backCover: null
+                },
+                colors: {
+                    backCover: 0x2F4F2F,
+                    spine: 0xF5F5F5,
+                    pages: 0xF5E6D3
+                },
+                dimensions: { width: 1.8, height: 2.8, depth: 0.25 },
+                rotation: { angle: Math.PI / 24 }
+            }
+        ];
+
+        async function init() {
+            // Load book data from JSON
+            const loaded = await loadBooksData();
+            if (!loaded || booksData.length === 0) {
+                // Use fallback data if JSON loading fails
+                booksData = fallbackBooksData;
+                rotationPositions = defaultRotationPositions;
+                console.log('Using fallback book data');
+            } else {
+                try {
+                    const c = getCenterRotation();
+                    console.log('[Center] Using Position 4 from presets:', c);
+                } catch (_) {}
+            }
+            // Removed upload panel
+            
+            scene = new THREE.Scene();
+            // Set background based on dark mode
+            if (document.body.classList.contains('dark-mode')) {
+                scene.background = new THREE.Color(0x0000FF);  // Blue background for dark mode
+            } else {
+                scene.background = new THREE.Color(0xffffff);  // White background for light mode
+            }
+
+            // Use OrthographicCamera to eliminate perspective distortion completely
+            const aspectRatio = window.innerWidth / window.innerHeight;
+            const frustumSize = 6.06; // Smaller frustum = bigger books (10% smaller than 5.5)
+            camera = new THREE.OrthographicCamera(
+                frustumSize * aspectRatio / -2,
+                frustumSize * aspectRatio / 2,
+                frustumSize / 2,
+                frustumSize / -2,
+                0.1,
+                1000
+            );
+            camera.position.set(0, -3, 8); // Ultra low camera for epic upward angle  
+            camera.lookAt(0, 0.5, 0);
+
+            renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(window.devicePixelRatio);
+            renderer.shadowMap.enabled = false;  // Disable real-time shadows to avoid artifacts
+            renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+            document.getElementById('canvas-container').appendChild(renderer.domElement);
+
+            // Realistic lighting: hemisphere + shadowed directional key light
+            // Brighter, neutral ambient without tint
+            const hemiLight = new THREE.HemisphereLight(0xffffff, 0xeeeeee, 0.9);
+            hemiLight.position.set(0, 10, 0);
+            scene.add(hemiLight);
+
+            // Key light angled from the page's right edge (screen-right)
+            const directionalLight = new THREE.DirectionalLight(0xffffff, 0.42);
+            directionalLight.position.set(30, 18, 0);
+            directionalLight.castShadow = false;
+            directionalLight.shadow.mapSize.set(1024, 1024);
+            directionalLight.shadow.camera.near = 0.1;
+            directionalLight.shadow.camera.far = 50;
+            directionalLight.shadow.bias = -0.0006;
+            directionalLight.shadow.radius = 3;
+            const d = 12;
+            directionalLight.shadow.camera.left = -d;
+            directionalLight.shadow.camera.right = d;
+            directionalLight.shadow.camera.top = d;
+            directionalLight.shadow.camera.bottom = -d;
+            scene.add(directionalLight);
+            // Aim slightly above center to match camera lookAt
+            directionalLight.target.position.set(0, 0.5, 0);
+            scene.add(directionalLight.target);
+
+            // Additional ambient lift to keep covers bright and readable
+            // (ambient fill removed to restore previous balance)
+
+            // Remove ground shadow receiver to avoid shape artifacts; we'll fake per-book shadows
+
+            createBooks();
+            setupEventListeners();
+            animate();
+            // No loading screen needed
+        }
+
+        // Expose a global to reshuffle rotations at runtime and add hotkeys (R and D)
+        window.shufflePositions = randomizeBookRotations;
+        document.addEventListener('keydown', (e) => {
+            if (e.key && e.key.toLowerCase() === 'r') {
+                randomizeBookRotations();
+            }
+            if (e.key && e.key.toLowerCase() === 'd') {
+                ensureRotationDebugPanel();
+                debugOverlayVisible = !debugOverlayVisible;
+                rotationDebugDiv.style.display = debugOverlayVisible ? 'block' : 'none';
+            }
+        });
+
+        function createBooks() {
+            // Ensure a clean slate (avoid duplicates if re-initialized)
+            try {
+                (books || []).forEach(b => {
+                    if (b.userData && b.userData.shadow) {
+                        try { scene.remove(b.userData.shadow); } catch {}
+                    }
+                    try { scene.remove(b); } catch {}
+                });
+            } catch {}
+            books = [];
+            currentBook = 0;
+            currentRotation = 0;
+            targetRotation = 0;
+            const textureLoader = new THREE.TextureLoader();
+            const bookSpacing = 3; // Space between books
+            currentAssignedRotations = new Array(booksData.length).fill('');
+            // Precompute or load stable preset indices per book id, ensuring no adjacent duplicates
+            const sig = presetsSignature(rotationPositions);
+            let byId = (loadAssignedIndices(sig) || {}).byId;
+            if (!byId) {
+                const primaryAssignedIdx = buildAssignedPresetIndices(rotationPositions, booksData.length);
+                byId = {};
+                booksData.forEach((b, i) => { byId[b.id || String(i)] = primaryAssignedIdx[i]; });
+                saveAssignedIndices(sig, { byId });
+            }
+            
+            // Create multiple sets of books for infinite scrolling
+            // We need at least 3 sets to ensure smooth infinite scrolling
+            for (let set = -1; set <= 1; set++) {
+                booksData.forEach((bookData, index) => {
+                    const book = createBook(bookData, index);
+                    const x = (index + set * booksData.length) * bookSpacing;
+                    book.position.set(x, 0, 0);
+
+                    // Use per-book position if defined in JSON; otherwise use saved/deterministic index
+                    let idx = 0;
+                    if (bookData.position) {
+                        const desired = String(bookData.position).trim();
+                        const found = rotationPositions.findIndex(p => p.name === desired);
+                        idx = found >= 0 ? found : (byId[bookData.id || String(index)] ?? 0);
+                    } else {
+                        idx = byId[bookData.id || String(index)] ?? 0;
+                    }
+                    const chosen = rotationPositions[idx].rotation;
+                    const adjusted = normalizeUprightRotation(chosen);
+                    // Apply the rotations (values are radians)
+                    book.rotation.x = adjusted.x;
+                    book.rotation.y = adjusted.y;
+                    book.rotation.z = adjusted.z;
+
+                    // Store the PERMANENT rotation values
+                    book.userData = {
+                        permanentRotationX: book.rotation.x,
+                        permanentRotationY: book.rotation.y,
+                        permanentRotationZ: book.rotation.z,
+                        bookIndex: index % booksData.length,
+                        rotationName: rotationPositions[idx].name,
+                        set: set
+                    };
+
+                    // Track assigned rotation for primary set only
+                    if (set === 0) {
+                        currentAssignedRotations[index] = rotationPositions[idx].name;
+                    }
+
+                    scene.add(book);
+                    books.push(book);
+
+                    // Create a soft, per-book shadow plane that stays flat on the page
+                    const shadow = createBookShadow(bookData);
+                    shadow.position.x = book.position.x;
+                    shadow.userData = { forBook: book };
+                    scene.add(shadow);
+                    // Link for updates
+                    book.userData.shadow = shadow;
+
+                    // Load cover if available
+                    if (bookData.images.cover) {
+                        textureLoader.load(
+                            bookData.images.cover,
+                            (texture) => { applyTextureToBook(book, texture, 'cover'); },
+                            undefined,
+                            () => { console.log(`Could not load cover for ${bookData.title}`); }
+                        );
+                    }
+
+                    // Load spine image if available
+                    if (bookData.images.spine) {
+                        textureLoader.load(
+                            bookData.images.spine,
+                            (texture) => { applyTextureToBook(book, texture, 'spine'); },
+                            undefined,
+                            (error) => { console.error(`Could not load spine for ${bookData.title}:`, error); }
+                        );
+                    }
+
+                    // Load back cover if available
+                    if (bookData.images.backCover) {
+                        textureLoader.load(
+                            bookData.images.backCover,
+                            (texture) => { applyTextureToBook(book, texture, 'backCover'); },
+                            undefined,
+                            () => { console.log(`Could not load back cover for ${bookData.title}`); }
+                        );
+                    }
+                });
+            }
+            // Update debug panel after creating books
+            updateRotationDebugPanel();
+        }
+
+        // Randomize rotations ensuring neighbors never share the same preset (wrap-safe)
+        function randomizeBookRotations() {
+            if (!rotationPositions || rotationPositions.length === 0) return;
+            currentAssignedRotations = new Array(booksData.length).fill('');
+            const assignedIdx = buildAssignedPresetIndices(rotationPositions, booksData.length);
+            books.forEach((book) => {
+                const bookIndex = book.userData.bookIndex;
+                // Skip books with an explicit position in JSON (stay fixed)
+                const explicit = booksData[bookIndex] && booksData[bookIndex].position;
+                if (explicit) {
+                    const found = rotationPositions.findIndex(p => p.name === String(explicit));
+                    const keepIdx = found >= 0 ? found : 0;
+                    const rotKeep = normalizeUprightRotation(rotationPositions[keepIdx].rotation);
+                    book.userData.permanentRotationX = rotKeep.x;
+                    book.userData.permanentRotationY = rotKeep.y;
+                    book.userData.permanentRotationZ = rotKeep.z;
+                    book.userData.rotationName = rotationPositions[keepIdx].name;
+                    const eulerKeep = new THREE.Euler(rotKeep.x, rotKeep.y, rotKeep.z, 'XYZ');
+                    book.quaternion.setFromEuler(eulerKeep);
+                    book.rotation.x = rotKeep.x;
+                    book.rotation.y = rotKeep.y;
+                    book.rotation.z = rotKeep.z;
+                    if (book.userData && book.userData.set === 0) {
+                        currentAssignedRotations[book.userData.bookIndex] = rotationPositions[keepIdx].name;
+                    }
+                    return; // do not randomize
+                }
+                const idx = assignedIdx[bookIndex];
+                const rot = rotationPositions[idx].rotation;
+                const adjusted = normalizeUprightRotation(rot);
+                // Update permanent rotation
+                book.userData.permanentRotationX = adjusted.x;
+                book.userData.permanentRotationY = adjusted.y;
+                book.userData.permanentRotationZ = adjusted.z;
+                book.userData.rotationName = rotationPositions[idx].name;
+                // Apply immediately
+                const euler = new THREE.Euler(adjusted.x, adjusted.y, adjusted.z, 'XYZ');
+                book.quaternion.setFromEuler(euler);
+                book.rotation.x = adjusted.x;
+                book.rotation.y = adjusted.y;
+                book.rotation.z = adjusted.z;
+
+                // Update mapping for primary set only
+                if (book.userData && book.userData.set === 0) {
+                    currentAssignedRotations[book.userData.bookIndex] = rotationPositions[idx].name;
+                }
+            });
+            // Persist assignment for books without explicit positions; keep explicit ones consistent
+            try {
+                const sig = presetsSignature(rotationPositions);
+                const byId = {};
+                booksData.forEach((b, i) => {
+                    if (b && b.position) {
+                        const found = rotationPositions.findIndex(p => p.name === String(b.position));
+                        byId[b.id || String(i)] = found >= 0 ? found : 0;
+                    } else {
+                        byId[b.id || String(i)] = assignedIdx[i];
+                    }
+                });
+                saveAssignedIndices(sig, { byId });
+            } catch {}
+            updateRotationDebugPanel();
+        }
+
+        // --- Debug overlay to verify assigned rotations ---
+        let rotationDebugDiv = null;
+        let debugOverlayVisible = false;
+        let currentAssignedRotations = [];
+
+        function ensureRotationDebugPanel() {
+            if (!rotationDebugDiv) {
+                rotationDebugDiv = document.createElement('div');
+                rotationDebugDiv.id = 'rotation-debug';
+                rotationDebugDiv.style.cssText = 'position:fixed;top:10px;right:10px;max-height:60vh;overflow:auto;background:rgba(255,255,255,0.95);border:1px solid #0000FF;border-radius:8px;padding:10px 12px;font:12px/1.4 -apple-system,Segoe UI,Roboto,Arial;color:#222;z-index:10000;display:none;min-width:220px;';
+                rotationDebugDiv.innerHTML = '<div style="font-weight:700;color:#0000FF;margin-bottom:6px">Assigned Rotations</div><div id="rotation-debug-body"></div><div style="margin-top:6px;color:#555">Press D to toggle</div>';
+                document.body.appendChild(rotationDebugDiv);
+            }
+        }
+
+        function updateRotationDebugPanel() {
+            ensureRotationDebugPanel();
+            const body = rotationDebugDiv.querySelector('#rotation-debug-body');
+            if (!body) return;
+            body.innerHTML = (currentAssignedRotations || []).map((name, i) => {
+                const safeName = name || '(none)';
+                return `<div>#${i + 1}: ${safeName}</div>`;
+            }).join('');
+        }
+
+        function createBook(bookData, index) {
+            const group = new THREE.Group();
+            
+            // Use custom dimensions from book data
+            const width = bookData.dimensions.width;
+            const height = bookData.dimensions.height;
+            const depth = bookData.dimensions.depth;
+            
+            // Create a single unified book geometry using BufferGeometry
+            // This creates a seamless book without visible edges between spine and covers
+            
+            // Front cover - with thickness for visibility
+            const coverThickness = 0.02; // Small thickness for the cover
+            const coverGeometry = new THREE.BoxGeometry(width, height, coverThickness);
+            const coverMaterial = new THREE.MeshStandardMaterial({ 
+                color: 0xffffff,
+                roughness: 0.55,
+                metalness: 0.04
+            });
+            const cover = new THREE.Mesh(coverGeometry, coverMaterial);
+            cover.position.z = depth / 2 + coverThickness / 2;
+            cover.name = 'cover';
+            cover.castShadow = true;
+            cover.receiveShadow = true;
+            group.add(cover);
+            
+            // Back cover - with thickness and texture support
+            const backCoverGeometry = new THREE.BoxGeometry(width, height, coverThickness);
+            const backCoverMaterial = new THREE.MeshStandardMaterial({ 
+                color: bookData.images.backCover ? 0xffffff : bookData.colors.backCover,
+                roughness: 0.6,
+                metalness: 0.03
+            });
+            const backCover = new THREE.Mesh(backCoverGeometry, backCoverMaterial);
+            backCover.position.z = -depth / 2 - coverThickness / 2;
+            backCover.name = 'backCover';
+            backCover.castShadow = true;
+            backCover.receiveShadow = true;
+            group.add(backCover);
+            
+            // Spine - with matching thickness to covers
+            const spineGeometry = new THREE.BoxGeometry(coverThickness, height, depth);
+            let spineColor = 0xffffff;
+            if (bookData.images.spine) {
+                spineColor = 0xffffff;
+            } else if (bookData.colors.spine && typeof bookData.colors.spine === 'string') {
+                spineColor = parseInt(bookData.colors.spine.replace('#', '0x'));
+            } else {
+                spineColor = bookData.colors.spine || 0x333333;
+            }
+            const spineMaterial = new THREE.MeshStandardMaterial({ 
+                color: spineColor,
+                roughness: 0.7,
+                metalness: 0.02
+            });
+            const spine = new THREE.Mesh(spineGeometry, spineMaterial);
+            spine.position.x = -width / 2 - coverThickness / 2;
+            spine.name = 'spine';
+            spine.castShadow = true;
+            spine.receiveShadow = true;
+            group.add(spine);
+            
+            // Top edge - connects covers and spine with gradient effect
+            const topGeometry = new THREE.PlaneGeometry(width, depth);
+            
+            // Create canvas for top edge with gradient
+            const topCanvas = document.createElement('canvas');
+            topCanvas.width = 256;
+            topCanvas.height = 64;
+            const topCtx = topCanvas.getContext('2d');
+            
+            // Fill with warmer page color and add texture
+            topCtx.fillStyle = '#F4E8D0';
+            topCtx.fillRect(0, 0, topCanvas.width, topCanvas.height);
+            
+            // Add subtle horizontal lines to simulate page layers
+            for (let i = 0; i < topCanvas.width; i += 3) {
+                topCtx.strokeStyle = `rgba(180, 160, 140, ${0.08 + Math.random() * 0.05})`;
+                topCtx.lineWidth = 0.5;
+                topCtx.beginPath();
+                topCtx.moveTo(i, 0);
+                topCtx.lineTo(i, topCanvas.height);
+                topCtx.stroke();
+            }
+            
+            // Add subtle shading
+            const topGradient = topCtx.createLinearGradient(0, 0, 0, topCanvas.height);
+            topGradient.addColorStop(0, 'rgba(200, 180, 160, 0.1)');
+            topGradient.addColorStop(1, 'rgba(100, 80, 60, 0.05)');
+            topCtx.fillStyle = topGradient;
+            topCtx.fillRect(0, 0, topCanvas.width, topCanvas.height);
+            
+            const topTexture = new THREE.CanvasTexture(topCanvas);
+            topTexture.anisotropy = renderer.capabilities.getMaxAnisotropy();
+            const topBumpTexture = new THREE.CanvasTexture(topCanvas);
+            const topMaterial = new THREE.MeshStandardMaterial({ 
+                map: topTexture,
+                bumpMap: topBumpTexture,
+                bumpScale: 0.012,
+                roughness: 0.8,
+                metalness: 0.0,
+                side: THREE.DoubleSide
+            });
+            const topEdge = new THREE.Mesh(topGeometry, topMaterial);
+            topEdge.position.y = height / 2;
+            topEdge.rotation.x = -Math.PI / 2;
+            topEdge.name = 'topEdge';
+            topEdge.castShadow = true;
+            topEdge.receiveShadow = true;
+            group.add(topEdge);
+            
+            // Bottom edge - connects covers and spine with gradient effect
+            const bottomGeometry = new THREE.PlaneGeometry(width, depth);
+            
+            // Create canvas for bottom edge
+            const bottomCanvas = document.createElement('canvas');
+            bottomCanvas.width = 256;
+            bottomCanvas.height = 64;
+            const bottomCtx = bottomCanvas.getContext('2d');
+            
+            // Fill with warmer page color and add texture
+            bottomCtx.fillStyle = '#F4E8D0';
+            bottomCtx.fillRect(0, 0, bottomCanvas.width, bottomCanvas.height);
+            
+            // Add subtle horizontal lines to simulate page layers
+            for (let i = 0; i < bottomCanvas.width; i += 3) {
+                bottomCtx.strokeStyle = `rgba(180, 160, 140, ${0.08 + Math.random() * 0.05})`;
+                bottomCtx.lineWidth = 0.5;
+                bottomCtx.beginPath();
+                bottomCtx.moveTo(i, 0);
+                bottomCtx.lineTo(i, bottomCanvas.height);
+                bottomCtx.stroke();
+            }
+            
+            // Add subtle shading (darker on bottom)
+            const bottomGradient = bottomCtx.createLinearGradient(0, 0, 0, bottomCanvas.height);
+            bottomGradient.addColorStop(0, 'rgba(100, 80, 60, 0.12)');
+            bottomGradient.addColorStop(1, 'rgba(80, 60, 40, 0.03)');
+            bottomCtx.fillStyle = bottomGradient;
+            bottomCtx.fillRect(0, 0, bottomCanvas.width, bottomCanvas.height);
+            
+            const bottomTexture = new THREE.CanvasTexture(bottomCanvas);
+            bottomTexture.anisotropy = renderer.capabilities.getMaxAnisotropy();
+            const bottomBumpTexture = new THREE.CanvasTexture(bottomCanvas);
+            const bottomMaterial = new THREE.MeshStandardMaterial({ 
+                map: bottomTexture,
+                bumpMap: bottomBumpTexture,
+                bumpScale: 0.014,
+                roughness: 0.85,
+                metalness: 0.0,
+                side: THREE.DoubleSide
+            });
+            const bottomEdge = new THREE.Mesh(bottomGeometry, bottomMaterial);
+            bottomEdge.position.y = -height / 2;
+            bottomEdge.rotation.x = Math.PI / 2;
+            bottomEdge.name = 'bottomEdge';
+            bottomEdge.castShadow = true;
+            bottomEdge.receiveShadow = true;
+            group.add(bottomEdge);
+            
+            // Right edge (pages side) - create realistic page edge with depth
+            const rightGeometry = new THREE.PlaneGeometry(depth, height);
+            
+            // Create a high quality canvas texture for realistic pages
+            const canvas = document.createElement('canvas');
+            canvas.width = 512;  // Higher resolution for better detail
+            canvas.height = 2048;
+            const ctx = canvas.getContext('2d');
+            
+            // Fill with warmer, more realistic page color
+            ctx.fillStyle = '#F4E8D0';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // Add multiple gradient layers for realistic depth
+            // First layer - overall depth gradient
+            const depthGradient = ctx.createLinearGradient(0, 0, canvas.width, 0);
+            depthGradient.addColorStop(0, 'rgba(80, 70, 60, 0.12)');
+            depthGradient.addColorStop(0.15, 'rgba(30, 25, 20, 0.04)');
+            depthGradient.addColorStop(0.85, 'rgba(0, 0, 0, 0.02)');
+            depthGradient.addColorStop(1, 'rgba(60, 50, 40, 0.10)');
+            ctx.fillStyle = depthGradient;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Draw thin, straight horizontal lines to denote pages
+            ctx.strokeStyle = 'rgba(0, 0, 0, 0.08)';
+            ctx.lineWidth = 0.4;
+            for (let i = 2; i < canvas.height; i += 3) {
+                ctx.beginPath();
+                ctx.moveTo(10, i);
+                ctx.lineTo(canvas.width - 10, i);
+                ctx.stroke();
+            }
+            
+            // Add paper texture overlay
+            ctx.globalAlpha = 0.02;
+            for (let i = 0; i < 200; i++) {
+                const x = Math.random() * canvas.width;
+                const y = Math.random() * canvas.height;
+                const size = Math.random() * 2;
+                ctx.fillStyle = Math.random() > 0.5 ? 'rgba(0,0,0,0.5)' : 'rgba(255,255,255,0.5)';
+                ctx.fillRect(x, y, size, size);
+            }
+            ctx.globalAlpha = 1;
+            
+            // Add binding curve shadow
+            const bindingGradient = ctx.createLinearGradient(0, 0, 30, 0);
+            bindingGradient.addColorStop(0, 'rgba(0, 0, 0, 0.18)');
+            bindingGradient.addColorStop(0.5, 'rgba(0, 0, 0, 0.08)');
+            bindingGradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+            ctx.fillStyle = bindingGradient;
+            ctx.fillRect(0, 0, 30, canvas.height);
+            
+            // Add outer edge definition with realistic paper edge
+            ctx.strokeStyle = 'rgba(0, 0, 0, 0.08)';
+            ctx.lineWidth = 0.5;
+            ctx.beginPath();
+            ctx.moveTo(canvas.width - 1, 0);
+            ctx.lineTo(canvas.width - 1, canvas.height);
+            ctx.stroke();
+            
+            // Add highlight in middle to simulate page curve
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.15)';
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            ctx.moveTo(canvas.width / 2, 0);
+            ctx.lineTo(canvas.width / 2, canvas.height);
+            ctx.stroke();
+            
+            const pageTexture = new THREE.CanvasTexture(canvas);
+            pageTexture.anisotropy = renderer.capabilities.getMaxAnisotropy();
+            pageTexture.needsUpdate = true;
+
+            // Create a bump map to give pages depth/relief
+            const bumpCanvas = document.createElement('canvas');
+            bumpCanvas.width = canvas.width;
+            bumpCanvas.height = canvas.height;
+            const bumpCtx = bumpCanvas.getContext('2d');
+            // Fill neutral gray for no displacement
+            bumpCtx.fillStyle = 'rgb(128,128,128)';
+            bumpCtx.fillRect(0, 0, bumpCanvas.width, bumpCanvas.height);
+            // Darker lines for grooves between pages
+            bumpCtx.strokeStyle = 'rgb(112,112,112)';
+            bumpCtx.lineWidth = 1;
+            for (let i = 2; i < bumpCanvas.height; i += 3) {
+                bumpCtx.beginPath();
+                bumpCtx.moveTo(12, i);
+                bumpCtx.lineTo(bumpCanvas.width - 12, i);
+                bumpCtx.stroke();
+            }
+            const pageBumpTexture = new THREE.CanvasTexture(bumpCanvas);
+            pageBumpTexture.anisotropy = renderer.capabilities.getMaxAnisotropy();
+
+            const rightMaterial = new THREE.MeshStandardMaterial({ 
+                map: pageTexture,
+                bumpMap: pageBumpTexture,
+                bumpScale: 0.012,
+                roughness: 0.85,
+                metalness: 0.0,
+                side: THREE.DoubleSide
+            });
+            const rightEdge = new THREE.Mesh(rightGeometry, rightMaterial);
+            rightEdge.position.x = width / 2;
+            rightEdge.rotation.y = -Math.PI / 2;  // Correct rotation
+            rightEdge.renderOrder = 1;  // Ensure it renders on top
+            rightEdge.name = 'pages';
+            rightEdge.castShadow = true;
+            rightEdge.receiveShadow = true;
+            group.add(rightEdge);
+            
+            return group;
+        }
+
+        // Create a soft elliptical shadow plane for a given book size
+        function createBookShadow(bookData) {
+            const width = bookData.dimensions.width;
+            const depth = Math.max(0.55, bookData.dimensions.depth * 3.0); // ensure visible oval
+
+            // Build a canvas with an elliptical radial gradient
+            const sCanvas = document.createElement('canvas');
+            sCanvas.width = 512;
+            sCanvas.height = 256;
+            const sCtx = sCanvas.getContext('2d');
+
+            const cx = sCanvas.width / 2;
+            const cy = sCanvas.height / 2;
+            const r = Math.min(cx, cy) * 0.95;
+            const grad = sCtx.createRadialGradient(cx, cy, 0, cx, cy, r);
+            grad.addColorStop(0.0, 'rgba(0,0,0,0.14)');
+            grad.addColorStop(0.4, 'rgba(0,0,0,0.08)');
+            grad.addColorStop(1.0, 'rgba(0,0,0,0)');
+            sCtx.fillStyle = grad;
+            sCtx.fillRect(0, 0, sCanvas.width, sCanvas.height);
+
+            const tex = new THREE.CanvasTexture(sCanvas);
+            tex.anisotropy = renderer.capabilities.getMaxAnisotropy();
+
+            const geo = new THREE.PlaneGeometry(width * 1.15, depth);
+            const mat = new THREE.MeshBasicMaterial({ map: tex, transparent: true, depthWrite: false });
+            const shadowMesh = new THREE.Mesh(geo, mat);
+            shadowMesh.rotation.x = -Math.PI / 2;
+            shadowMesh.position.y = -bookData.dimensions.height / 2 - 0.02;
+            shadowMesh.renderOrder = 0;
+            return shadowMesh;
+        }
+
+        function extractDominantColor(texture) {
+            // Create a canvas to sample the texture
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            const img = texture.image;
+            
+            // Use smaller size for performance
+            const sampleSize = 64;
+            canvas.width = sampleSize;
+            canvas.height = sampleSize;
+            
+            // Draw the image scaled down
+            ctx.drawImage(img, 0, 0, sampleSize, sampleSize);
+            
+            // Get image data
+            const imageData = ctx.getImageData(0, 0, sampleSize, sampleSize);
+            const data = imageData.data;
+            
+            // Sample colors from strategic points (corners and edges tend to have background colors)
+            const samples = [];
+            const samplePoints = [
+                {x: 2, y: 2}, // top-left
+                {x: sampleSize - 3, y: 2}, // top-right
+                {x: 2, y: sampleSize - 3}, // bottom-left
+                {x: sampleSize - 3, y: sampleSize - 3}, // bottom-right
+                {x: sampleSize / 2, y: 2}, // top-center
+                {x: sampleSize / 2, y: sampleSize - 3}, // bottom-center
+                {x: 2, y: sampleSize / 2}, // left-center
+                {x: sampleSize - 3, y: sampleSize / 2} // right-center
+            ];
+            
+            samplePoints.forEach(point => {
+                const idx = (point.y * sampleSize + point.x) * 4;
+                const r = data[idx];
+                const g = data[idx + 1];
+                const b = data[idx + 2];
+                
+                // Calculate color saturation to filter out grays/whites
+                const max = Math.max(r, g, b);
+                const min = Math.min(r, g, b);
+                const saturation = max === 0 ? 0 : (max - min) / max;
+                
+                // Only consider colors with decent saturation
+                if (saturation > 0.3) {
+                    samples.push({r, g, b, saturation});
+                }
+            });
+            
+            // If we found saturated colors, use the most saturated one
+            if (samples.length > 0) {
+                samples.sort((a, b) => b.saturation - a.saturation);
+                const chosen = samples[0];
+                return (chosen.r << 16) | (chosen.g << 8) | chosen.b;
+            }
+            
+            // Fallback: compute average color from entire image
+            let r = 0, g = 0, b = 0;
+            let count = 0;
+            
+            for (let i = 0; i < data.length; i += 4) {
+                r += data[i];
+                g += data[i + 1];
+                b += data[i + 2];
+                count++;
+            }
+            
+            r = Math.floor(r / count);
+            g = Math.floor(g / count);
+            b = Math.floor(b / count);
+            
+            return (r << 16) | (g << 8) | b;
+        }
+
+        function applyTextureToBook(book, texture, target = 'cover') {
+            // Find the specific part of the book to apply texture to
+            const part = book.children.find(child => child.name === target);
+            if (part && part.material) {
+                // Ensure texture doesn't repeat
+                texture.wrapS = THREE.ClampToEdgeWrapping;
+                texture.wrapT = THREE.ClampToEdgeWrapping;
+                texture.repeat.set(1, 1);  // Show texture only once
+
+                // For BoxGeometry covers, we need to handle materials differently
+                if (target === 'cover' || target === 'backCover') {
+                    // Get the spine color if available (will be set after spine loads)
+                    const spineColor = book.userData.spineColor || 0xf5f5f5;
+                    const pageColor = 0xF4E8D0; // Warmer, more realistic aged paper color
+                    
+                    // Create a subtle texture for the page edges
+                    const pageCanvas = document.createElement('canvas');
+                    pageCanvas.width = 64;
+                    pageCanvas.height = 256;
+                    const pageCtx = pageCanvas.getContext('2d');
+                    
+                    // Fill with base page color
+                    pageCtx.fillStyle = '#F4E8D0';
+                    pageCtx.fillRect(0, 0, pageCanvas.width, pageCanvas.height);
+                    
+                    // Add subtle horizontal lines to simulate page layers
+                    for (let i = 0; i < pageCanvas.height; i += 2) {
+                        pageCtx.strokeStyle = `rgba(180, 160, 140, ${0.1 + Math.random() * 0.1})`;
+                        pageCtx.lineWidth = 0.5;
+                        pageCtx.beginPath();
+                        pageCtx.moveTo(0, i);
+                        pageCtx.lineTo(pageCanvas.width, i);
+                        pageCtx.stroke();
+                    }
+                    
+                    // Add some noise for texture
+                    for (let i = 0; i < 50; i++) {
+                        const x = Math.random() * pageCanvas.width;
+                        const y = Math.random() * pageCanvas.height;
+                        const brightness = 200 + Math.random() * 40;
+                        pageCtx.fillStyle = `rgba(${brightness}, ${brightness-10}, ${brightness-20}, 0.3)`;
+                        pageCtx.fillRect(x, y, 1, 1);
+                    }
+                    
+                    const pageTexture = new THREE.CanvasTexture(pageCanvas);
+                    pageTexture.anisotropy = renderer.capabilities.getMaxAnisotropy();
+                    
+                    // BoxGeometry has 6 faces, we need to apply texture only to the front/back face
+                    const materials = [
+                        new THREE.MeshStandardMaterial({ map: pageTexture, roughness: 0.9, metalness: 0 }), // right (pages)
+                        new THREE.MeshStandardMaterial({ color: spineColor, roughness: 0.7, metalness: 0.02 }), // left (spine side)
+                        new THREE.MeshStandardMaterial({ color: pageColor, roughness: 0.9, metalness: 0 }), // top (pages)
+                        new THREE.MeshStandardMaterial({ color: pageColor, roughness: 0.9, metalness: 0 }), // bottom (pages)
+                        target === 'cover' ? 
+                            new THREE.MeshStandardMaterial({ map: texture, roughness: 0.55, metalness: 0.04 }) : // front
+                            new THREE.MeshStandardMaterial({ color: part.material.color, roughness: 0.6, metalness: 0.03 }),
+                        target === 'backCover' ? 
+                            new THREE.MeshStandardMaterial({ map: texture, roughness: 0.6, metalness: 0.03 }) : // back
+                            new THREE.MeshStandardMaterial({ color: part.material.color, roughness: 0.6, metalness: 0.03 })
+                    ];
+                    part.material = materials;
+                } else if (target === 'spine') {
+                    // Extract the dominant color from the spine texture
+                    const spineColor = extractDominantColor(texture);
+                    
+                    // Save spine color to book userData for use by other parts
+                    book.userData.spineColor = spineColor;
+                    
+                    // Spine is now a box, apply texture to the left face (which faces outward)
+                    // and use the extracted color for all other faces
+                    const materials = [
+                        new THREE.MeshStandardMaterial({ color: spineColor, roughness: 0.7, metalness: 0.02 }), // right (inner)
+                        new THREE.MeshStandardMaterial({ map: texture, roughness: 0.7, metalness: 0.02 }), // left (outer face with texture)
+                        new THREE.MeshStandardMaterial({ color: spineColor, roughness: 0.7, metalness: 0.02 }), // top
+                        new THREE.MeshStandardMaterial({ color: spineColor, roughness: 0.7, metalness: 0.02 }), // bottom
+                        new THREE.MeshStandardMaterial({ color: spineColor, roughness: 0.7, metalness: 0.02 }), // front
+                        new THREE.MeshStandardMaterial({ color: spineColor, roughness: 0.7, metalness: 0.02 })  // back
+                    ];
+                    part.material = materials;
+                    
+                    // Update ONLY the spine-side edges of covers with spine color
+                    const cover = book.children.find(child => child.name === 'cover');
+                    const backCover = book.children.find(child => child.name === 'backCover');
+                    
+                    if (cover && Array.isArray(cover.material)) {
+                        // Only update the left edge (index 1) that connects to spine
+                        cover.material[1].color.setHex(spineColor); // left edge
+                        cover.material[1].needsUpdate = true;
+                    }
+                    
+                    if (backCover && Array.isArray(backCover.material)) {
+                        // Only update the left edge (index 1) that connects to spine  
+                        backCover.material[1].color.setHex(spineColor); // left edge
+                        backCover.material[1].needsUpdate = true;
+                    }
+                    
+                    // Note: Top, bottom, and right edges should remain page color (beige)
+                }
+                part.material.needsUpdate = true;
+
+                console.log(`Applied ${target} texture successfully`);
+                
+                // If this is a cover texture, extract color and apply to back cover
+                if (target === 'cover') {
+                    const dominantColor = extractDominantColor(texture);
+                    const backCover = book.children.find(child => child.name === 'backCover');
+                    if (backCover && backCover.material) {
+                        // For BoxGeometry, update the back face material (index 5)
+                        if (Array.isArray(backCover.material)) {
+                            backCover.material[5].color.setHex(dominantColor);
+                            backCover.material.forEach(mat => mat.needsUpdate = true);
+                        } else {
+                            backCover.material.color.setHex(dominantColor);
+                            backCover.material.needsUpdate = true;
+                        }
+                        console.log(`Applied dominant color 0x${dominantColor.toString(16)} to back cover`);
+                    }
+                }
+            } else {
+                console.error(`Could not find ${target} part in book`);
+            }
+        }
+
+        // Upload helpers removed (loadBookCover no longer used)
+
+        function setupEventListeners() {
+            const canvas = renderer.domElement;
+            
+            // Dragging disabled: no mouse/touch drag handlers
+            
+            document.addEventListener('keydown', onKeyDown);
+            
+            // Add wheel/trackpad scrolling (not passive so we can preventDefault)
+            canvas.addEventListener('wheel', onWheel, { passive: false });
+            
+            // Add arrow button listeners
+            document.getElementById('prevArrow').addEventListener('click', previousBook);
+            document.getElementById('nextArrow').addEventListener('click', nextBook);
+            
+            window.addEventListener('resize', onWindowResize);
+        }
+
+        // Dragging helpers removed
+
+        function onWheel(event) {
+            event.preventDefault();
+            if (isWheelLocked) return; // one step per gesture
+            // Determine dominant axis and direction
+            const delta = Math.abs(event.deltaY) >= Math.abs(event.deltaX) ? event.deltaY : event.deltaX;
+            if (Math.abs(delta) < minWheelDelta) return; // ignore tiny jitter
+            moveBooks(delta > 0 ? 1 : -1);
+            isWheelLocked = true;
+            setTimeout(() => { isWheelLocked = false; }, wheelStepCooldown);
+        }
+
+        function onKeyDown(event) {
+            switch(event.key) {
+                case 'ArrowLeft':
+                    previousBook();
+                    break;
+                case 'ArrowRight':
+                    nextBook();
+                    break;
+            }
+        }
+
+        function moveBooks(deltaBooks) {
+            const bookSpacing = 3;
+            targetRotation += deltaBooks * bookSpacing;
+            const n = booksData.length || 1;
+            currentBook = ((currentBook + deltaBooks) % n + n) % n;
+        }
+
+        function previousBook() { moveBooks(-1); }
+        function nextBook() { moveBooks(1); }
+
+        function updateBookInfo() {
+            const book = booksData[currentBook];
+            document.querySelector('.book-title').textContent = book.title;
+            document.querySelector('.book-author').textContent = book.author;
+        }
+
+        function onWindowResize() {
+            const aspectRatio = window.innerWidth / window.innerHeight;
+            const frustumSize = 6.06; // Match the initial size
+            
+            // Update orthographic camera dimensions
+            camera.left = frustumSize * aspectRatio / -2;
+            camera.right = frustumSize * aspectRatio / 2;
+            camera.top = frustumSize / 2;
+            camera.bottom = frustumSize / -2;
+            
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            
+            // Smooth rotation with fixed easing (dragging disabled)
+            const easing = 0.06;
+            currentRotation += (targetRotation - currentRotation) * easing;
+            // Snap to exact stop when close
+            if (Math.abs(targetRotation - currentRotation) < 0.002) {
+                currentRotation = targetRotation;
+            }
+            
+            // Update book positions for infinite scrolling
+            const bookSpacing = 3;
+            const totalWidth = booksData.length * bookSpacing;
+            const halfWidth = totalWidth / 2;
+            
+            // Position 4 rotation values for center focus (frontal view)
+            // Read from JSON presets so it's easy to tweak
+            const position4Rotation = getCenterRotation();
+            const centerThreshold = 0.8; // Distance from center to start transitioning
+            const transitionSpeed = 0.06; // Slower rotation transition for smoother effect
+            
+            books.forEach((book, index) => {
+                // Calculate the book's original position including its set offset
+                const setOffset = book.userData.set * totalWidth;
+                const basePosition = book.userData.bookIndex * bookSpacing + setOffset;
+                let newX = basePosition - currentRotation;
+                
+                // Wrap around to maintain infinite scrolling
+                // Move books from one end to the other when they go too far
+                while (newX < -totalWidth * 1.5) newX += totalWidth * 3;
+                while (newX > totalWidth * 1.5) newX -= totalWidth * 3;
+                
+                book.position.x = newX;
+                
+                // Calculate distance from center (0 position)
+                const distanceFromCenter = Math.abs(newX);
+                
+                // ANIMATION: Smoothly transition to Position 4 when centered
+                if (book.userData) {
+                    // Calculate interpolation factor based on distance from center
+                    // When distance is 0, factor is 1 (full Position 4)
+                    // When distance >= centerThreshold, factor is 0 (original rotation)
+                    const centerFactor = Math.max(0, 1 - (distanceFromCenter / centerThreshold));
+                    
+                    // Initialize target rotation if not set
+                    if (!book.userData.targetRotationX) {
+                        book.userData.targetRotationX = book.userData.permanentRotationX;
+                        book.userData.targetRotationY = book.userData.permanentRotationY;
+                        book.userData.targetRotationZ = book.userData.permanentRotationZ;
+                        book.userData.currentRotationX = book.userData.permanentRotationX;
+                        book.userData.currentRotationY = book.userData.permanentRotationY;
+                        book.userData.currentRotationZ = book.userData.permanentRotationZ;
+                    }
+                    
+                    // Set target rotation based on center factor
+                    if (centerFactor > 0) {
+                        // Interpolate towards Position 4
+                        book.userData.targetRotationX = book.userData.permanentRotationX + 
+                            (position4Rotation.x - book.userData.permanentRotationX) * centerFactor;
+                        book.userData.targetRotationY = book.userData.permanentRotationY + 
+                            (position4Rotation.y - book.userData.permanentRotationY) * centerFactor;
+                        book.userData.targetRotationZ = book.userData.permanentRotationZ + 
+                            (position4Rotation.z - book.userData.permanentRotationZ) * centerFactor;
+                    } else {
+                        // Return to original rotation
+                        book.userData.targetRotationX = book.userData.permanentRotationX;
+                        book.userData.targetRotationY = book.userData.permanentRotationY;
+                        book.userData.targetRotationZ = book.userData.permanentRotationZ;
+                    }
+                    
+                    // Smooth transition to target rotation
+                    book.userData.currentRotationX += (book.userData.targetRotationX - book.userData.currentRotationX) * transitionSpeed;
+                    book.userData.currentRotationY += (book.userData.targetRotationY - book.userData.currentRotationY) * transitionSpeed;
+                    book.userData.currentRotationZ += (book.userData.targetRotationZ - book.userData.currentRotationZ) * transitionSpeed;
+                    
+                    // Apply the smoothly animated rotation
+                    book.rotation.x = book.userData.currentRotationX;
+                    book.rotation.y = book.userData.currentRotationY;
+                    book.rotation.z = book.userData.currentRotationZ;
+                }
+                
+                // Keep Y and Z position fixed
+                book.position.y = 0;
+                book.position.z = 0;
+
+                // Keep the fake shadow aligned horizontally under the book
+                if (book.userData && book.userData.shadow) {
+                    const shadow = book.userData.shadow;
+                    shadow.position.x = book.position.x;
+                    // Fixed orientation and height
+                    shadow.rotation.x = -Math.PI / 2;
+                }
+            });
+            
+            // KEEP CAMERA COMPLETELY STATIC - DO NOT MOVE IT!
+            // Use orthographic-like settings to minimize perspective distortion
+            camera.position.set(0, -3, 8);  // Fixed position, ultra low for epic perspective
+            camera.lookAt(0, 0.5, 0);  // Always look at slightly elevated point
+            camera.updateProjectionMatrix();
+            
+            renderer.render(scene, camera);
+        }
+
+        // Upload panel code removed (setupUploadPanel/toggleUploadPanel/handleFileUpload)
+
+        // Dark mode toggle function
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const isDarkMode = document.body.classList.contains('dark-mode');
+            
+            // Update logo sources
+            const headerLogo = document.getElementById('header-logo');
+            const bottomLogo = document.getElementById('bottom-logo-icon');
+            const toggleBtn = document.querySelector('.dark-mode-toggle');
+            
+            if (isDarkMode) {
+                headerLogo.src = 'brand/RE-logo-text-white.svg';
+                bottomLogo.src = 'brand/RE-logo-icon-white.svg';
+                toggleBtn.textContent = 'Light Mode';
+                // Update 3D scene background
+                if (scene) {
+                    scene.background = new THREE.Color(0x0000FF);
+                }
+            } else {
+                headerLogo.src = 'brand/RE-logo-text-blue.svg';
+                bottomLogo.src = 'brand/RE-logo-icon-blue.svg';
+                toggleBtn.textContent = 'Dark Mode';
+                // Update 3D scene background
+                if (scene) {
+                    scene.background = new THREE.Color(0xffffff);
+                }
+            }
+            
+            // Save preference
+            localStorage.setItem('darkMode', isDarkMode);
+        }
+        
+        // Initialize app after DOM loads
+        window.addEventListener('load', async () => {
+            // Check for saved dark mode preference
+            const savedDarkMode = localStorage.getItem('darkMode') === 'true';
+            if (savedDarkMode) {
+                document.body.classList.add('dark-mode');
+                document.getElementById('header-logo').src = 'brand/RE-logo-text-white.svg';
+                document.getElementById('bottom-logo-icon').src = 'brand/RE-logo-icon-white.svg';
+                document.querySelector('.dark-mode-toggle').textContent = 'Light Mode';
+            }
+            
+            await init();
+            animate();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RE — Welcome</title>
+    <style>
+        @font-face {
+            font-family: 'Apercu Pro Bold';
+            src: url('fonts/Apercu Pro Font/apercu_bold_pro.otf') format('opentype');
+            font-weight: bold;
+            font-style: normal;
+        }
+        
+        @font-face {
+            font-family: 'Apercu Pro Italic';
+            src: url('fonts/Apercu Pro Font/apercu_regular_italic_pro.otf') format('opentype');
+            font-weight: normal;
+            font-style: italic;
+        }
+        
+        @font-face {
+            font-family: 'Apercu Pro Medium';
+            src: url('fonts/Apercu Pro Font/apercu_medium_pro.otf') format('opentype');
+            font-weight: 500;
+            font-style: normal;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: url('brand/RE-cursor-blue.svg'), auto;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: #0000FF;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            cursor: url('brand/RE-cursor-blue.svg'), auto;
+        }
+        
+        .logo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 60px;
+        }
+        
+        .text-logo {
+            height: 115px;
+            width: auto;
+        }
+        
+        .icon-logo {
+            width: 120px;
+            height: auto;
+        }
+        
+        /* Optional fade-in animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .logo-container {
+            animation: fadeIn 1s ease-out;
+        }
+    </style>
+    <script>
+        // Generate crisp PNG fallbacks (1x/2x/3x) from the SVG and inject CSS with image-set
+        function applyPngCursorFromSvg(svgPath, size = 32, hotspot = [0, 0]) {
+            const img = new Image();
+            img.onload = () => {
+                try {
+                    const [hx, hy] = hotspot;
+                    // 1x canvas
+                    const c1 = document.createElement('canvas');
+                    c1.width = size; c1.height = size;
+                    const x1 = c1.getContext('2d');
+                    x1.clearRect(0, 0, size, size);
+                    x1.drawImage(img, 0, 0, size, size);
+                    const url1x = c1.toDataURL('image/png');
+
+                    // 2x canvas for retina
+                    const c2 = document.createElement('canvas');
+                    c2.width = size * 2; c2.height = size * 2;
+                    const x2 = c2.getContext('2d');
+                    x2.clearRect(0, 0, size * 2, size * 2);
+                    x2.drawImage(img, 0, 0, size * 2, size * 2);
+                    const url2x = c2.toDataURL('image/png');
+
+                    // 3x canvas for super-retina
+                    const c3 = document.createElement('canvas');
+                    c3.width = size * 3; c3.height = size * 3;
+                    const x3 = c3.getContext('2d');
+                    x3.clearRect(0, 0, size * 3, size * 3);
+                    x3.drawImage(img, 0, 0, size * 3, size * 3);
+                    const url3x = c3.toDataURL('image/png');
+
+                    const useImageSet = CSS && (CSS.supports('cursor', 'image-set(url("data:image/png;base64,AAA=") 1x) 0 0, auto') || CSS.supports('cursor', '-webkit-image-set(url("data:image/png;base64,AAA=") 1x) 0 0, auto'));
+
+                    const rules = [];
+                    const base = useImageSet
+                        ? `cursor: image-set(url('${url1x}') 1x, url('${url2x}') 2x, url('${url3x}') 3x) ${hx} ${hy}, auto !important; cursor: -webkit-image-set(url('${url1x}') 1x, url('${url2x}') 2x, url('${url3x}') 3x) ${hx} ${hy}, auto !important;`
+                        : `cursor: url('${url2x}') ${hx} ${hy}, auto !important;`;
+
+                    // Base rule for everything
+                    rules.push(`* { ${base} }`);
+
+                    const css = rules.join('\n');
+                    let style = document.getElementById('cursor-fallback-style');
+                    if (!style) {
+                        style = document.createElement('style');
+                        style.id = 'cursor-fallback-style';
+                        document.head.appendChild(style);
+                    }
+                    style.textContent = css;
+                } catch (e) {
+                    console.warn('Failed to apply PNG cursor fallback:', e);
+                }
+            };
+            img.onerror = () => console.warn('Could not load SVG cursor at', svgPath);
+            img.src = svgPath;
+        }
+
+        // Apply after DOM is ready
+        document.addEventListener('DOMContentLoaded', () => {
+            // Always apply high-DPI PNG fallback for maximum sharpness across browsers
+            const cssSize = 28; // visual size in CSS pixels
+            applyPngCursorFromSvg('brand/RE-cursor-white.svg', cssSize, [0, 0]);
+        });
+    </script>
+</head>
+<body>
+    <div class="logo-container">
+        <img src="brand/RE-logo-text-white.svg" alt="RE" class="text-logo">
+        <img src="brand/RE-logo-icon-white.svg" alt="RE Icon" class="icon-logo">
+    </div>
+</body>
+</html>

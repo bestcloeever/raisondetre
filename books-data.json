@@ -1,0 +1,189 @@
+{
+  "books": [
+    {
+      "id": "001",
+      "title": "No vas a heredar la empresa",
+      "author": "",
+      "position": "Position 2",
+      "images": {
+        "cover": "covers/001_No vas a heredar la empresa_Cover.jpg",
+        "spine": "spines/001_No vas a heredar la empresa_Spine.jpg",
+        "backCover": null
+      },
+      "colors": {
+        "backCover": "#E74C3C",
+        "spine": "#f5f5f5",
+        "pages": "#FFFFF0"
+      },
+      "dimensions": {
+        "width": "auto",
+        "height": "auto",
+        "depth": "auto",
+        "note": "Will be calculated from image dimensions"
+      }
+    },
+    {
+      "id": "002",
+      "title": "Regula tu estrés, encuentra tu equilibrio",
+      "author": "",
+      "position": "Position 1",
+      "images": {
+        "cover": "covers/002_Regula tu estrés, encuentra tu equilibrio_Cover.jpg",
+        "spine": "spines/002_Regula tu estrés, encuentra tu equilibrio_Spine.jpg",
+        "backCover": null
+      },
+      "colors": {
+        "backCover": "#7FB069",
+        "spine": "#f5f5f5",
+        "pages": "#FFFFF0"
+      },
+      "dimensions": {
+        "width": "auto",
+        "height": "auto",
+        "depth": "auto"
+      }
+    },
+    {
+      "id": "003",
+      "title": "Cuñadismo",
+      "author": "",
+      "position": "Position 3",
+      "images": {
+        "cover": "covers/003_Cuñadismo_Cover.jpg",
+        "spine": "spines/003_Cuñadismo_Spine.jpg",
+        "backCover": null
+      },
+      "colors": {
+        "backCover": "#F39C12",
+        "spine": "#f5f5f5",
+        "pages": "#FFFFF0"
+      },
+      "dimensions": {
+        "width": "auto",
+        "height": "auto",
+        "depth": "auto"
+      }
+    },
+    {
+      "id": "004",
+      "title": "Escape Book",
+      "author": "",
+      "position": "Position 2",
+      "images": {
+        "cover": "covers/004_Escape Book_Cover.jpg",
+        "spine": "spines/004_Escape Book_Spine.jpg",
+        "backCover": null
+      },
+      "colors": {
+        "backCover": "#8B4513",
+        "spine": "#f5f5f5",
+        "pages": "#FFFFF0"
+      },
+      "dimensions": {
+        "width": "auto",
+        "height": "auto",
+        "depth": "auto"
+      }
+    },
+    {
+      "id": "005",
+      "title": "Hellfriend",
+      "author": "",
+      "position": "Position 5",
+      "images": {
+        "cover": "covers/005_Hellfriend_Cover.jpg",
+        "spine": "spines/005_Hellfriend_Spine.jpg",
+        "backCover": null
+      },
+      "colors": {
+        "backCover": "#DC143C",
+        "spine": "#f5f5f5",
+        "pages": "#FFFFF0"
+      },
+      "dimensions": {
+        "width": "auto",
+        "height": "auto",
+        "depth": "auto"
+      }
+    },
+    {
+      "id": "006",
+      "title": "Dioses y Monstruos",
+      "author": "",
+      "position": "Position 1",
+      "images": {
+        "cover": "covers/006_Dioses y Monstruos_Cover.jpg",
+        "spine": "spines/006_Dioses y Monstruos_Spine.jpg",
+        "backCover": null
+      },
+      "colors": {
+        "backCover": "#2F4F2F",
+        "spine": "#f5f5f5",
+        "pages": "#FFFFF0"
+      },
+      "dimensions": {
+        "width": "auto",
+        "height": "auto",
+        "depth": "auto"
+      }
+    }
+  ],
+  "globalSettings": {
+    "bookSpacing": 3,
+    "defaultDimensions": {
+      "width": 1.8,
+      "height": 2.8,
+      "depth": 0.25
+    },
+    "defaultColors": {
+      "spine": "#333333",
+      "pages": "#FFFFF0"
+    },
+    "defaultRotation": {
+      "angle": 7.5,
+      "unit": "degrees"
+    }
+  },
+  "positions": [
+    {
+      "name": "Position 1",
+      "rotation": {
+        "x": -3.29,
+        "y": 2.54,
+        "z": 0
+      }
+    },
+    {
+      "name": "Position 2",
+      "rotation": {
+        "x": 3.1,
+        "y": 3.75,
+        "z": -0.1
+      }
+    },
+    {
+      "name": "Position 3",
+      "rotation": {
+        "x": -0.10,
+        "y": -0.55,
+        "z": 0.20
+      }
+    },
+    {
+      "name": "Position 4",
+      "rotation": {
+        "x": -0.25,
+        "y": 0.6,
+        "z": 0.15
+      }
+    },
+    {
+      "name": "Position 5",
+      "rotation": {
+        "x": -3.89,
+        "y": 2.58,
+        "z": -0.35
+      }
+    }
+  ]
+}
