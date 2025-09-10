@@ -50,6 +50,62 @@
             background: #0000FF;
         }
 
+        /* Intro Overlay Styles */
+        #intro-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #0000FF;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: url('brand/RE-cursor-white.svg'), auto;
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 1s ease-out, visibility 1s ease-out;
+        }
+
+        #intro-overlay * {
+            cursor: url('brand/RE-cursor-white.svg'), auto;
+        }
+
+        #intro-overlay.fade-out {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .intro-logo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 60px;
+            animation: introFadeIn 0.8s ease-out;
+        }
+
+        .intro-text-logo {
+            height: 115px;
+            width: auto;
+        }
+
+        .intro-icon-logo {
+            width: 270px;
+            height: auto;
+        }
+
+        @keyframes introFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         #loading {
             position: fixed;
             top: 50%;
@@ -531,8 +587,36 @@
             }, 100); // Start animation almost immediately after page load
         });
     </script>
+    <script>
+        // Intro Animation Controller
+        document.addEventListener('DOMContentLoaded', function() {
+            const introOverlay = document.getElementById('intro-overlay');
+            
+            // Fade out intro after 3 seconds
+            setTimeout(() => {
+                if (introOverlay) {
+                    introOverlay.classList.add('fade-out');
+                }
+            }, 3000);
+            
+            // Remove intro overlay from DOM after fade completes
+            setTimeout(() => {
+                if (introOverlay && introOverlay.parentNode) {
+                    introOverlay.remove();
+                }
+            }, 4000);
+        });
+    </script>
 </head>
 <body>
+    <!-- Intro Overlay -->
+    <div id="intro-overlay">
+        <div class="intro-logo-container">
+            <img src="brand/RE-logo-text-white.svg" alt="Raison d'Être" class="intro-text-logo">
+            <img src="brand/RE-logo-icon-white.svg" alt="RE Icon" class="intro-icon-logo">
+        </div>
+    </div>
+
     <!-- Dark Mode Toggle -->
     <button class="dark-mode-toggle" onclick="toggleDarkMode()">Dark Mode</button>
     
