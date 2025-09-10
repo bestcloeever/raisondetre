@@ -387,6 +387,17 @@
                 padding: 140px 30px 100px;
             }
         }
+
+        @media (max-width: 480px) {
+            .logo { height: 40px; }
+            .page-title { font-size: 26px; }
+            .about-text p { font-size: 18px; }
+            .main-content { padding: 120px 20px 90px; }
+            .contact-info { right: 16px; bottom: 16px; font-size: 12px; }
+            .menu-container { left: 16px; bottom: 16px; gap: 12px; }
+            .bottom-logo { width: 40px; }
+            .menu-item { font-size: 16px; }
+        }
     </style>
 </head>
 <body>
@@ -425,6 +436,26 @@
     </div>
     
     <script>
+        // Enable tap-to-toggle for menu on mobile
+        document.addEventListener('DOMContentLoaded', () => {
+            try {
+                const menuContainer = document.querySelector('.menu-container');
+                const bottomLogo = document.getElementById('bottom-logo-icon');
+                if (menuContainer && bottomLogo) {
+                    const toggleMenu = (e) => {
+                        e.stopPropagation();
+                        menuContainer.classList.toggle('auto-show');
+                    };
+                    bottomLogo.addEventListener('click', toggleMenu);
+                    bottomLogo.addEventListener('touchstart', toggleMenu, { passive: true });
+                    document.addEventListener('click', (e) => {
+                        if (!menuContainer.contains(e.target)) {
+                            menuContainer.classList.remove('auto-show');
+                        }
+                    });
+                }
+            } catch (_) {}
+        });
         // Generate crisp PNG fallbacks (1x/2x/3x) from the SVG and inject CSS with image-set
         function applyPngCursorFromSvg(svgPath, size = 32, hotspot = [0, 0]) {
             const img = new Image();

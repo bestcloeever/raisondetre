@@ -79,6 +79,18 @@
         .logo-container {
             animation: fadeIn 1s ease-out;
         }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .text-logo { height: 80px; }
+            .icon-logo { width: 190px; }
+            .logo-container { gap: 36px; }
+        }
+        @media (max-width: 480px) {
+            .text-logo { height: 64px; }
+            .icon-logo { width: 150px; }
+            .logo-container { gap: 28px; }
+        }
     </style>
     <script>
         // Generate crisp PNG fallbacks (1x/2x/3x) from the SVG and inject CSS with image-set

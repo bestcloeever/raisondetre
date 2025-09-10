@@ -17,7 +17,7 @@
             font-family: 'Arial', sans-serif;
             background: white;
             overflow: hidden;
-            height: 100vh;
+            height: 100dvh;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -25,7 +25,7 @@
 
         #canvas-container {
             width: 100%;
-            height: 100vh;
+            height: 100dvh;
             position: relative;
             cursor: url('brand/RE-cursor-blue.svg'), grab;
         }
@@ -46,6 +46,17 @@
             font-size: 24px;
             font-weight: bold;
             z-index: 100;
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .book-info { top: 20px; left: 20px; font-size: 18px; }
+            .coordinates-panel { top: auto; bottom: 20px; right: 20px; width: 220px; }
+        }
+        @media (max-width: 480px) {
+            .book-info { top: 14px; left: 14px; font-size: 16px; }
+            .coordinates-panel { right: 12px; bottom: 12px; left: 12px; width: auto; }
+            .panel-title { font-size: 16px; }
         }
 
         .coordinates-panel {
