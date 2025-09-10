@@ -507,7 +507,7 @@
                     const c1 = document.createElement('canvas');
                     c1.width = size; c1.height = size;
                     const x1 = c1.getContext('2d');
-                    x1.imageSmoothingEnabled = false;
+                    x1.imageSmoothingEnabled = true;
                     x1.imageSmoothingQuality = 'high';
                     x1.clearRect(0, 0, size, size);
                     x1.drawImage(img, 0, 0, size, size);
@@ -517,7 +517,7 @@
                     const c2 = document.createElement('canvas');
                     c2.width = size * 2; c2.height = size * 2;
                     const x2 = c2.getContext('2d');
-                    x2.imageSmoothingEnabled = false;
+                    x2.imageSmoothingEnabled = true;
                     x2.imageSmoothingQuality = 'high';
                     x2.clearRect(0, 0, size * 2, size * 2);
                     x2.drawImage(img, 0, 0, size * 2, size * 2);
@@ -527,7 +527,7 @@
                     const c3 = document.createElement('canvas');
                     c3.width = size * 3; c3.height = size * 3;
                     const x3 = c3.getContext('2d');
-                    x3.imageSmoothingEnabled = false;
+                    x3.imageSmoothingEnabled = true;
                     x3.imageSmoothingQuality = 'high';
                     x3.clearRect(0, 0, size * 3, size * 3);
                     x3.drawImage(img, 0, 0, size * 3, size * 3);
