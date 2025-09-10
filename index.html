@@ -1673,6 +1673,12 @@
                 texture.wrapS = THREE.ClampToEdgeWrapping;
                 texture.wrapT = THREE.ClampToEdgeWrapping;
                 texture.repeat.set(1, 1);  // Show texture only once
+                
+                // Improve texture quality
+                texture.magFilter = THREE.LinearFilter;
+                texture.minFilter = THREE.LinearMipmapLinearFilter;
+                texture.anisotropy = renderer.capabilities.getMaxAnisotropy();
+                texture.generateMipmaps = true;
 
                 // For BoxGeometry covers, we need to handle materials differently
                 if (target === 'cover' || target === 'backCover') {
