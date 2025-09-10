@@ -268,31 +268,75 @@
         }
     </style>
     <script>
-        // Generate a PNG fallback from the SVG cursor and inject CSS rules
+        // Generate crisp PNG fallbacks (1x/2x/3x) from the SVG and inject CSS with image-set
         function applyPngCursorFromSvg(svgPath, size = 32, hotspot = [0, 0]) {
             const img = new Image();
             img.onload = () => {
                 try {
-                    const canvas = document.createElement('canvas');
-                    canvas.width = size;
-                    canvas.height = size;
-                    const ctx = canvas.getContext('2d');
-                    ctx.clearRect(0, 0, size, size);
-                    ctx.drawImage(img, 0, 0, size, size);
-                    const dataURL = canvas.toDataURL('image/png');
                     const [hx, hy] = hotspot;
+                    // 1x canvas
+                    const c1 = document.createElement('canvas');
+                    c1.width = size; c1.height = size;
+                    const x1 = c1.getContext('2d');
+                    x1.imageSmoothingEnabled = false;
+                    x1.imageSmoothingQuality = 'high';
+                    x1.clearRect(0, 0, size, size);
+                    x1.drawImage(img, 0, 0, size, size);
+                    const url1x = c1.toDataURL('image/png');
 
-                    const css = `
-                        * { cursor: url('${dataURL}') ${hx} ${hy}, auto !important; }
-                        body { cursor: url('${dataURL}') ${hx} ${hy}, auto !important; }
-                        #canvas-container { cursor: url('${dataURL}') ${hx} ${hy}, grab !important; }
-                        #canvas-container:active { cursor: url('${dataURL}') ${hx} ${hy}, grabbing !important; }
-                    `;
+                    // 2x canvas for retina
+                    const c2 = document.createElement('canvas');
+                    c2.width = size * 2; c2.height = size * 2;
+                    const x2 = c2.getContext('2d');
+                    x2.imageSmoothingEnabled = false;
+                    x2.imageSmoothingQuality = 'high';
+                    x2.clearRect(0, 0, size * 2, size * 2);
+                    x2.drawImage(img, 0, 0, size * 2, size * 2);
+                    const url2x = c2.toDataURL('image/png');
 
-                    const style = document.createElement('style');
-                    style.id = 'cursor-fallback-style';
-                    style.appendChild(document.createTextNode(css));
-                    document.head.appendChild(style);
+                    // 3x canvas for super-retina
+                    const c3 = document.createElement('canvas');
+                    c3.width = size * 3; c3.height = size * 3;
+                    const x3 = c3.getContext('2d');
+                    x3.imageSmoothingEnabled = false;
+                    x3.imageSmoothingQuality = 'high';
+                    x3.clearRect(0, 0, size * 3, size * 3);
+                    x3.drawImage(img, 0, 0, size * 3, size * 3);
+                    const url3x = c3.toDataURL('image/png');
+
+                    const rules = [];
+                    const dpr = Math.max(1, Math.min(3, Math.round(window.devicePixelRatio || 1)));
+                    const chosen = dpr >= 3 ? url3x : (dpr >= 2 ? url2x : url1x);
+                    const declBase = [
+                        `cursor: -webkit-image-set(url('${url1x}') 1x, url('${url2x}') 2x, url('${url3x}') 3x) ${hx} ${hy}, auto !important;`,
+                        `cursor: image-set(url('${url1x}') 1x, url('${url2x}') 2x, url('${url3x}') 3x) ${hx} ${hy}, auto !important;`,
+                        `cursor: url('${chosen}') ${hx} ${hy}, auto !important;`
+                    ].join(' ');
+                    const declGrab = [
+                        `cursor: -webkit-image-set(url('${url1x}') 1x, url('${url2x}') 2x, url('${url3x}') 3x) ${hx} ${hy}, grab !important;`,
+                        `cursor: image-set(url('${url1x}') 1x, url('${url2x}') 2x, url('${url3x}') 3x) ${hx} ${hy}, grab !important;`,
+                        `cursor: url('${chosen}') ${hx} ${hy}, grab !important;`
+                    ].join(' ');
+                    const declGrabbing = [
+                        `cursor: -webkit-image-set(url('${url1x}') 1x, url('${url2x}') 2x, url('${url3x}') 3x) ${hx} ${hy}, grabbing !important;`,
+                        `cursor: image-set(url('${url1x}') 1x, url('${url2x}') 2x, url('${url3x}') 3x) ${hx} ${hy}, grabbing !important;`,
+                        `cursor: url('${chosen}') ${hx} ${hy}, grabbing !important;`
+                    ].join(' ');
+
+                    // Base rule for everything
+                    rules.push(`* { ${declBase} }`);
+                    // Canvas-specific variants
+                    rules.push(`#canvas-container { ${declGrab} }`);
+                    rules.push(`#canvas-container:active { ${declGrabbing} }`);
+
+                    const css = rules.join('\n');
+                    let style = document.getElementById('cursor-fallback-style');
+                    if (!style) {
+                        style = document.createElement('style');
+                        style.id = 'cursor-fallback-style';
+                        document.head.appendChild(style);
+                    }
+                    style.textContent = css;
                 } catch (e) {
                     console.warn('Failed to apply PNG cursor fallback:', e);
                 }
@@ -302,7 +346,7 @@
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            applyPngCursorFromSvg('brand/RE-cursor-blue.svg', 24, [0, 0]);
+            applyPngCursorFromSvg('brand/RE-cursor-blue.svg', 26, [0, 0]);
         });
     </script>
 </head>

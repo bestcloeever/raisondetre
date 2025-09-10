@@ -507,6 +507,8 @@
                     const c1 = document.createElement('canvas');
                     c1.width = size; c1.height = size;
                     const x1 = c1.getContext('2d');
+                    x1.imageSmoothingEnabled = false;
+                    x1.imageSmoothingQuality = 'high';
                     x1.clearRect(0, 0, size, size);
                     x1.drawImage(img, 0, 0, size, size);
                     const url1x = c1.toDataURL('image/png');
@@ -515,6 +517,8 @@
                     const c2 = document.createElement('canvas');
                     c2.width = size * 2; c2.height = size * 2;
                     const x2 = c2.getContext('2d');
+                    x2.imageSmoothingEnabled = false;
+                    x2.imageSmoothingQuality = 'high';
                     x2.clearRect(0, 0, size * 2, size * 2);
                     x2.drawImage(img, 0, 0, size * 2, size * 2);
                     const url2x = c2.toDataURL('image/png');
@@ -523,30 +527,40 @@
                     const c3 = document.createElement('canvas');
                     c3.width = size * 3; c3.height = size * 3;
                     const x3 = c3.getContext('2d');
+                    x3.imageSmoothingEnabled = false;
+                    x3.imageSmoothingQuality = 'high';
                     x3.clearRect(0, 0, size * 3, size * 3);
                     x3.drawImage(img, 0, 0, size * 3, size * 3);
                     const url3x = c3.toDataURL('image/png');
 
-                    const useImageSet = CSS && (CSS.supports('cursor', 'image-set(url("data:image/png;base64,AAA=") 1x) 0 0, auto') || CSS.supports('cursor', '-webkit-image-set(url("data:image/png;base64,AAA=") 1x) 0 0, auto'));
-
                     const rules = [];
-                    const base = useImageSet
-                        ? `cursor: image-set(url('${url1x}') 1x, url('${url2x}') 2x, url('${url3x}') 3x) ${hx} ${hy}, auto !important; cursor: -webkit-image-set(url('${url1x}') 1x, url('${url2x}') 2x, url('${url3x}') 3x) ${hx} ${hy}, auto !important;`
-                        : `cursor: url('${url2x}') ${hx} ${hy}, auto !important;`;
-                    const basePointer = useImageSet
-                        ? `cursor: image-set(url('${url1x}') 1x, url('${url2x}') 2x, url('${url3x}') 3x) ${hx} ${hy}, pointer !important; cursor: -webkit-image-set(url('${url1x}') 1x, url('${url2x}') 2x, url('${url3x}') 3x) ${hx} ${hy}, pointer !important;`
-                        : `cursor: url('${url2x}') ${hx} ${hy}, pointer !important;`;
-                    const baseGrab = useImageSet
-                        ? `cursor: image-set(url('${url1x}') 1x, url('${url2x}') 2x, url('${url3x}') 3x) ${hx} ${hy}, grab !important; cursor: -webkit-image-set(url('${url1x}') 1x, url('${url2x}') 2x, url('${url3x}') 3x) ${hx} ${hy}, grab !important;`
-                        : `cursor: url('${url2x}') ${hx} ${hy}, grab !important;`;
-                    const baseGrabbing = useImageSet
-                        ? `cursor: image-set(url('${url1x}') 1x, url('${url2x}') 2x, url('${url3x}') 3x) ${hx} ${hy}, grabbing !important; cursor: -webkit-image-set(url('${url1x}') 1x, url('${url2x}') 2x, url('${url3x}') 3x) ${hx} ${hy}, grabbing !important;`
-                        : `cursor: url('${url2x}') ${hx} ${hy}, grabbing !important;`;
+                    const dpr = Math.max(1, Math.min(3, Math.round(window.devicePixelRatio || 1)));
+                    const chosen = dpr >= 3 ? url3x : (dpr >= 2 ? url2x : url1x);
+                    const declBase = [
+                        `cursor: -webkit-image-set(url('${url1x}') 1x, url('${url2x}') 2x, url('${url3x}') 3x) ${hx} ${hy}, auto !important;`,
+                        `cursor: image-set(url('${url1x}') 1x, url('${url2x}') 2x, url('${url3x}') 3x) ${hx} ${hy}, auto !important;`,
+                        `cursor: url('${chosen}') ${hx} ${hy}, auto !important;`
+                    ].join(' ');
+                    const declPointer = [
+                        `cursor: -webkit-image-set(url('${url1x}') 1x, url('${url2x}') 2x, url('${url3x}') 3x) ${hx} ${hy}, pointer !important;`,
+                        `cursor: image-set(url('${url1x}') 1x, url('${url2x}') 2x, url('${url3x}') 3x) ${hx} ${hy}, pointer !important;`,
+                        `cursor: url('${chosen}') ${hx} ${hy}, pointer !important;`
+                    ].join(' ');
+                    const declGrab = [
+                        `cursor: -webkit-image-set(url('${url1x}') 1x, url('${url2x}') 2x, url('${url3x}') 3x) ${hx} ${hy}, grab !important;`,
+                        `cursor: image-set(url('${url1x}') 1x, url('${url2x}') 2x, url('${url3x}') 3x) ${hx} ${hy}, grab !important;`,
+                        `cursor: url('${chosen}') ${hx} ${hy}, grab !important;`
+                    ].join(' ');
+                    const declGrabbing = [
+                        `cursor: -webkit-image-set(url('${url1x}') 1x, url('${url2x}') 2x, url('${url3x}') 3x) ${hx} ${hy}, grabbing !important;`,
+                        `cursor: image-set(url('${url1x}') 1x, url('${url2x}') 2x, url('${url3x}') 3x) ${hx} ${hy}, grabbing !important;`,
+                        `cursor: url('${chosen}') ${hx} ${hy}, grabbing !important;`
+                    ].join(' ');
 
                     // Base rule for everything first (so it overrides early SVG cursor rules)
-                    rules.push(`* { ${base} }`);
+                    rules.push(`* { ${declBase} }`);
                     // Then override with pointer/grab variants where needed
-                    rules.push(`.bottom-logo, .menu-item, nav button, .nav-arrow { ${basePointer} }`);
+                    rules.push(`.bottom-logo, .menu-item, nav button, .nav-arrow { ${declPointer} }`);
                     // Dragging disabled: canvas uses default cursor
 
                     const css = rules.join('\n');
@@ -568,7 +582,7 @@
         // Apply after DOM is ready
         document.addEventListener('DOMContentLoaded', () => {
             // Always apply high-DPI PNG fallback for maximum sharpness across browsers
-            const cssSize = 28; // visual size in CSS pixels
+            const cssSize = 26; // visual size in CSS pixels
             
             // Check if we're in dark mode or intro is showing
             const isDarkMode = document.body.classList.contains('dark-mode');
@@ -618,7 +632,7 @@
                     
                     // Update cursor based on current mode after intro is gone
                     const isDarkMode = document.body.classList.contains('dark-mode');
-                    const cssSize = 28;
+                    const cssSize = 26;
                     const cursorPath = isDarkMode ? 'brand/RE-cursor-white.svg' : 'brand/RE-cursor-blue.svg';
                     applyPngCursorFromSvg(cursorPath, cssSize, [0, 0]);
                 }
@@ -1959,7 +1973,7 @@
             const isDarkMode = document.body.classList.contains('dark-mode');
             
             // Update cursor
-            const cssSize = 28;
+            const cssSize = 26;
             const cursorPath = isDarkMode ? 'brand/RE-cursor-white.svg' : 'brand/RE-cursor-blue.svg';
             applyPngCursorFromSvg(cursorPath, cssSize, [0, 0]);
             
