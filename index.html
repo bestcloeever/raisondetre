@@ -48,6 +48,11 @@
         
         body.dark-mode {
             background: #0000FF;
+            cursor: url('brand/RE-cursor-white.svg'), auto;
+        }
+        
+        body.dark-mode * {
+            cursor: url('brand/RE-cursor-white.svg'), auto;
         }
 
         /* Intro Overlay Styles */
@@ -564,7 +569,14 @@
         document.addEventListener('DOMContentLoaded', () => {
             // Always apply high-DPI PNG fallback for maximum sharpness across browsers
             const cssSize = 28; // visual size in CSS pixels
-            applyPngCursorFromSvg('brand/RE-cursor-blue.svg', cssSize, [0, 0]);
+            
+            // Check if we're in dark mode or intro is showing
+            const isDarkMode = document.body.classList.contains('dark-mode');
+            const hasIntro = document.getElementById('intro-overlay');
+            
+            // Use white cursor for dark mode or when intro is showing, blue otherwise
+            const cursorPath = (isDarkMode || hasIntro) ? 'brand/RE-cursor-white.svg' : 'brand/RE-cursor-blue.svg';
+            applyPngCursorFromSvg(cursorPath, cssSize, [0, 0]);
             
             // Auto-show menu immediately on page load to draw attention
             setTimeout(() => {
@@ -599,10 +611,16 @@
                 }
             }, 3000);
             
-            // Remove intro overlay from DOM after fade completes
+            // Remove intro overlay from DOM after fade completes and update cursor
             setTimeout(() => {
                 if (introOverlay && introOverlay.parentNode) {
                     introOverlay.remove();
+                    
+                    // Update cursor based on current mode after intro is gone
+                    const isDarkMode = document.body.classList.contains('dark-mode');
+                    const cssSize = 28;
+                    const cursorPath = isDarkMode ? 'brand/RE-cursor-white.svg' : 'brand/RE-cursor-blue.svg';
+                    applyPngCursorFromSvg(cursorPath, cssSize, [0, 0]);
                 }
             }, 4000);
         });
@@ -1939,6 +1957,11 @@
         function toggleDarkMode() {
             document.body.classList.toggle('dark-mode');
             const isDarkMode = document.body.classList.contains('dark-mode');
+            
+            // Update cursor
+            const cssSize = 28;
+            const cursorPath = isDarkMode ? 'brand/RE-cursor-white.svg' : 'brand/RE-cursor-blue.svg';
+            applyPngCursorFromSvg(cursorPath, cssSize, [0, 0]);
             
             // Update logo sources
             const headerLogo = document.getElementById('header-logo');
