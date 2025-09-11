@@ -312,7 +312,7 @@
         
         .clients-track {
             display: flex;
-            animation: scroll 30s linear infinite;
+            animation: scroll 40s linear infinite;
             width: fit-content;
         }
         
@@ -323,8 +323,10 @@
             flex-shrink: 0;
         }
         
-        .clients-slide:first-child {
-            padding-right: 60px;
+        .clients-slide::after {
+            content: '';
+            width: 60px;
+            flex-shrink: 0;
         }
         
         .client-logo {
@@ -354,6 +356,11 @@
         .client-logo.smaller-plus {
             height: 38px;
             width: 95px;
+        }
+        
+        /* Fix spacing between La Topera and TV3 */
+        .client-logo[alt="TV3"] {
+            margin-left: -33px;
         }
         
         .client-logo:hover {
