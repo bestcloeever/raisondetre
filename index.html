@@ -388,25 +388,6 @@
             }
         }
         
-        @keyframes glow {
-            0%, 100% {
-                box-shadow: 0 3px 15px rgba(0, 41, 255, 0.4),
-                           0 0 30px rgba(0, 41, 255, 0.2);
-            }
-            50% {
-                box-shadow: 0 3px 20px rgba(0, 41, 255, 0.6),
-                           0 0 40px rgba(0, 41, 255, 0.4);
-            }
-        }
-        
-        @keyframes sparkle {
-            0%, 100% {
-                opacity: 0;
-            }
-            50% {
-                opacity: 1;
-            }
-        }
         
         .cta-button {
             position: fixed;
@@ -415,14 +396,14 @@
             transform: translateX(-50%);
             background: linear-gradient(90deg, 
                 #0000FF 0%, 
-                #4444FF 25%, 
-                #6666FF 35%,
-                #FFFFFF 50%,
-                #6666FF 65%,
-                #4444FF 75%, 
+                #2222FF 25%, 
+                #4444FF 35%,
+                #6666FF 50%,
+                #4444FF 65%,
+                #2222FF 75%, 
                 #0000FF 100%);
             background-size: 200% auto;
-            animation: shimmer 3s linear infinite, glow 2s ease-in-out infinite;
+            animation: shimmer 4s linear infinite;
             color: white;
             border: none;
             padding: 8px 20px;
@@ -431,7 +412,7 @@
             font-weight: 500;
             text-transform: lowercase;
             cursor: url('brand/RE-cursor-blue-24.png') 12 12, pointer;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             z-index: 100;
             position: relative;
             overflow: hidden;
@@ -439,45 +420,25 @@
             box-shadow: 0 2px 10px rgba(0, 41, 255, 0.2);
         }
         
-        /* Sparkle elements */
-        .cta-button::before,
-        .cta-button::after {
-            content: '✨';
-            position: absolute;
-            font-size: 10px;
-            animation: sparkle 2s linear infinite;
-        }
-        
-        .cta-button::before {
-            top: 3px;
-            left: 5px;
-            animation-delay: 0s;
-        }
-        
-        .cta-button::after {
-            bottom: 3px;
-            right: 5px;
-            animation-delay: 1s;
-        }
-        
         body.dark-mode .cta-button {
             background: linear-gradient(90deg, 
                 #FFFFFF 0%, 
-                #FFCCFF 25%, 
-                #FFE6FF 35%,
-                #0000FF 50%,
-                #FFE6FF 65%,
-                #FFCCFF 75%, 
+                #EEEEEE 25%, 
+                #DDDDDD 35%,
+                #CCCCCC 50%,
+                #DDDDDD 65%,
+                #EEEEEE 75%, 
                 #FFFFFF 100%);
             background-size: 200% auto;
-            animation: shimmer 3s linear infinite, glow 2s ease-in-out infinite;
+            animation: shimmer 4s linear infinite;
             color: #0000FF;
             box-shadow: 0 2px 10px rgba(255, 255, 255, 0.2);
         }
 
         .cta-button:hover {
-            transform: translateX(-50%) scale(1.1);
-            animation: shimmer 1.5s linear infinite, glow 1s ease-in-out infinite;
+            transform: translateX(-50%) scale(1.05);
+            animation: shimmer 2s linear infinite;
+            box-shadow: 0 3px 15px rgba(0, 41, 255, 0.3);
         }
         
         body.dark-mode .cta-button:hover {
