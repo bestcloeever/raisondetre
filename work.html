@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Work - Raison d'Être</title>
+    <link rel="icon" type="image/png" href="brand/RE-cursor-blue.png">
+    <link rel="stylesheet" href="shared-navigation.css">
+    <style>
+        @font-face {
+            font-family: 'Apercu Pro Bold';
+            src: url('fonts/Apercu Pro Font/apercu_bold_pro.otf') format('opentype');
+            font-weight: bold;
+            font-style: normal;
+        }
+        
+        @font-face {
+            font-family: 'Apercu Pro Italic';
+            src: url('fonts/Apercu Pro Font/apercu_regular_italic_pro.otf') format('opentype');
+            font-weight: normal;
+            font-style: italic;
+        }
+        
+        @font-face {
+            font-family: 'Apercu Pro Medium';
+            src: url('fonts/Apercu Pro Font/apercu_medium_pro.otf') format('opentype');
+            font-weight: 500;
+            font-style: normal;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: url('brand/RE-cursor-white-24.png') 12 12, auto;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: #0000FF;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            cursor: url('brand/RE-cursor-white-24.png') 12 12, auto;
+        }
+        
+        /* Override shared navigation colors for blue background */
+        body .logo {
+            content: url('brand/RE-logo-text-white.png');
+        }
+        
+        body .contact-info {
+            color: white;
+        }
+        
+        body .bottom-logo {
+            content: url('brand/RE-logo-icon-white.png');
+        }
+        
+        body .menu-item {
+            color: white;
+        }
+        
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 140px 60px 100px;
+            min-height: 100vh;
+        }
+        
+        .page-title {
+            font-family: 'Apercu Pro Bold', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
+            font-size: 48px;
+            color: white;
+            text-align: center;
+            margin-bottom: 60px;
+            text-transform: lowercase;
+        }
+        
+        /* Grid layout for book covers */
+        .work-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 260px);
+            gap: 15px;
+            padding: 0 20px;
+            justify-content: center;
+            margin: 0 auto;
+        }
+        
+        .book-tile {
+            background: white;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: url('brand/RE-cursor-white-24.png') 12 12, pointer;
+            aspect-ratio: 3/4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+        }
+        
+        .book-tile:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .book-cover {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+        
+        .book-tile:hover .book-cover {
+            transform: scale(1.05);
+        }
+        
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 120px 30px 80px;
+            }
+            .page-title {
+                font-size: 36px;
+            }
+            .work-grid {
+                grid-template-columns: repeat(3, 220px);
+                gap: 12px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .main-content {
+                padding: 100px 20px 60px;
+            }
+            .page-title {
+                font-size: 28px;
+            }
+            .work-grid {
+                grid-template-columns: repeat(2, 180px);
+                gap: 10px;
+                padding: 0 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with shared navigation -->
+    <a href="index.html" style="text-decoration: none;">
+        <img src="brand/RE-logo-text-white.png" alt="Logo" class="logo" id="header-logo">
+    </a>
+    
+    <div class="main-content">
+        <h1 class="page-title">our work</h1>
+        
+        <!-- Book covers grid -->
+        <div class="work-grid">
+            <div class="book-tile">
+                <img src="work/001_No vas a heredar la empresa_Cover.jpg" alt="No vas a heredar la empresa" class="book-cover">
+            </div>
+            <div class="book-tile">
+                <img src="work/002_Regula tu estrés, encuentra tu equilibrio_Cover.jpg" alt="Regula tu estrés, encuentra tu equilibrio" class="book-cover">
+            </div>
+            <div class="book-tile">
+                <img src="work/003_Cuñadismo_Cover.jpg" alt="Cuñadismo" class="book-cover">
+            </div>
+            <div class="book-tile">
+                <img src="work/004_Escape Book_Cover.jpg" alt="Escape Book" class="book-cover">
+            </div>
+            <div class="book-tile">
+                <img src="work/005_Hellfriend_Cover.jpg" alt="Hellfriend" class="book-cover">
+            </div>
+            <div class="book-tile">
+                <img src="work/006_Dioses y Monstruos_Cover.jpg" alt="Dioses y Monstruos" class="book-cover">
+            </div>
+        </div>
+    </div>
+    
+    <!-- Contact Info (top left) -->
+    <div class="contact-info">
+        <a href="https://www.instagram.com/cloemakesbooks/" target="_blank" style="color: inherit; text-decoration: none;">@raisondetrebooks</a><br>
+        <a href="mailto:hello@raisondetrebooks.com" style="color: inherit; text-decoration: none;">hello@raisondetrebooks.com</a>
+    </div>
+    
+    <!-- Menu Container (top right) -->
+    <div class="menu-container">
+        <img src="brand/RE-logo-icon-white.png" alt="Logo Icon" class="bottom-logo" id="bottom-logo-icon">
+        <div class="menu-popup">
+            <a href="work.html" class="menu-item">WORK</a>
+            <a href="about-re.html" class="menu-item">ABOUT RAISON D'ÊTRE</a>
+            <a href="#" class="menu-item">GET YOURS</a>
+        </div>
+    </div>
+    
+    <script>
+        // Enable tap-to-toggle for menu on mobile
+        document.addEventListener('DOMContentLoaded', () => {
+            try {
+                const menuContainer = document.querySelector('.menu-container');
+                const bottomLogo = document.getElementById('bottom-logo-icon');
+                if (menuContainer && bottomLogo) {
+                    const toggleMenu = (e) => {
+                        e.stopPropagation();
+                        menuContainer.classList.toggle('auto-show');
+                    };
+                    bottomLogo.addEventListener('click', toggleMenu);
+                    bottomLogo.addEventListener('touchstart', toggleMenu, { passive: true });
+                    document.addEventListener('click', (e) => {
+                        if (!menuContainer.contains(e.target)) {
+                            menuContainer.classList.remove('auto-show');
+                        }
+                    });
+                }
+            } catch (_) {}
+        });
+    </script>
+</body>
+</html>
