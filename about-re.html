@@ -298,6 +298,72 @@
             box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
         }
         
+        /* Client logos scrolling band */
+        .clients-band {
+            margin-top: -10px;
+            margin-bottom: 80px;
+            overflow: hidden;
+            width: 100vw;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 10px 0;
+        }
+        
+        .clients-track {
+            display: flex;
+            animation: scroll 30s linear infinite;
+            width: fit-content;
+        }
+        
+        .clients-slide {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            flex-shrink: 0;
+            margin-right: 60px;
+        }
+        
+        .client-logo {
+            height: 42px;
+            width: 105px;
+            object-fit: contain;
+            opacity: 0.6;
+            filter: grayscale(100%);
+            transition: all 0.3s ease;
+            cursor: url('brand/RE-cursor-blue-24.png') 12 12, pointer;
+        }
+        
+        .client-logo:hover {
+            opacity: 1;
+            filter: grayscale(0%);
+            transform: scale(1.1);
+        }
+        
+        body.dark-mode .client-logo {
+            opacity: 0.7;
+            filter: grayscale(100%) invert(1);
+        }
+        
+        body.dark-mode .client-logo:hover {
+            opacity: 1;
+            filter: grayscale(0%) invert(0);
+        }
+        
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(calc(-100% / 2));
+            }
+        }
+        
+        /* Pause animation on hover */
+        .clients-band:hover .clients-track {
+            animation-play-state: paused;
+        }
+        
         @media (max-width: 768px) {
             .grid-section {
                 grid-template-columns: 1fr;
@@ -340,6 +406,38 @@
             <p>raison d'être is a concept-first editorial design studio. we know the cover is your book's first argument so we make it decisive, pairing literary insight with market sense to create covers that get picked up and remembered.</p>
             <p>our approach blends editorial rigor with commercial clarity—concept development, art direction, illustrator scouting, series systems, and rock-solid prepress. we keep the process simple, the thinking sharp, and the delivery on time.</p>
             <p>we collaborate in english, spanish, and french with publishers and authors worldwide to deliver memorable, market-smart design.</p>
+        </div>
+        
+        <h2 class="page-title" style="margin-top: 60px;">people we've worked with:</h2>
+        
+        <!-- Client logos scrolling band -->
+        <div class="clients-band">
+            <div class="clients-track">
+                <!-- First set of logos -->
+                <div class="clients-slide">
+                    <img src="clients/abacus.png" alt="Abacus" class="client-logo">
+                    <img src="clients/arallibres.png" alt="Ara Llibres" class="client-logo">
+                    <img src="clients/elastic.png" alt="Elastic" class="client-logo">
+                    <img src="clients/flamboyant.png" alt="Flamboyant" class="client-logo">
+                    <img src="clients/prh.png" alt="PRH" class="client-logo">
+                    <img src="clients/planeta.png" alt="Planeta" class="client-logo">
+                    <img src="clients/lagalera.png" alt="La Galera" class="client-logo">
+                    <img src="clients/latopera.png" alt="La Topera" class="client-logo">
+                    <img src="clients/tv3.png" alt="TV3" class="client-logo">
+                </div>
+                <!-- Duplicate set for seamless loop -->
+                <div class="clients-slide">
+                    <img src="clients/abacus.png" alt="Abacus" class="client-logo">
+                    <img src="clients/arallibres.png" alt="Ara Llibres" class="client-logo">
+                    <img src="clients/elastic.png" alt="Elastic" class="client-logo">
+                    <img src="clients/flamboyant.png" alt="Flamboyant" class="client-logo">
+                    <img src="clients/prh.png" alt="PRH" class="client-logo">
+                    <img src="clients/planeta.png" alt="Planeta" class="client-logo">
+                    <img src="clients/lagalera.png" alt="La Galera" class="client-logo">
+                    <img src="clients/latopera.png" alt="La Topera" class="client-logo">
+                    <img src="clients/tv3.png" alt="TV3" class="client-logo">
+                </div>
+            </div>
         </div>
     </div>
     
