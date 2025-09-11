@@ -1604,6 +1604,10 @@
             canvas.width = sampleSize;
             canvas.height = sampleSize;
             
+            // Fill with white background first (in case of transparency)
+            ctx.fillStyle = '#FFFFFF';
+            ctx.fillRect(0, 0, sampleSize, sampleSize);
+            
             // Draw the image scaled down
             ctx.drawImage(img, 0, 0, sampleSize, sampleSize);
             
@@ -1611,41 +1615,51 @@
             const imageData = ctx.getImageData(0, 0, sampleSize, sampleSize);
             const data = imageData.data;
             
-            // Sample colors from strategic points (corners and edges tend to have background colors)
-            const samples = [];
-            const samplePoints = [
-                {x: 2, y: 2}, // top-left
-                {x: sampleSize - 3, y: 2}, // top-right
-                {x: 2, y: sampleSize - 3}, // bottom-left
-                {x: sampleSize - 3, y: sampleSize - 3}, // bottom-right
-                {x: sampleSize / 2, y: 2}, // top-center
-                {x: sampleSize / 2, y: sampleSize - 3}, // bottom-center
-                {x: 2, y: sampleSize / 2}, // left-center
-                {x: sampleSize - 3, y: sampleSize / 2} // right-center
-            ];
+            // For spine images, we want to get the dominant background color
+            // Sample multiple points across the image
+            const colorCounts = {};
+            const sampleStep = 4; // Sample every 4th pixel for speed
             
-            samplePoints.forEach(point => {
-                const idx = (point.y * sampleSize + point.x) * 4;
-                const r = data[idx];
-                const g = data[idx + 1];
-                const b = data[idx + 2];
-                
-                // Calculate color saturation to filter out grays/whites
-                const max = Math.max(r, g, b);
-                const min = Math.min(r, g, b);
-                const saturation = max === 0 ? 0 : (max - min) / max;
-                
-                // Only consider colors with decent saturation
-                if (saturation > 0.3) {
-                    samples.push({r, g, b, saturation});
+            for (let y = 0; y < sampleSize; y += sampleStep) {
+                for (let x = 0; x < sampleSize; x += sampleStep) {
+                    const idx = (y * sampleSize + x) * 4;
+                    const r = data[idx];
+                    const g = data[idx + 1];
+                    const b = data[idx + 2];
+                    const a = data[idx + 3];
+                    
+                    // Skip transparent pixels
+                    if (a < 128) continue;
+                    
+                    // Round colors to reduce variation
+                    const roundedR = Math.round(r / 10) * 10;
+                    const roundedG = Math.round(g / 10) * 10;
+                    const roundedB = Math.round(b / 10) * 10;
+                    
+                    const colorKey = `${roundedR},${roundedG},${roundedB}`;
+                    colorCounts[colorKey] = (colorCounts[colorKey] || 0) + 1;
                 }
-            });
+            }
             
-            // If we found saturated colors, use the most saturated one
-            if (samples.length > 0) {
-                samples.sort((a, b) => b.saturation - a.saturation);
-                const chosen = samples[0];
-                return (chosen.r << 16) | (chosen.g << 8) | chosen.b;
+            // Find the most common color
+            let mostCommon = null;
+            let maxCount = 0;
+            
+            for (const [colorKey, count] of Object.entries(colorCounts)) {
+                if (count > maxCount) {
+                    maxCount = count;
+                    mostCommon = colorKey;
+                }
+            }
+            
+            // Parse the most common color
+            if (mostCommon) {
+                const [r, g, b] = mostCommon.split(',').map(Number);
+                // Don't use pure white or black - fall back to a light gray
+                if ((r === 255 && g === 255 && b === 255) || (r === 0 && g === 0 && b === 0)) {
+                    return 0xf5f5f5; // Light gray fallback
+                }
+                return (r << 16) | (g << 8) | b;
             }
             
             // Fallback: compute average color from entire image
@@ -1736,6 +1750,12 @@
                 } else if (target === 'spine') {
                     // Extract the dominant color from the spine texture
                     const spineColor = extractDominantColor(texture);
+                    
+                    // Debug: Log the extracted color  
+                    const bookData = book.userData.bookData;
+                    const bookIndex = book.userData.bookIndex;
+                    const actualBookData = booksData[bookIndex % booksData.length];
+                    console.log(`Spine color for "${actualBookData?.title}": 0x${spineColor.toString(16)}`);
                     
                     // Save spine color to book userData for use by other parts
                     book.userData.spineColor = spineColor;
