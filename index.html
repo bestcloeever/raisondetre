@@ -677,11 +677,13 @@
         let targetRotation = 0;
         let currentRotation = 0;
         let dragVelocity = 0; // dragging disabled
-        // Trackpad/wheel scroll accumulator for smooth one-by-one navigation
-        let wheelDeltaAccumulator = 0;
-        const wheelThreshold = 50; // Amount of scroll needed to trigger book change
-        let lastWheelTime = 0;
-        const wheelResetDelay = 200; // Reset accumulator after inactivity
+        // Trackpad/wheel handling: trigger exactly one book per gesture
+        let wheelDeltaAccumulator = 0;            // accumulates deltas within a gesture
+        const wheelThreshold = 50;               // delta needed to trigger a change
+        let lastWheelTime = 0;                   // last wheel event timestamp
+        const wheelResetDelay = 100;             // inactivity window to end a gesture
+        let wheelMovedInGesture = false;         // whether we've advanced during current gesture
+        let wheelGestureTimer = null;            // debounces gesture end
         let booksData = []; // Will be loaded from JSON
         let rotationPositions = []; // Optional preset rotations from JSON
 
@@ -1802,29 +1804,37 @@
         // Dragging helpers removed
 
         function onWheel(event) {
+            // Prevent default to avoid page scroll and keep focus on the carousel
             event.preventDefault();
-            
-            // Reset accumulator if too much time has passed since last wheel event
+
             const now = Date.now();
+            // Consider a new gesture after inactivity
             if (now - lastWheelTime > wheelResetDelay) {
                 wheelDeltaAccumulator = 0;
+                wheelMovedInGesture = false;
             }
             lastWheelTime = now;
-            
-            // Accumulate wheel delta (use dominant axis)
-            const delta = Math.abs(event.deltaY) >= Math.abs(event.deltaX) ? event.deltaY : event.deltaX;
-            
-            // Apply the sign of the actual delta
-            const signedDelta = event.deltaY !== 0 ? event.deltaY : event.deltaX;
+
+            // Keep the gesture alive while wheel events continue
+            if (wheelGestureTimer) clearTimeout(wheelGestureTimer);
+            wheelGestureTimer = setTimeout(() => {
+                wheelDeltaAccumulator = 0;
+                wheelMovedInGesture = false;
+            }, wheelResetDelay);
+
+            // If we've already moved during this gesture, ignore further wheel deltas
+            if (wheelMovedInGesture) return;
+
+            // Accumulate using dominant axis (trackpad may emit X or Y)
+            const useY = Math.abs(event.deltaY) >= Math.abs(event.deltaX);
+            const signedDelta = useY ? event.deltaY : event.deltaX;
             wheelDeltaAccumulator += signedDelta;
-            
-            // Check if we've accumulated enough to move one book
+
+            // Trigger exactly once per gesture when threshold is reached
             if (Math.abs(wheelDeltaAccumulator) >= wheelThreshold) {
-                // Move one book in the appropriate direction
                 moveBooks(wheelDeltaAccumulator > 0 ? 1 : -1);
-                
-                // Reset accumulator but keep remainder for smooth continued scrolling
-                wheelDeltaAccumulator = wheelDeltaAccumulator % wheelThreshold;
+                wheelMovedInGesture = true; // lock until gesture ends
+                wheelDeltaAccumulator = 0;   // don't carry remainder; one move per interaction
             }
         }
 
