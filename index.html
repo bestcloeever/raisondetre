@@ -1655,9 +1655,13 @@
             // Parse the most common color
             if (mostCommon) {
                 const [r, g, b] = mostCommon.split(',').map(Number);
-                // Don't use pure white or black - fall back to a light gray
-                if ((r === 255 && g === 255 && b === 255) || (r === 0 && g === 0 && b === 0)) {
-                    return 0xf5f5f5; // Light gray fallback
+                // Only use light gray for pure white, keep black as is
+                if (r === 255 && g === 255 && b === 255) {
+                    return 0xf5f5f5; // Light gray fallback for white only
+                }
+                // For very dark colors (near black), use a slightly lighter shade for visibility
+                if (r <= 20 && g <= 20 && b <= 20) {
+                    return 0x1a1a1a; // Very dark gray instead of pure black
                 }
                 return (r << 16) | (g << 8) | b;
             }
