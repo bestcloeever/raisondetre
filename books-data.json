@@ -272,6 +272,27 @@
         "height": "auto",
         "depth": "auto"
       }
+    },
+    {
+      "id": "014",
+      "title": "Ascens dels rebels",
+      "author": "",
+      "position": "Position 1",
+      "images": {
+        "cover": "covers/Ascens dels rebels.png",
+        "spine": "spines/Ascens dels rebels.png",
+        "backCover": null
+      },
+      "colors": {
+        "backCover": "#2C3E50",
+        "spine": "#f5f5f5",
+        "pages": "#FFFFF0"
+      },
+      "dimensions": {
+        "width": "auto",
+        "height": "auto",
+        "depth": "auto"
+      }
     }
   ],
   "globalSettings": {
