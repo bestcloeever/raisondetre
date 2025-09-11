@@ -1,0 +1,46 @@
+{
+  "books": [
+    {
+      "id": "001",
+      "filename": "001_No vas a heredar la empresa_Cover.jpg",
+      "title": "No vas a heredar la empresa",
+      "imprint": "",
+      "year": ""
+    },
+    {
+      "id": "002",
+      "filename": "002_Regula tu estrés, encuentra tu equilibrio_Cover.jpg",
+      "title": "Regula tu estrés, encuentra tu equilibrio",
+      "imprint": "",
+      "year": ""
+    },
+    {
+      "id": "003",
+      "filename": "003_Cuñadismo_Cover.jpg",
+      "title": "Cuñadismo",
+      "imprint": "",
+      "year": ""
+    },
+    {
+      "id": "004",
+      "filename": "004_Escape Book_Cover.jpg",
+      "title": "Escape Book",
+      "imprint": "",
+      "year": ""
+    },
+    {
+      "id": "005",
+      "filename": "005_Hellfriend_Cover.jpg",
+      "title": "Hellfriend",
+      "imprint": "",
+      "year": ""
+    },
+    {
+      "id": "006",
+      "filename": "006_Dioses y Monstruos_Cover.jpg",
+      "title": "Dioses y Monstruos",
+      "imprint": "",
+      "year": ""
+    }
+  ]
+}

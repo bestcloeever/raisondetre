@@ -92,30 +92,40 @@
         .book-tile {
             background: white;
             overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
             cursor: url('brand/RE-cursor-white-24.png') 12 12, pointer;
             aspect-ratio: 3/4.5;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 20px;
+            position: relative;
         }
         
-        .book-tile:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        .book-tile::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: #0000FF;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            z-index: 2;
+        }
+        
+        .book-tile:hover::after {
+            opacity: 0.6;
         }
         
         .book-cover {
             width: 100%;
             height: 100%;
             object-fit: contain;
-            transition: transform 0.3s ease;
             filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.15));
-        }
-        
-        .book-tile:hover .book-cover {
-            transform: scale(1.05);
+            position: relative;
+            z-index: 1;
         }
         
         @media (max-width: 768px) {
