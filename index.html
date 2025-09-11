@@ -264,10 +264,23 @@
             position: fixed;
             top: 50px;
             right: 50px;
-            z-index: 99;
+            /* Raise above large invisible nav-arrow hit area */
+            z-index: 1101;
             display: flex;
             align-items: flex-start;
             gap: 20px;
+        }
+        
+        .menu-container::before {
+            content: '';
+            position: absolute;
+            top: -30px;
+            left: -30px;
+            right: -30px;
+            bottom: -30px;
+            /* Make the whole icon + padding area hoverable */
+            z-index: 0; /* behind children, above page */
+            pointer-events: auto;
         }
         
         .menu-popup {
