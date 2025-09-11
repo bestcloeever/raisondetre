@@ -365,6 +365,12 @@
             transition: all 0.3s ease;
             cursor: url('brand/RE-cursor-blue-24.png') 12 12, pointer;
         }
+
+        /* Normalize TV3 internal whitespace so adjacent gaps match others */
+        .client-logo[alt="TV3"] {
+            /* Symmetrically crop left/right transparent padding */
+            clip-path: inset(0 16px 0 16px);
+        }
         
         .client-logo.featured {
             height: 48px;
