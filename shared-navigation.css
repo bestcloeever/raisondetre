@@ -81,12 +81,20 @@ body.dark-mode .logo {
     z-index: 10000;
     transition: color 0.3s ease;
     animation: fadeIn 0.7s ease-out;
+    line-height: 1;
 }
 
 .contact-info .insta-logo {
     width: 16px;
     height: 16px;
     display: inline-block;
+    vertical-align: middle;
+}
+
+.contact-info span,
+.contact-info a {
+    display: flex;
+    align-items: center;
 }
 
 body.dark-mode .contact-info {
