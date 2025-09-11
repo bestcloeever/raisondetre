@@ -679,8 +679,8 @@
         let dragVelocity = 0; // dragging disabled
         // One-by-one scroll lock
         let isWheelLocked = false;
-        const wheelStepCooldown = 450; // ms between steps
-        const minWheelDelta = 8; // ignore micro jitter
+        const wheelStepCooldown = 300; // ms between steps (reduced for smoother scrolling)
+        const minWheelDelta = 2; // ignore micro jitter (reduced for better trackpad sensitivity)
         let booksData = []; // Will be loaded from JSON
         let rotationPositions = []; // Optional preset rotations from JSON
 
