@@ -598,6 +598,23 @@
         document.addEventListener('DOMContentLoaded', function() {
             const introOverlay = document.getElementById('intro-overlay');
             
+            // Check if user has already seen the intro in this session
+            const hasSeenIntro = sessionStorage.getItem('hasSeenIntro');
+            
+            // Skip intro if already seen or if navigating from within the site
+            const referrer = document.referrer;
+            const currentHost = window.location.host;
+            const cameFromSameSite = referrer && referrer.includes(currentHost);
+            
+            if ((hasSeenIntro || cameFromSameSite) && introOverlay) {
+                introOverlay.remove();
+                return;
+            }
+            
+            // Mark intro as seen for this session
+            sessionStorage.setItem('hasSeenIntro', 'true');
+            
+            // Show intro animation
             // Fade out intro after 3 seconds
             setTimeout(() => {
                 if (introOverlay) {
@@ -605,16 +622,10 @@
                 }
             }, 3000);
             
-            // Remove intro overlay from DOM after fade completes and update cursor
+            // Remove intro overlay from DOM after fade completes
             setTimeout(() => {
                 if (introOverlay && introOverlay.parentNode) {
                     introOverlay.remove();
-                    
-                    // DISABLED: CSS handles cursor switching automatically
-                    // const isDarkMode = document.body.classList.contains('dark-mode');
-                    // const cssSize = 12;
-                    // const cursorPath = isDarkMode ? 'brand/RE-cursor-white.png' : 'brand/RE-cursor-blue.png';
-                    // applyPngCursorFromSvg(cursorPath, cssSize, [0, 0]);
                 }
             }, 4000);
         });
