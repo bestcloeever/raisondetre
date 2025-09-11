@@ -234,12 +234,31 @@
         
         /* Contact info styles moved to shared-navigation.css */
         
+        /* Glitter animation keyframes */
+        @keyframes shimmer {
+            0% {
+                background-position: -200% center;
+            }
+            100% {
+                background-position: 200% center;
+            }
+        }
+        
         .cta-button {
             position: fixed;
-            bottom: 50px;
+            bottom: 78px;
             left: 50%;
             transform: translateX(-50%);
-            background: #0000FF;
+            background: linear-gradient(90deg, 
+                #0000FF 0%, 
+                #2222FF 25%, 
+                #4444FF 35%,
+                #6666FF 50%,
+                #4444FF 65%,
+                #2222FF 75%, 
+                #0000FF 100%);
+            background-size: 200% auto;
+            animation: shimmer 4s linear infinite;
             color: white;
             border: none;
             padding: 8px 20px;
@@ -248,27 +267,37 @@
             font-weight: 500;
             text-transform: lowercase;
             cursor: url('brand/RE-cursor-blue-24.png') 12 12, pointer;
-            transition: all 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             z-index: 100;
+            position: relative;
+            overflow: hidden;
             border-radius: 20px;
             box-shadow: 0 2px 10px rgba(0, 41, 255, 0.2);
         }
         
         body.dark-mode .cta-button {
-            background: white;
+            background: linear-gradient(90deg, 
+                #FFFFFF 0%, 
+                #EEEEEE 25%, 
+                #DDDDDD 35%,
+                #CCCCCC 50%,
+                #DDDDDD 65%,
+                #EEEEEE 75%, 
+                #FFFFFF 100%);
+            background-size: 200% auto;
+            animation: shimmer 4s linear infinite;
             color: #0000FF;
             box-shadow: 0 2px 10px rgba(255, 255, 255, 0.2);
         }
 
         .cta-button:hover {
             transform: translateX(-50%) scale(1.05);
+            animation: shimmer 2s linear infinite;
             box-shadow: 0 3px 15px rgba(0, 41, 255, 0.3);
-            background: #0033FF;
         }
         
         body.dark-mode .cta-button:hover {
-            background: rgba(255, 255, 255, 0.9);
-            box-shadow: 0 3px 15px rgba(255, 255, 255, 0.3);
+            transform: translateX(-50%) scale(1.05);
         }
         
         .back-button {
@@ -403,8 +432,8 @@
                 padding: 140px 30px 100px;
             }
             .contact-info { display: none; }
-            .cta-button { top: auto; bottom: 16px; left: 50%; transform: translateX(-50%); }
-            .cta-button:hover { transform: translateX(-50%) scale(1.05); }
+            .cta-button { top: auto; bottom: 16px; left: 50%; transform: translateX(-50%); padding: 8px 14px; font-size: 13px; }
+            .cta-button:hover { transform: translateX(-50%) scale(1.08); }
         }
 
         @media (max-width: 480px) {
@@ -415,8 +444,8 @@
             /* Contact info handled by shared-navigation.css */
             /* Menu container position handled by shared-navigation.css */
             /* Bottom logo and menu item styles handled by shared-navigation.css */
-            .cta-button { top: auto; bottom: 16px; left: 50%; transform: translateX(-50%); }
-            .cta-button:hover { transform: translateX(-50%) scale(1.05); }
+            .cta-button { top: auto; bottom: 16px; left: 50%; transform: translateX(-50%); padding: 8px 14px; font-size: 13px; }
+            .cta-button:hover { transform: translateX(-50%) scale(1.08); }
         }
     </style>
     <script src="page-transitions.js"></script>
