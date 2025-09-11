@@ -10,7 +10,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            cursor: url('brand/RE-cursor-blue.png'), auto;
+            cursor: url('brand/RE-cursor-blue-24.png') 12 12, auto;
         }
 
         body {
@@ -27,11 +27,11 @@
             width: 100%;
             height: 100dvh;
             position: relative;
-            cursor: url('brand/RE-cursor-blue.png'), grab;
+            cursor: url('brand/RE-cursor-blue-24.png') 12 12, grab;
         }
 
         #canvas-container:active {
-            cursor: url('brand/RE-cursor-blue.png'), grabbing;
+            cursor: url('brand/RE-cursor-blue-24.png') 12 12, grabbing;
         }
 
         canvas {
@@ -132,7 +132,7 @@
             border-radius: 8px;
             font-size: 16px;
             font-weight: bold;
-            cursor: url('brand/RE-cursor-blue.png'), pointer;
+            cursor: url('brand/RE-cursor-blue-24.png') 12 12, pointer;
             margin: 15px 0;
             transition: all 0.3s;
         }
@@ -160,7 +160,7 @@
             border-radius: 8px;
             padding: 10px;
             margin-bottom: 8px;
-            cursor: url('brand/RE-cursor-blue.png'), pointer;
+            cursor: url('brand/RE-cursor-blue-24.png') 12 12, pointer;
             transition: all 0.2s;
             position: relative;
         }
@@ -181,7 +181,7 @@
             width: 20px;
             height: 20px;
             font-size: 12px;
-            cursor: url('brand/RE-cursor-blue.png'), pointer;
+            cursor: url('brand/RE-cursor-blue-24.png') 12 12, pointer;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -202,7 +202,7 @@
             border-radius: 8px;
             font-size: 14px;
             font-weight: bold;
-            cursor: url('brand/RE-cursor-blue.png'), pointer;
+            cursor: url('brand/RE-cursor-blue-24.png') 12 12, pointer;
             margin-top: 10px;
             transition: all 0.3s;
         }
@@ -228,7 +228,7 @@
             border-radius: 8px;
             font-size: 16px;
             font-weight: bold;
-            cursor: url('brand/RE-cursor-blue.png'), pointer;
+            cursor: url('brand/RE-cursor-blue-24.png') 12 12, pointer;
             transition: all 0.3s;
             z-index: 100;
         }
@@ -356,9 +356,10 @@
             img.src = svgPath;
         }
 
-        document.addEventListener('DOMContentLoaded', () => {
-            applyPngCursorFromSvg('brand/RE-cursor-blue.png', 12, [0, 0]);
-        });
+        // DISABLED: Using PNG files directly via CSS for better quality
+        // document.addEventListener('DOMContentLoaded', () => {
+        //     applyPngCursorFromSvg('brand/RE-cursor-blue.png', 12, [0, 0]);
+        // });
     </script>
 </head>
 <body>

@@ -31,7 +31,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            cursor: url('brand/RE-cursor-blue.png'), auto;
+            cursor: url('brand/RE-cursor-blue-24.png') 12 12, auto;
         }
 
         body {
@@ -40,7 +40,7 @@
             margin: 0;
             padding: 0;
             min-height: 100vh;
-            cursor: url('brand/RE-cursor-blue.png'), auto;
+            cursor: url('brand/RE-cursor-blue-24.png') 12 12, auto;
             transition: background-color 0.3s ease;
         }
         
@@ -232,7 +232,7 @@
         .bottom-logo {
             width: 60px;
             height: auto;
-            cursor: url('brand/RE-cursor-blue.png'), pointer;
+            cursor: url('brand/RE-cursor-blue-24.png') 12 12, pointer;
             transition: transform 0.3s ease;
         }
         
@@ -276,7 +276,7 @@
             color: #0000FF;
             text-transform: uppercase;
             margin: 5px 0;
-            cursor: url('brand/RE-cursor-blue.png'), pointer;
+            cursor: url('brand/RE-cursor-blue-24.png') 12 12, pointer;
             transition: transform 0.2s ease, opacity 0.2s ease, color 0.3s ease;
             white-space: nowrap;
             letter-spacing: 0.02em;
@@ -323,7 +323,7 @@
             font-size: 15px;
             font-weight: 500;
             text-transform: lowercase;
-            cursor: url('brand/RE-cursor-blue.png'), pointer;
+            cursor: url('brand/RE-cursor-blue-24.png') 12 12, pointer;
             transition: all 0.3s ease;
             z-index: 100;
             border-radius: 20px;
@@ -532,12 +532,11 @@
             img.src = svgPath;
         }
 
-        // Apply after DOM is ready
-        document.addEventListener('DOMContentLoaded', () => {
-            // Always apply high-DPI PNG fallback for maximum sharpness across browsers
-            const cssSize = 12; // visual size in CSS pixels
-            applyPngCursorFromSvg('brand/RE-cursor-blue.png', cssSize, [0, 0]);
-        });
+        // DISABLED: Using PNG files directly via CSS for better quality
+        // document.addEventListener('DOMContentLoaded', () => {
+        //     const cssSize = 12;
+        //     applyPngCursorFromSvg('brand/RE-cursor-blue.png', cssSize, [0, 0]);
+        // });
 
         // Check for saved dark mode preference
         const savedDarkMode = localStorage.getItem('darkMode') === 'true';

@@ -31,7 +31,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            cursor: url('brand/RE-cursor-white.png'), auto;
+            cursor: url('brand/RE-cursor-white-24.png') 12 12, auto;
         }
 
         body {
@@ -44,7 +44,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            cursor: url('brand/RE-cursor-white.png'), auto;
+            cursor: url('brand/RE-cursor-white-24.png') 12 12, auto;
         }
         
         .logo-container {
@@ -157,12 +157,11 @@
             img.src = svgPath;
         }
 
-        // Apply after DOM is ready
-        document.addEventListener('DOMContentLoaded', () => {
-            // Always apply high-DPI PNG fallback for maximum sharpness across browsers
-            const cssSize = 12; // visual size in CSS pixels
-            applyPngCursorFromSvg('brand/RE-cursor-white.png', cssSize, [0, 0]);
-        });
+        // DISABLED: Using PNG files directly via CSS for better quality
+        // document.addEventListener('DOMContentLoaded', () => {
+        //     const cssSize = 12;
+        //     applyPngCursorFromSvg('brand/RE-cursor-white.png', cssSize, [0, 0]);
+        // });
     </script>
 </head>
 <body>
