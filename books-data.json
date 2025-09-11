@@ -6,8 +6,8 @@
       "author": "",
       "position": "Position 2",
       "images": {
-        "cover": "covers/001_No vas a heredar la empresa_Cover.jpg",
-        "spine": "spines/001_No vas a heredar la empresa_Spine.jpg",
+        "cover": "covers/No vas a heredar la empresa.png",
+        "spine": "spines/No vas a heredar la empresa.png",
         "backCover": null
       },
       "colors": {
@@ -18,8 +18,7 @@
       "dimensions": {
         "width": "auto",
         "height": "auto",
-        "depth": "auto",
-        "note": "Will be calculated from image dimensions"
+        "depth": "auto"
       }
     },
     {
@@ -28,8 +27,8 @@
       "author": "",
       "position": "Position 1",
       "images": {
-        "cover": "covers/002_Regula tu estrés, encuentra tu equilibrio_Cover.jpg",
-        "spine": "spines/002_Regula tu estrés, encuentra tu equilibrio_Spine.jpg",
+        "cover": "covers/Regula tu estrés, encuentra tu equilibrio.png",
+        "spine": "spines/Regula tu estrés, encuentra tu equilibrio.png",
         "backCover": null
       },
       "colors": {
@@ -49,8 +48,8 @@
       "author": "",
       "position": "Position 3",
       "images": {
-        "cover": "covers/003_Cuñadismo_Cover.jpg",
-        "spine": "spines/003_Cuñadismo_Spine.jpg",
+        "cover": "covers/Cuñadismo.png",
+        "spine": "spines/Cuñadismo.png",
         "backCover": null
       },
       "colors": {
@@ -70,8 +69,8 @@
       "author": "",
       "position": "Position 2",
       "images": {
-        "cover": "covers/004_Escape Book_Cover.jpg",
-        "spine": "spines/004_Escape Book_Spine.jpg",
+        "cover": "covers/Escape Book.png",
+        "spine": "spines/Escape Book.png",
         "backCover": null
       },
       "colors": {
@@ -91,8 +90,8 @@
       "author": "",
       "position": "Position 5",
       "images": {
-        "cover": "covers/005_Hellfriend_Cover.jpg",
-        "spine": "spines/005_Hellfriend_Spine.jpg",
+        "cover": "covers/Hellfriend.png",
+        "spine": "spines/Hellfriend.png",
         "backCover": null
       },
       "colors": {
@@ -112,12 +111,159 @@
       "author": "",
       "position": "Position 1",
       "images": {
-        "cover": "covers/006_Dioses y Monstruos_Cover.jpg",
-        "spine": "spines/006_Dioses y Monstruos_Spine.jpg",
+        "cover": "covers/Dioses y Monstruos.png",
+        "spine": "spines/Dioses y Monstruos.png",
         "backCover": null
       },
       "colors": {
         "backCover": "#2F4F2F",
+        "spine": "#f5f5f5",
+        "pages": "#FFFFF0"
+      },
+      "dimensions": {
+        "width": "auto",
+        "height": "auto",
+        "depth": "auto"
+      }
+    },
+    {
+      "id": "007",
+      "title": "El retorn de la magia",
+      "author": "",
+      "position": "Position 2",
+      "images": {
+        "cover": "covers/El retorn de la magia.png",
+        "spine": "spines/El retorn de la magia.png",
+        "backCover": null
+      },
+      "colors": {
+        "backCover": "#9B59B6",
+        "spine": "#f5f5f5",
+        "pages": "#FFFFF0"
+      },
+      "dimensions": {
+        "width": "auto",
+        "height": "auto",
+        "depth": "auto"
+      }
+    },
+    {
+      "id": "008",
+      "title": "Forever Girls",
+      "author": "",
+      "position": "Position 3",
+      "images": {
+        "cover": "covers/Forever Girls.png",
+        "spine": "spines/Forever Girls.png",
+        "backCover": null
+      },
+      "colors": {
+        "backCover": "#FF69B4",
+        "spine": "#f5f5f5",
+        "pages": "#FFFFF0"
+      },
+      "dimensions": {
+        "width": "auto",
+        "height": "auto",
+        "depth": "auto"
+      }
+    },
+    {
+      "id": "009",
+      "title": "Social Queue",
+      "author": "",
+      "position": "Position 1",
+      "images": {
+        "cover": "covers/Social Queue.png",
+        "spine": "spines/Social Queue.png",
+        "backCover": null
+      },
+      "colors": {
+        "backCover": "#1ABC9C",
+        "spine": "#f5f5f5",
+        "pages": "#FFFFF0"
+      },
+      "dimensions": {
+        "width": "auto",
+        "height": "auto",
+        "depth": "auto"
+      }
+    },
+    {
+      "id": "010",
+      "title": "Sucre",
+      "author": "",
+      "position": "Position 5",
+      "images": {
+        "cover": "covers/Sucre.png",
+        "spine": "spines/Sucre.png",
+        "backCover": null
+      },
+      "colors": {
+        "backCover": "#FFB6C1",
+        "spine": "#f5f5f5",
+        "pages": "#FFFFF0"
+      },
+      "dimensions": {
+        "width": "auto",
+        "height": "auto",
+        "depth": "auto"
+      }
+    },
+    {
+      "id": "011",
+      "title": "Un gos a les últimes",
+      "author": "",
+      "position": "Position 2",
+      "images": {
+        "cover": "covers/Un gos a les últimes.png",
+        "spine": "spines/Un gos a les últimes.png",
+        "backCover": null
+      },
+      "colors": {
+        "backCover": "#D2691E",
+        "spine": "#f5f5f5",
+        "pages": "#FFFFF0"
+      },
+      "dimensions": {
+        "width": "auto",
+        "height": "auto",
+        "depth": "auto"
+      }
+    },
+    {
+      "id": "012",
+      "title": "Un verano para siempre",
+      "author": "",
+      "position": "Position 1",
+      "images": {
+        "cover": "covers/Un verano para siempre.png",
+        "spine": "spines/Un verano para siempre.png",
+        "backCover": null
+      },
+      "colors": {
+        "backCover": "#FFA500",
+        "spine": "#f5f5f5",
+        "pages": "#FFFFF0"
+      },
+      "dimensions": {
+        "width": "auto",
+        "height": "auto",
+        "depth": "auto"
+      }
+    },
+    {
+      "id": "013",
+      "title": "Silencio",
+      "author": "",
+      "position": "Position 3",
+      "images": {
+        "cover": "covers/silencio.png",
+        "spine": "spines/Silencio.png",
+        "backCover": null
+      },
+      "colors": {
+        "backCover": "#696969",
         "spine": "#f5f5f5",
         "pages": "#FFFFF0"
       },

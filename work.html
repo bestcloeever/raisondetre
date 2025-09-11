@@ -256,8 +256,11 @@
                 const data = await response.json();
                 const grid = document.getElementById('work-grid');
                 
+                // Randomize the order of books
+                const shuffledBooks = [...data.books].sort(() => Math.random() - 0.5);
+                
                 // Create tiles for each book
-                data.books.forEach(book => {
+                shuffledBooks.forEach(book => {
                     const tile = document.createElement('div');
                     tile.className = 'book-tile';
                     

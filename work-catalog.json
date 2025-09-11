@@ -2,7 +2,7 @@
   "books": [
     {
       "id": "001",
-      "filename": "001_No vas a heredar la empresa_Cover.jpg",
+      "filename": "No vas a heredar la empresa.png",
       "title": "No vas a heredar la empresa",
       "imprint": "bruguera",
       "publisher": "PRH",
@@ -11,7 +11,7 @@
     },
     {
       "id": "002",
-      "filename": "002_Regula tu estrés, encuentra tu equilibrio_Cover.jpg",
+      "filename": "Regula tu estrés, encuentra tu equilibrio.png",
       "title": "Regula tu estrés, encuentra tu equilibrio",
       "imprint": "bruguera",
       "publisher": "PRH",
@@ -20,7 +20,7 @@
     },
     {
       "id": "003",
-      "filename": "003_Cuñadismo_Cover.jpg",
+      "filename": "Cuñadismo.png",
       "title": "Cuñadismo",
       "imprint": "bruguera",
       "publisher": "PRH",
@@ -29,7 +29,7 @@
     },
     {
       "id": "004",
-      "filename": "004_Escape Book_Cover.jpg",
+      "filename": "Escape Book.png",
       "title": "Escape Book",
       "imprint": "molino",
       "publisher": "PRH",
@@ -38,7 +38,7 @@
     },
     {
       "id": "005",
-      "filename": "005_Hellfriend_Cover.jpg",
+      "filename": "Hellfriend.png",
       "title": "Hellfriend",
       "imprint": "molino",
       "publisher": "PRH",
@@ -47,12 +47,165 @@
     },
     {
       "id": "006",
-      "filename": "006_Dioses y Monstruos_Cover.jpg",
+      "filename": "Dioses y Monstruos.png",
       "title": "Dioses y Monstruos",
       "imprint": "molino",
       "publisher": "PRH",
       "year": "2025",
       "exploration": "N"
+    },
+    {
+      "id": "007",
+      "filename": "El retorn de la magia.png",
+      "title": "El retorn de la magia",
+      "imprint": "la galera",
+      "publisher": "abacus",
+      "year": "2024",
+      "exploration": "N"
+    },
+    {
+      "id": "008",
+      "filename": "Forever Girls.png",
+      "title": "Forever Girls",
+      "imprint": "inuk books",
+      "publisher": "abacus",
+      "year": "2024",
+      "exploration": "N"
+    },
+    {
+      "id": "009",
+      "filename": "Social Queue.png",
+      "title": "Social Queue",
+      "imprint": "elastic books",
+      "publisher": "abacus",
+      "year": "2025",
+      "exploration": "N"
+    },
+    {
+      "id": "010",
+      "filename": "Sucre.png",
+      "title": "Sucre",
+      "imprint": "inuk books",
+      "publisher": "abacus",
+      "year": "2024",
+      "exploration": "N"
+    },
+    {
+      "id": "011",
+      "filename": "Un gos a les últimes.png",
+      "title": "Un gos a les últimes",
+      "imprint": "la galera",
+      "publisher": "abacus",
+      "year": "2025",
+      "exploration": "N"
+    },
+    {
+      "id": "012",
+      "filename": "Un verano para siempre.png",
+      "title": "Un verano para siempre",
+      "imprint": "inuk books",
+      "publisher": "abacus",
+      "year": "2024",
+      "exploration": "N"
+    },
+    {
+      "id": "013",
+      "filename": "silencio.png",
+      "title": "Silencio",
+      "imprint": "inuk books",
+      "publisher": "abacus",
+      "year": "2024",
+      "exploration": "N"
+    },
+    {
+      "id": "014",
+      "filename": "Ya no puedo más.png",
+      "title": "Ya no puedo más",
+      "imprint": "",
+      "publisher": "",
+      "year": "2",
+      "exploration": "Y"
+    },
+    {
+      "id": "015",
+      "filename": "No vas a heredar la empresa-2.png",
+      "title": "No vas a heredar la empresa - Alt Cover",
+      "imprint": "",
+      "publisher": "",
+      "year": "",
+      "exploration": "Y"
+    },
+    {
+      "id": "016",
+      "filename": "Cuñadismo-2.png",
+      "title": "Cuñadismo - Alt Cover 1",
+      "imprint": "bruguera",
+      "publisher": "PRH",
+      "year": "2025",
+      "exploration": "Y"
+    },
+    {
+      "id": "017",
+      "filename": "Cuñadismo-3.png",
+      "title": "Cuñadismo - Alt Cover 2",
+      "imprint": "bruguera",
+      "publisher": "PRH",
+      "year": "2025",
+      "exploration": "Y"
+    },
+    {
+      "id": "018",
+      "filename": "Cuñadismo-4.png",
+      "title": "Cuñadismo - Alt Cover 3",
+      "imprint": "bruguera",
+      "publisher": "PRH",
+      "year": "2025",
+      "exploration": "Y"
+    },
+    {
+      "id": "019",
+      "filename": "hellfriend-2.png",
+      "title": "Hellfriend - Alt Cover 1",
+      "imprint": "molino",
+      "publisher": "PRH",
+      "year": "2025",
+      "exploration": "Y"
+    },
+    {
+      "id": "020",
+      "filename": "hellfriend-3.png",
+      "title": "Hellfriend - Alt Cover 2",
+      "imprint": "molino",
+      "publisher": "PRH",
+      "year": "2025",
+      "exploration": "Y"
+    },
+    {
+      "id": "021",
+      "filename": "hellfriend-4.png",
+      "title": "Hellfriend - Alt Cover 3",
+      "imprint": "molino",
+      "publisher": "PRH",
+      "year": "2025",
+      "exploration": "Y"
+    },
+    {
+      "id": "022",
+      "filename": "hellfriend-5.png",
+      "title": "Hellfriend - Alt Cover 4",
+      "imprint": "molino",
+      "publisher": "PRH",
+      "year": "2025",
+      "exploration": "Y"
+    },
+    {
+      "id": "023",
+      "filename": "escape book-3.png",
+      "title": "Escape Book - Alt Cover",
+      "imprint": "molino",
+      "publisher": "PRH",
+      "year": "2025",
+      "exploration": "Y"
     }
   ]
 }
