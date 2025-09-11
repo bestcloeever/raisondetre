@@ -40,7 +40,8 @@
             background: white;
             margin: 0;
             padding: 0;
-            min-height: 100vh;
+            height: 100vh;
+            overflow: hidden;
             cursor: url('brand/RE-cursor-blue-24.png') 12 12, auto;
             transition: background-color 0.3s ease;
         }
@@ -343,6 +344,7 @@
             display: flex;
             animation: scroll 40s linear infinite;
             width: fit-content;
+            will-change: transform;
         }
         
         .clients-slide {
@@ -406,12 +408,8 @@
         }
         
         @keyframes scroll {
-            0% {
-                transform: translateX(0);
-            }
-            100% {
-                transform: translateX(calc(-100% / 2));
-            }
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(calc(-100% / 2), 0, 0); }
         }
         
         /* Pause animation on hover */
