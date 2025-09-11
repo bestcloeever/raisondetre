@@ -61,13 +61,7 @@
             pointer-events: none;
         }
         
-        .logo {
-            height: 57.88125px;
-            width: auto;
-            display: block;
-            margin: 0 auto;
-            pointer-events: auto;
-        }
+        /* Logo styles moved to shared-navigation.css */
         
         nav {
             display: none; /* Hidden for now */
@@ -94,7 +88,7 @@
         .main-content {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 180px 60px 100px;
+            padding: 120px 60px 100px;
         }
         
         .page-title {
@@ -230,97 +224,15 @@
             color: rgba(255, 255, 255, 0.8);
         }
         
-        .bottom-logo {
-            width: 60px;
-            height: auto;
-            cursor: url('brand/RE-cursor-blue-24.png') 12 12, pointer;
-            transition: transform 0.3s ease;
-        }
+        /* Bottom logo styles moved to shared-navigation.css */
         
-        .bottom-logo:hover {
-            transform: scale(1.1);
-        }
+        /* Menu container styles moved to shared-navigation.css */
         
-        .menu-container {
-            position: fixed;
-            bottom: 50px;
-            left: 40px;
-            z-index: 99;
-            display: flex;
-            align-items: flex-end;
-            gap: 20px;
-        }
-        /* Expand hover hit area to include padding around the icon */
-        .menu-container::before {
-            content: '';
-            position: absolute;
-            top: -30px;
-            left: -30px;
-            right: -30px;
-            bottom: -30px;
-            z-index: 0; /* behind icon, above page */
-            pointer-events: auto;
-        }
+        /* Menu popup styles moved to shared-navigation.css */
         
-        .menu-popup {
-            position: absolute;
-            bottom: 70px;
-            left: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(10px);
-            transition: all 0.3s ease;
-        }
+        /* Menu item styles moved to shared-navigation.css */
         
-        .menu-container:hover .menu-popup {
-            visibility: visible;
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .menu-item {
-            font-family: 'Apercu Pro Medium', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            font-size: 20px;
-            font-weight: 500;
-            color: #0000FF;
-            text-transform: uppercase;
-            margin: 5px 0;
-            cursor: url('brand/RE-cursor-blue-24.png') 12 12, pointer;
-            transition: transform 0.2s ease, opacity 0.2s ease, color 0.3s ease;
-            white-space: nowrap;
-            letter-spacing: 0.02em;
-            text-decoration: none;
-            display: block;
-        }
-        
-        .menu-item:hover {
-            transform: translateX(5px);
-            opacity: 0.8;
-        }
-        
-        body.dark-mode .menu-item {
-            color: white;
-        }
-        
-        .contact-info {
-            position: fixed;
-            bottom: 50px;
-            right: 40px;
-            font-family: 'Apercu Pro Medium', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            font-size: 14.7px;
-            font-weight: 500;
-            color: #0000FF;
-            text-align: right;
-            line-height: 1.4;
-            z-index: 100;
-        }
-        
-        body.dark-mode .contact-info {
-            color: white;
-        }
+        /* Contact info styles moved to shared-navigation.css */
         
         .cta-button {
             position: fixed;
@@ -408,21 +320,19 @@
             .page-title { font-size: 26px; }
             .about-text p { font-size: 18px; }
             .main-content { padding: 120px 20px 90px; }
-            .contact-info { right: 16px; bottom: 16px; font-size: 12px; display: none; }
-            .menu-container { left: 16px; bottom: 16px; gap: 12px; }
-            .bottom-logo { width: 40px; }
-            .menu-item { font-size: 16px; }
+            /* Contact info handled by shared-navigation.css */
+            /* Menu container position handled by shared-navigation.css */
+            /* Bottom logo and menu item styles handled by shared-navigation.css */
             .cta-button { top: auto; bottom: 16px; left: 50%; transform: translateX(-50%); }
             .cta-button:hover { transform: translateX(-50%) scale(1.05); }
         }
     </style>
 </head>
 <body>
-    <header>
-        <a href="index.html" style="text-decoration: none;">
-            <img src="brand/RE-logo-text-blue.png" alt="RE" class="logo" id="header-logo">
-        </a>
-    </header>
+    <!-- Header with shared navigation -->
+    <a href="index.html" style="text-decoration: none;">
+        <img src="brand/RE-logo-text-blue.png" alt="Logo" class="logo" id="header-logo">
+    </a>
     
     <div class="main-content">
         <h1 class="page-title">about raison d'être:</h1>
@@ -436,19 +346,18 @@
     <!-- CTA Button -->
     <button class="cta-button">get yours!</button>
     
+    <!-- Contact Info (top left) -->
     <div class="contact-info">
         @raisondetrebooks<br>
         info@raisondetrebooks.com
     </div>
     
-    <!-- Menu Container with Logo -->
+    <!-- Menu Container (top right) -->
     <div class="menu-container">
-        <a href="index.html" style="text-decoration: none;">
-            <img src="brand/RE-logo-icon-blue.png" alt="Logo Icon" class="bottom-logo" id="bottom-logo-icon">
-        </a>
+        <img src="brand/RE-logo-icon-blue.png" alt="Logo Icon" class="bottom-logo" id="bottom-logo-icon">
         <div class="menu-popup">
             <a href="#" class="menu-item">GET YOURS</a>
-            <a href="index.html" class="menu-item">BOOKS</a>
+            <a href="about-re.html" class="menu-item">ABOUT RAISON D'ÊTRE</a>
         </div>
     </div>
     
