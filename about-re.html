@@ -350,15 +350,12 @@
         .clients-slide {
             display: flex;
             align-items: center;
-            gap: 60px;
+            /* Use margins for spacing to avoid flex-gap rounding differences at the seam */
             flex-shrink: 0;
         }
         
-        .clients-slide::after {
-            content: '';
-            width: 60px;
-            flex-shrink: 0;
-        }
+        /* Uniform spacing: apply same margin to every logo, including the last one to form the seam */
+        .client-logo { margin-right: 60px; display: block; }
         
         .client-logo {
             height: 42px;
