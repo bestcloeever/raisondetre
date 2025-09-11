@@ -677,10 +677,11 @@
         let targetRotation = 0;
         let currentRotation = 0;
         let dragVelocity = 0; // dragging disabled
-        // One-by-one scroll lock
-        let isWheelLocked = false;
-        const wheelStepCooldown = 300; // ms between steps (reduced for smoother scrolling)
-        const minWheelDelta = 2; // ignore micro jitter (reduced for better trackpad sensitivity)
+        // Trackpad/wheel scroll accumulator for smooth one-by-one navigation
+        let wheelDeltaAccumulator = 0;
+        const wheelThreshold = 50; // Amount of scroll needed to trigger book change
+        let lastWheelTime = 0;
+        const wheelResetDelay = 200; // Reset accumulator after inactivity
         let booksData = []; // Will be loaded from JSON
         let rotationPositions = []; // Optional preset rotations from JSON
 
@@ -1802,13 +1803,29 @@
 
         function onWheel(event) {
             event.preventDefault();
-            if (isWheelLocked) return; // one step per gesture
-            // Determine dominant axis and direction
+            
+            // Reset accumulator if too much time has passed since last wheel event
+            const now = Date.now();
+            if (now - lastWheelTime > wheelResetDelay) {
+                wheelDeltaAccumulator = 0;
+            }
+            lastWheelTime = now;
+            
+            // Accumulate wheel delta (use dominant axis)
             const delta = Math.abs(event.deltaY) >= Math.abs(event.deltaX) ? event.deltaY : event.deltaX;
-            if (Math.abs(delta) < minWheelDelta) return; // ignore tiny jitter
-            moveBooks(delta > 0 ? 1 : -1);
-            isWheelLocked = true;
-            setTimeout(() => { isWheelLocked = false; }, wheelStepCooldown);
+            
+            // Apply the sign of the actual delta
+            const signedDelta = event.deltaY !== 0 ? event.deltaY : event.deltaX;
+            wheelDeltaAccumulator += signedDelta;
+            
+            // Check if we've accumulated enough to move one book
+            if (Math.abs(wheelDeltaAccumulator) >= wheelThreshold) {
+                // Move one book in the appropriate direction
+                moveBooks(wheelDeltaAccumulator > 0 ? 1 : -1);
+                
+                // Reset accumulator but keep remainder for smooth continued scrolling
+                wheelDeltaAccumulator = wheelDeltaAccumulator % wheelThreshold;
+            }
         }
 
         function onKeyDown(event) {
