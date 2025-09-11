@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Raison d'Être - Book Studio</title>
-    <link rel="icon" type="image/svg+xml" href="brand/RE-cursor-blue.svg">
+    <link rel="icon" type="image/png" href="brand/RE-cursor-blue.png">
     <style>
         @font-face {
             font-family: 'Apercu Pro Bold';
@@ -31,7 +31,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            cursor: url('brand/RE-cursor-white.svg'), auto;
+            cursor: url('brand/RE-cursor-white.png'), auto;
         }
 
         body {
@@ -44,7 +44,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            cursor: url('brand/RE-cursor-white.svg'), auto;
+            cursor: url('brand/RE-cursor-white.png'), auto;
         }
         
         .logo-container {
@@ -103,7 +103,7 @@
                     const c1 = document.createElement('canvas');
                     c1.width = size; c1.height = size;
                     const x1 = c1.getContext('2d');
-                    x1.imageSmoothingEnabled = false;
+                    x1.imageSmoothingEnabled = true;
                     x1.imageSmoothingQuality = 'high';
                     x1.clearRect(0, 0, size, size);
                     x1.drawImage(img, 0, 0, size, size);
@@ -113,7 +113,7 @@
                     const c2 = document.createElement('canvas');
                     c2.width = size * 2; c2.height = size * 2;
                     const x2 = c2.getContext('2d');
-                    x2.imageSmoothingEnabled = false;
+                    x2.imageSmoothingEnabled = true;
                     x2.imageSmoothingQuality = 'high';
                     x2.clearRect(0, 0, size * 2, size * 2);
                     x2.drawImage(img, 0, 0, size * 2, size * 2);
@@ -123,7 +123,7 @@
                     const c3 = document.createElement('canvas');
                     c3.width = size * 3; c3.height = size * 3;
                     const x3 = c3.getContext('2d');
-                    x3.imageSmoothingEnabled = false;
+                    x3.imageSmoothingEnabled = true;
                     x3.imageSmoothingQuality = 'high';
                     x3.clearRect(0, 0, size * 3, size * 3);
                     x3.drawImage(img, 0, 0, size * 3, size * 3);
@@ -160,15 +160,15 @@
         // Apply after DOM is ready
         document.addEventListener('DOMContentLoaded', () => {
             // Always apply high-DPI PNG fallback for maximum sharpness across browsers
-            const cssSize = 26; // visual size in CSS pixels
-            applyPngCursorFromSvg('brand/RE-cursor-white.svg', cssSize, [0, 0]);
+            const cssSize = 12; // visual size in CSS pixels
+            applyPngCursorFromSvg('brand/RE-cursor-white.png', cssSize, [0, 0]);
         });
     </script>
 </head>
 <body>
     <div class="logo-container">
-        <img src="brand/RE-logo-text-white.svg" alt="RE" class="text-logo">
-        <img src="brand/RE-logo-icon-white.svg" alt="RE Icon" class="icon-logo">
+        <img src="brand/RE-logo-text-white.png" alt="RE" class="text-logo">
+        <img src="brand/RE-logo-icon-white.png" alt="RE Icon" class="icon-logo">
     </div>
 </body>
 </html>

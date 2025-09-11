@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Raison d'Être</title>
-    <link rel="icon" type="image/svg+xml" href="brand/RE-cursor-blue.svg">
+    <link rel="icon" type="image/png" href="brand/RE-cursor-blue.png">
     <style>
         @font-face {
             font-family: 'Apercu Pro Bold';
@@ -31,7 +31,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            cursor: url('brand/RE-cursor-blue.svg'), auto;
+            cursor: url('brand/RE-cursor-blue.png'), auto;
         }
 
         body {
@@ -40,7 +40,7 @@
             margin: 0;
             padding: 0;
             min-height: 100vh;
-            cursor: url('brand/RE-cursor-blue.svg'), auto;
+            cursor: url('brand/RE-cursor-blue.png'), auto;
             transition: background-color 0.3s ease;
         }
         
@@ -232,7 +232,7 @@
         .bottom-logo {
             width: 60px;
             height: auto;
-            cursor: url('brand/RE-cursor-blue.svg'), pointer;
+            cursor: url('brand/RE-cursor-blue.png'), pointer;
             transition: transform 0.3s ease;
         }
         
@@ -276,7 +276,7 @@
             color: #0000FF;
             text-transform: uppercase;
             margin: 5px 0;
-            cursor: url('brand/RE-cursor-blue.svg'), pointer;
+            cursor: url('brand/RE-cursor-blue.png'), pointer;
             transition: transform 0.2s ease, opacity 0.2s ease, color 0.3s ease;
             white-space: nowrap;
             letter-spacing: 0.02em;
@@ -323,7 +323,7 @@
             font-size: 15px;
             font-weight: 500;
             text-transform: lowercase;
-            cursor: url('brand/RE-cursor-blue.svg'), pointer;
+            cursor: url('brand/RE-cursor-blue.png'), pointer;
             transition: all 0.3s ease;
             z-index: 100;
             border-radius: 20px;
@@ -408,7 +408,7 @@
 <body>
     <header>
         <a href="index.html" style="text-decoration: none;">
-            <img src="brand/RE-logo-text-blue.svg" alt="RE" class="logo" id="header-logo">
+            <img src="brand/RE-logo-text-blue.png" alt="RE" class="logo" id="header-logo">
         </a>
     </header>
     
@@ -432,7 +432,7 @@
     <!-- Menu Container with Logo -->
     <div class="menu-container">
         <a href="index.html" style="text-decoration: none;">
-            <img src="brand/RE-logo-icon-blue.svg" alt="Logo Icon" class="bottom-logo" id="bottom-logo-icon">
+            <img src="brand/RE-logo-icon-blue.png" alt="Logo Icon" class="bottom-logo" id="bottom-logo-icon">
         </a>
         <div class="menu-popup">
             <a href="#" class="menu-item">GET YOURS</a>
@@ -471,7 +471,7 @@
                     const c1 = document.createElement('canvas');
                     c1.width = size; c1.height = size;
                     const x1 = c1.getContext('2d');
-                    x1.imageSmoothingEnabled = false;
+                    x1.imageSmoothingEnabled = true;
                     x1.imageSmoothingQuality = 'high';
                     x1.clearRect(0, 0, size, size);
                     x1.drawImage(img, 0, 0, size, size);
@@ -481,7 +481,7 @@
                     const c2 = document.createElement('canvas');
                     c2.width = size * 2; c2.height = size * 2;
                     const x2 = c2.getContext('2d');
-                    x2.imageSmoothingEnabled = false;
+                    x2.imageSmoothingEnabled = true;
                     x2.imageSmoothingQuality = 'high';
                     x2.clearRect(0, 0, size * 2, size * 2);
                     x2.drawImage(img, 0, 0, size * 2, size * 2);
@@ -491,7 +491,7 @@
                     const c3 = document.createElement('canvas');
                     c3.width = size * 3; c3.height = size * 3;
                     const x3 = c3.getContext('2d');
-                    x3.imageSmoothingEnabled = false;
+                    x3.imageSmoothingEnabled = true;
                     x3.imageSmoothingQuality = 'high';
                     x3.clearRect(0, 0, size * 3, size * 3);
                     x3.drawImage(img, 0, 0, size * 3, size * 3);
@@ -535,16 +535,16 @@
         // Apply after DOM is ready
         document.addEventListener('DOMContentLoaded', () => {
             // Always apply high-DPI PNG fallback for maximum sharpness across browsers
-            const cssSize = 26; // visual size in CSS pixels
-            applyPngCursorFromSvg('brand/RE-cursor-blue.svg', cssSize, [0, 0]);
+            const cssSize = 12; // visual size in CSS pixels
+            applyPngCursorFromSvg('brand/RE-cursor-blue.png', cssSize, [0, 0]);
         });
 
         // Check for saved dark mode preference
         const savedDarkMode = localStorage.getItem('darkMode') === 'true';
         if (savedDarkMode) {
             document.body.classList.add('dark-mode');
-            document.getElementById('header-logo').src = 'brand/RE-logo-text-white.svg';
-            document.getElementById('bottom-logo-icon').src = 'brand/RE-logo-icon-white.svg';
+            document.getElementById('header-logo').src = 'brand/RE-logo-text-white.png';
+            document.getElementById('bottom-logo-icon').src = 'brand/RE-logo-icon-white.png';
         }
         
         // Function to toggle dark mode (if needed later)
@@ -556,11 +556,11 @@
             const bottomLogo = document.getElementById('bottom-logo-icon');
             
             if (isDarkMode) {
-                headerLogo.src = 'brand/RE-logo-text-white.svg';
-                bottomLogo.src = 'brand/RE-logo-icon-white.svg';
+                headerLogo.src = 'brand/RE-logo-text-white.png';
+                bottomLogo.src = 'brand/RE-logo-icon-white.png';
             } else {
-                headerLogo.src = 'brand/RE-logo-text-blue.svg';
-                bottomLogo.src = 'brand/RE-logo-icon-blue.svg';
+                headerLogo.src = 'brand/RE-logo-text-blue.png';
+                bottomLogo.src = 'brand/RE-logo-icon-blue.png';
             }
             
             localStorage.setItem('darkMode', isDarkMode);
