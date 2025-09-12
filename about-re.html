@@ -6,6 +6,7 @@
     <title>About Raison d'Être</title>
     <link rel="icon" type="image/png" href="brand/RE-cursor-blue.png">
     <link rel="stylesheet" href="shared-navigation.css">
+    <link rel="stylesheet" href="mobile-footer.css">
     <style>
         @font-face {
             font-family: 'Apercu Pro Bold';
@@ -521,9 +522,11 @@
     
     <!-- Menu Container (top right) -->
     <div class="menu-container">
+        <a href="work.html" class="menu-item-mobile menu-work">OUR WORK</a>
         <a href="index.html" style="text-decoration: none;">
             <img src="brand/RE-logo-icon-blue.png" alt="Logo Icon" class="bottom-logo" id="bottom-logo-icon">
         </a>
+        <a href="about-re.html" class="menu-item-mobile menu-about">ABOUT RE</a>
         <div class="menu-popup">
             <a href="work.html" class="menu-item">OUR WORK</a>
             <a href="about-re.html" class="menu-item">ABOUT RAISON D'ÊTRE</a>
@@ -656,5 +659,19 @@
             localStorage.setItem('darkMode', isDarkMode);
         }
     </script>
+    <!-- Mobile Footer -->
+    <div class="mobile-footer">
+        <a href="mailto:hello@raisondetrebooks.com" class="footer-email">
+            <img src="brand/email-logo-blue.png" alt="Email">
+        </a>
+        <div class="footer-cta">
+            <a href="https://api.whatsapp.com/send?phone=34687373140&text=Hello!%20I%27m%20interested%20in%20your%20book%20design%20services%F0%9F%93%9A" 
+               target="_blank" 
+               class="footer-cta-button">get yours!</a>
+        </div>
+        <a href="https://www.instagram.com/cloemakesbooks/" target="_blank" class="footer-instagram">
+            <img src="brand/instagram-logo-blue.png" alt="Instagram">
+        </a>
+    </div>
 </body>
 </html>
