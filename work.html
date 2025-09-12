@@ -185,28 +185,33 @@
         
         @media (max-width: 768px) {
             .main-content {
-                padding: 120px 30px 80px;
+                padding: 120px 15px 80px;
             }
             .page-title {
                 font-size: 26px;
+                margin-bottom: 25px;
             }
             .work-grid {
-                grid-template-columns: repeat(3, 240px);
-                gap: 8px;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+                padding: 0 10px;
+                max-width: 100%;
             }
         }
         
         @media (max-width: 480px) {
             .main-content {
-                padding: 100px 20px 60px;
+                padding: 100px 10px 60px;
             }
             .page-title {
                 font-size: 22px;
+                margin-bottom: 20px;
             }
             .work-grid {
-                grid-template-columns: repeat(2, 190px);
-                gap: 6px;
-                padding: 0 10px;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 8px;
+                padding: 0 5px;
+                max-width: 100%;
             }
         }
         /* Add header background strip */
