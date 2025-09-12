@@ -100,17 +100,23 @@
         
         .book-tile {
             background: transparent;
-            overflow: hidden;
+            overflow: visible;
             cursor: url('brand/RE-cursor-blue-24.png') 12 12, pointer;
-            aspect-ratio: 3/4.5;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 0;
+            padding: 10px;
             position: relative;
         }
         
-        .book-tile::after {
+        /* Image wrapper for overlay */
+        .book-cover-wrapper {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+        
+        .book-cover-wrapper::after {
             content: '';
             position: absolute;
             top: 0;
@@ -124,7 +130,7 @@
             z-index: 2;
         }
         
-        .book-tile:hover::after {
+        .book-tile:hover .book-cover-wrapper::after {
             opacity: 0.8;
         }
         
@@ -140,6 +146,7 @@
             z-index: 3;
             pointer-events: none;
             font-family: 'Apercu Pro Bold', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
+            width: 90%;
         }
         
         .book-info h3 {
@@ -162,10 +169,17 @@
         
         .book-cover {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
+            height: auto;
+            object-fit: contain;
+            display: block;
             position: relative;
             z-index: 1;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+            transition: box-shadow 0.3s ease;
+        }
+        
+        .book-tile:hover .book-cover {
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
         }
         
         @media (max-width: 768px) {
@@ -264,6 +278,10 @@
                     const tile = document.createElement('div');
                     tile.className = 'book-tile';
                     
+                    // Create wrapper for image and overlay
+                    const wrapper = document.createElement('div');
+                    wrapper.className = 'book-cover-wrapper';
+                    
                     const img = document.createElement('img');
                     img.src = `work/${book.filename}`;
                     img.alt = book.title;
@@ -291,8 +309,10 @@
                         info.innerHTML = infoHTML;
                     }
                     
-                    tile.appendChild(img);
-                    tile.appendChild(info);
+                    // Append image to wrapper, then wrapper and info to tile
+                    wrapper.appendChild(img);
+                    wrapper.appendChild(info);
+                    tile.appendChild(wrapper);
                     grid.appendChild(tile);
                 });
                 
