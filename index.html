@@ -6,6 +6,7 @@
     <title>Raison d'Être - Book Studio</title>
     <link rel="icon" type="image/png" href="brand/RE-cursor-blue.png">
     <link rel="stylesheet" href="shared-navigation.css">
+    <link rel="stylesheet" href="mobile-footer.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <style>
         /* Font faces moved to shared-navigation.css */
@@ -2093,6 +2094,55 @@
                 }
             } catch (_) {}
         });
+    </script>
+
+    <!-- Mobile Footer -->
+    <footer class="mobile-footer">
+        <a href="mailto:hello@raisondetrebooks.com" class="footer-email">
+            <img src="brand/email-logo-blue.png" alt="Email" class="email-icon-light">
+            <img src="brand/email-logo-white.png" alt="Email" class="email-icon-dark" style="display: none;">
+        </a>
+        
+        <div class="footer-cta">
+            <a href="https://api.whatsapp.com/send?phone=34687373140&text=Hello!%20I%27m%20interested%20in%20your%20book%20design%20services%F0%9F%93%9A" 
+               target="_blank" 
+               class="footer-cta-button">
+                get yours!
+            </a>
+        </div>
+        
+        <a href="https://www.instagram.com/cloemakesbooks/" target="_blank" class="footer-instagram">
+            <img src="brand/insta-logo-blue.png" alt="Instagram" class="insta-icon-light">
+            <img src="brand/insta-logo-white.png" alt="Instagram" class="insta-icon-dark" style="display: none;">
+        </a>
+    </footer>
+
+    <script>
+        // Handle dark mode for footer icons
+        function updateFooterIcons() {
+            const isDarkMode = document.body.classList.contains('dark-mode');
+            const emailLight = document.querySelector('.email-icon-light');
+            const emailDark = document.querySelector('.email-icon-dark');
+            const instaLight = document.querySelector('.insta-icon-light');
+            const instaDark = document.querySelector('.insta-icon-dark');
+            
+            if (emailLight && emailDark) {
+                emailLight.style.display = isDarkMode ? 'none' : 'block';
+                emailDark.style.display = isDarkMode ? 'block' : 'none';
+            }
+            
+            if (instaLight && instaDark) {
+                instaLight.style.display = isDarkMode ? 'none' : 'block';
+                instaDark.style.display = isDarkMode ? 'block' : 'none';
+            }
+        }
+        
+        // Update icons on load
+        updateFooterIcons();
+        
+        // Update icons when dark mode changes
+        const observer = new MutationObserver(updateFooterIcons);
+        observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
     </script>
 </body>
 </html>
