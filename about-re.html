@@ -412,12 +412,29 @@
             animation-play-state: paused;
         }
         
+        /* Add header background strip for mobile */
+        .header-bg {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: white;
+            z-index: 9997;
+        }
+        
         @media (max-width: 768px) {
             body {
                 overflow-y: auto;
                 overflow-x: hidden;
                 height: auto;
                 min-height: 100vh;
+            }
+            
+            .header-bg {
+                display: block;
+                height: 90px;
             }
             
             .grid-section {
@@ -435,11 +452,6 @@
             .page-title {
                 font-size: 26px;
                 margin-bottom: 25px;
-                position: sticky;
-                top: 80px;
-                background: white;
-                z-index: 100;
-                padding: 10px 0;
             }
             
             .about-text {
@@ -469,6 +481,10 @@
                 min-height: 100vh;
             }
             
+            .header-bg {
+                height: 80px;
+            }
+            
             .logo { height: 40px; }
             
             .main-content { 
@@ -478,11 +494,6 @@
             .page-title { 
                 font-size: 22px;
                 margin-bottom: 20px;
-                position: sticky;
-                top: 70px;
-                background: white;
-                z-index: 100;
-                padding: 10px 0;
             }
             
             .about-text {
@@ -510,6 +521,9 @@
     <script src="page-transitions.js"></script>
 </head>
 <body>
+    <!-- Header background strip -->
+    <div class="header-bg"></div>
+    
     <!-- Header with shared navigation -->
     <a href="index.html" style="text-decoration: none;">
         <img src="brand/RE-logo-text-blue.png" alt="Logo" class="logo" id="header-logo">
@@ -738,7 +752,7 @@
                class="footer-cta-button">get yours!</a>
         </div>
         <a href="https://www.instagram.com/cloemakesbooks/" target="_blank" class="footer-instagram">
-            <img src="brand/instagram-logo-blue.png" alt="Instagram">
+            <img src="brand/insta-logo-blue.png" alt="Instagram">
         </a>
     </div>
 </body>

@@ -258,13 +258,13 @@ body.dark-mode .menu-item {
     /* Center OUR WORK in left space */
     .menu-work {
         text-align: right !important;
-        padding-right: 30px;
+        padding-right: 45px;
     }
     
     /* Center ABOUT RE in right space */
     .menu-about {
         text-align: left !important;
-        padding-left: 30px;
+        padding-left: 45px;
     }
     
     body.dark-mode .menu-item-mobile {
@@ -341,11 +341,11 @@ body.dark-mode .menu-item {
     }
     
     .menu-work {
-        padding-right: 20px;
+        padding-right: 35px;
     }
     
     .menu-about {
-        padding-left: 20px;
+        padding-left: 35px;
     }
     
     .menu-popup {
