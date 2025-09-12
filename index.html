@@ -299,7 +299,7 @@
         @media (max-width: 768px) {
             header { 
                 padding: 20px 16px; 
-                padding-top: 135px; /* More space for icon logo */
+                padding-top: 105px; /* More space for icon logo */
                 background: transparent;
             }
             .logo { display: none; } /* Hide text logo */
@@ -326,12 +326,16 @@
             .cta-button:hover { transform: translateX(-50%) scale(1.08); }
             /* Show intro icon logo on mobile */
             .intro-icon-logo { display: block; }
+            /* Make intro text logo smaller on mobile */
+            .intro-text-logo { 
+                height: 70px;
+            }
         }
 
         @media (max-width: 480px) {
             header { 
                 padding: 16px; 
-                padding-top: 120px; /* More space for icon logo */
+                padding-top: 90px; /* More space for icon logo */
                 background: transparent;
             }
             .logo { display: none; } /* Hide text logo */
@@ -351,6 +355,10 @@
             .cta-button:hover { transform: translateX(-50%) scale(1.08); }
             .book-title { font-size: 20px; }
             .book-author { font-size: 12px; }
+            /* Make intro text logo even smaller on small mobile */
+            .intro-text-logo { 
+                height: 60px;
+            }
         }
 
         .book-info {

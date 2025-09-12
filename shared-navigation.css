@@ -210,7 +210,7 @@ body.dark-mode .menu-item {
     /* Mobile header with menu items on both sides of logo */
     .menu-container {
         position: fixed !important;
-        top: 12px !important;
+        top: 22px !important;
         left: 0 !important;
         right: 0 !important;
         width: 100% !important;
@@ -328,7 +328,7 @@ body.dark-mode .menu-item {
     }
     
     .menu-container {
-        top: 10px;
+        top: 18px;
         padding: 0 15px !important;
     }
     
