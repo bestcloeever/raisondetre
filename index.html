@@ -196,6 +196,11 @@
             transition: color 0.3s ease;
         }
         
+        /* Hide mobile break on desktop */
+        .mobile-break {
+            display: none;
+        }
+        
         body.dark-mode .main-title {
             color: white;
         }
@@ -294,18 +299,22 @@
         @media (max-width: 768px) {
             header { 
                 padding: 20px 16px; 
-                padding-top: 115px; /* More space for icon logo */
+                padding-top: 135px; /* More space for icon logo */
                 background: transparent;
             }
             .logo { display: none; } /* Hide text logo */
             .main-title { 
                 font-size: 29px; 
                 margin-top: 0;
-                margin-bottom: 10px;
+                margin-bottom: 20px;
+                line-height: 1.1;
+            }
+            /* Show line break on mobile */
+            .mobile-break {
+                display: inline;
             }
             .main-subtitle { 
-                font-size: 17px;
-                margin-bottom: 30px;
+                display: none; /* Hide subtitle on mobile */
             }
             .contact-info { left: 16px; top: 16px; font-size: 12px; display: none; }
             /* Menu container centering handled in shared-navigation.css */
@@ -322,18 +331,18 @@
         @media (max-width: 480px) {
             header { 
                 padding: 16px; 
-                padding-top: 100px; /* More space for icon logo */
+                padding-top: 120px; /* More space for icon logo */
                 background: transparent;
             }
             .logo { display: none; } /* Hide text logo */
             .main-title { 
                 font-size: 24px;
                 margin-top: 0;
-                margin-bottom: 8px;
+                margin-bottom: 18px;
+                line-height: 1.1;
             }
             .main-subtitle { 
-                font-size: 14.5px;
-                margin-bottom: 25px;
+                display: none; /* Hide subtitle on mobile */
             }
             .contact-info { display: none; }
             /* Menu container centering handled in shared-navigation.css */
@@ -671,7 +680,7 @@
         <div class="logo-container">
             <img src="brand/RE-logo-text-blue.png" alt="Logo" class="logo" id="header-logo">
         </div>
-        <h1 class="main-title">DESIGNED TO BE PICKED UP</h1>
+        <h1 class="main-title">DESIGNED TO BE<br class="mobile-break"> PICKED UP</h1>
         <p class="main-subtitle">editorial &amp; book cover design<br>for publishers and authors worldwide</p>
     </header>
 
@@ -1970,12 +1979,12 @@
                 clearInterval(autoScrollInterval);
             }
             
-            // Auto-scroll every 4.5 seconds
+            // Auto-scroll every 3 seconds
             autoScrollInterval = setInterval(() => {
                 if (!isUserInteracting) {
                     nextBook();
                 }
-            }, 4500);
+            }, 3000);
         }
         
         function stopAutoScroll() {
