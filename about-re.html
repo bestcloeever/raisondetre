@@ -413,6 +413,13 @@
         }
         
         @media (max-width: 768px) {
+            body {
+                overflow-y: auto;
+                overflow-x: hidden;
+                height: auto;
+                min-height: 100vh;
+            }
+            
             .grid-section {
                 grid-template-columns: 1fr;
             }
@@ -422,18 +429,59 @@
             }
             
             .main-content {
-                padding: 140px 30px 100px;
+                padding: 100px 20px 80px;
             }
+            
+            .page-title {
+                font-size: 26px;
+                margin-bottom: 25px;
+            }
+            
+            .about-text p {
+                font-size: 16px;
+                line-height: 1.5;
+                margin-bottom: 18px;
+            }
+            
             .contact-info { display: none; }
-            .cta-button { margin: 15px auto 60px auto; padding: 8px 16px; font-size: 14px; }
+            .cta-button { 
+                margin: 25px auto 30px auto; 
+                padding: 12px 28px; 
+                font-size: 20px; 
+            }
         }
 
         @media (max-width: 480px) {
+            body {
+                overflow-y: auto;
+                overflow-x: hidden;
+                height: auto;
+                min-height: 100vh;
+            }
+            
             .logo { height: 40px; }
-            .page-title { font-size: 26px; }
-            .about-text p { font-size: 18px; }
-            .main-content { padding: 120px 20px 90px; }
-            .cta-button { margin: 10px auto 50px auto; padding: 8px 14px; font-size: 13px; }
+            
+            .main-content { 
+                padding: 90px 15px 70px; 
+            }
+            
+            .page-title { 
+                font-size: 22px;
+                margin-bottom: 20px;
+            }
+            
+            .about-text p { 
+                font-size: 14px;
+                line-height: 1.45;
+                margin-bottom: 16px;
+            }
+            
+            .cta-button { 
+                margin: 20px auto 25px auto; 
+                padding: 10px 24px; 
+                font-size: 18px; 
+            }
+            
             /* Contact info handled by shared-navigation.css */
             /* Menu container position handled by shared-navigation.css */
             /* Bottom logo and menu item styles handled by shared-navigation.css */
