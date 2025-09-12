@@ -1023,6 +1023,46 @@
             }
         ];
 
+        let autoScrollInterval;
+        let isUserInteracting = false;
+        
+        function startAutoScroll() {
+            // Only start auto-scroll on mobile devices
+            const isMobile = window.innerWidth <= 768;
+            if (!isMobile) return;
+            
+            // Clear any existing interval
+            if (autoScrollInterval) {
+                clearInterval(autoScrollInterval);
+            }
+            
+            // Auto-scroll every 3 seconds
+            autoScrollInterval = setInterval(() => {
+                if (!isUserInteracting && !isAnimating) {
+                    nextBook();
+                }
+            }, 3000);
+        }
+        
+        function stopAutoScroll() {
+            if (autoScrollInterval) {
+                clearInterval(autoScrollInterval);
+                autoScrollInterval = null;
+            }
+        }
+        
+        // Stop auto-scroll on user interaction
+        function handleUserInteraction() {
+            isUserInteracting = true;
+            stopAutoScroll();
+            
+            // Resume auto-scroll after 10 seconds of inactivity
+            setTimeout(() => {
+                isUserInteracting = false;
+                startAutoScroll();
+            }, 10000);
+        }
+        
         async function init() {
             // Load book data from JSON
             const loaded = await loadBooksData();
@@ -1101,7 +1141,10 @@
             createBooks();
             setupEventListeners();
             animate();
-            // No loading screen needed
+            // Start auto-scroll on mobile after a short delay
+            setTimeout(() => {
+                startAutoScroll();
+            }, 2000);
         }
 
         // Expose a global to reshuffle rotations at runtime and add hotkeys (R and D)
@@ -1854,7 +1897,34 @@
         function setupEventListeners() {
             const canvas = renderer.domElement;
             
-            // Dragging disabled: no mouse/touch drag handlers
+            // Touch support for mobile
+            let touchStartX = 0;
+            let touchEndX = 0;
+            
+            canvas.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+                handleUserInteraction(); // Stop auto-scroll on touch
+            }, { passive: true });
+            
+            canvas.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            }, { passive: true });
+            
+            function handleSwipe() {
+                const swipeThreshold = 50; // minimum distance for a swipe
+                const diff = touchStartX - touchEndX;
+                
+                if (Math.abs(diff) > swipeThreshold) {
+                    if (diff > 0) {
+                        // Swiped left - next book
+                        nextBook();
+                    } else {
+                        // Swiped right - previous book
+                        previousBook();
+                    }
+                }
+            }
             
             document.addEventListener('keydown', onKeyDown);
             

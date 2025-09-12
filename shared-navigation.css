@@ -225,7 +225,7 @@ body.dark-mode .menu-item {
     
     /* Icon logo in the center */
     .bottom-logo { 
-        width: 71px !important;
+        width: 60px !important;
         height: auto !important;
         position: relative !important;
     }
@@ -333,7 +333,7 @@ body.dark-mode .menu-item {
     }
     
     .bottom-logo { 
-        width: 62px !important;
+        width: 52px !important;
     }
     
     .menu-item-mobile {
