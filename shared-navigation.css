@@ -190,41 +190,173 @@ body.dark-mode .menu-item {
     transform: translateY(0);
 }
 
+/* Hide mobile menu items on desktop */
+.menu-item-mobile {
+    display: none;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
+    /* Hide text logo on mobile */
     .logo { 
-        height: 44px; 
-        top: 20px;
+        display: none !important;
     }
+    
+    /* Hide contact info on mobile */
     .contact-info { 
-        left: 16px; 
-        top: 16px; 
-        font-size: 12px; 
-        display: none; /* Hide on mobile */
+        display: none !important;
     }
-    .menu-container { 
-        right: 16px; 
-        top: 16px; 
+    
+    /* Mobile header with menu items on both sides of logo */
+    .menu-container {
+        position: fixed !important;
+        top: 12px !important;
+        left: 0 !important;
+        right: 0 !important;
+        width: 100% !important;
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        z-index: 9999 !important;
+        transform: none !important;
+        gap: 0 !important;
+        padding: 0 20px !important;
     }
-    .menu-item { 
-        font-size: 16px; 
-    }
+    
+    /* Icon logo in the center */
     .bottom-logo { 
-        width: 44px; 
+        width: 55px !important;
+        height: auto !important;
+        position: relative !important;
+    }
+    
+    /* Hide expanded hover area on mobile */
+    .menu-container::before {
+        display: none !important;
+    }
+    
+    /* Hide desktop menu popup on mobile */
+    .menu-popup {
+        display: none !important;
+    }
+    
+    /* Show mobile menu items */
+    .menu-item-mobile {
+        display: block !important;
+        font-family: 'Apercu Pro Medium', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        font-size: 15px !important;
+        font-weight: 500;
+        color: #0000FF;
+        text-transform: uppercase;
+        text-decoration: none;
+        white-space: nowrap;
+        transition: opacity 0.3s ease;
+        flex: 1;
+        text-align: center;
+    }
+    
+    /* Center OUR WORK in left space */
+    .menu-work {
+        text-align: right !important;
+        padding-right: 20px;
+    }
+    
+    /* Center ABOUT RE in right space */
+    .menu-about {
+        text-align: left !important;
+        padding-left: 20px;
+    }
+    
+    body.dark-mode .menu-item-mobile {
+        color: white;
+    }
+    
+    .menu-item-mobile:hover {
+        opacity: 0.7;
+    }
+    
+    /* Show only specific menu items on mobile */
+    .menu-item { 
+        font-size: 14px !important;
+        text-align: center !important;
+        margin: 0 !important;
+        text-transform: uppercase !important;
+        white-space: nowrap !important;
+        display: none !important; /* Hide all by default */
+        visibility: visible !important;
+    }
+    
+    /* Show only OUR WORK and ABOUT RE on mobile */
+    .menu-item:nth-child(1) { /* OUR WORK */
+        display: block !important;
+        visibility: visible !important;
+        order: 1 !important;
+        margin-right: auto !important;
+    }
+    
+    .menu-item:nth-child(2) { /* ABOUT RAISON D'ÊTRE */
+        display: block !important;
+        visibility: visible !important;
+        order: 3 !important;
+        margin-left: auto !important;
+        font-size: 0 !important; /* Hide the original text */
+    }
+    
+    /* Show abbreviated version on mobile */
+    .menu-item:nth-child(2)::after {
+        content: "ABOUT RE" !important;
+        font-size: 14px !important;
+        display: inline-block !important;
+        visibility: visible !important;
+    }
+    
+    /* Hide GET YOURS menu item on mobile (using footer button instead) */
+    .menu-item:nth-child(3) {
+        display: none !important;
+    }
+    
+    .menu-item:hover {
+        transform: none !important;
+        opacity: 0.7 !important;
     }
 }
 
 @media (max-width: 480px) {
+    /* Keep same mobile header structure for small screens */
     .logo { 
-        height: 36px; 
+        display: none;
     }
-    .contact-info { 
-        display: none; /* Hide on mobile */
+    
+    .menu-container {
+        top: 10px;
+        padding: 0 15px !important;
     }
+    
     .bottom-logo { 
-        width: 36px; 
+        width: 48px !important;
     }
+    
+    .menu-item-mobile {
+        font-size: 13px !important;
+    }
+    
+    .menu-work {
+        padding-right: 15px;
+    }
+    
+    .menu-about {
+        padding-left: 15px;
+    }
+    
+    .menu-popup {
+        top: 60px;
+    }
+    
     .menu-item { 
-        font-size: 14px; 
+        font-size: 16px; 
+    }
+    
+    .contact-info { 
+        display: none;
     }
 }
