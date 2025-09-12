@@ -1023,46 +1023,6 @@
             }
         ];
 
-        let autoScrollInterval;
-        let isUserInteracting = false;
-        
-        function startAutoScroll() {
-            // Only start auto-scroll on mobile devices
-            const isMobile = window.innerWidth <= 768;
-            if (!isMobile) return;
-            
-            // Clear any existing interval
-            if (autoScrollInterval) {
-                clearInterval(autoScrollInterval);
-            }
-            
-            // Auto-scroll every 3 seconds
-            autoScrollInterval = setInterval(() => {
-                if (!isUserInteracting && !isAnimating) {
-                    nextBook();
-                }
-            }, 3000);
-        }
-        
-        function stopAutoScroll() {
-            if (autoScrollInterval) {
-                clearInterval(autoScrollInterval);
-                autoScrollInterval = null;
-            }
-        }
-        
-        // Stop auto-scroll on user interaction
-        function handleUserInteraction() {
-            isUserInteracting = true;
-            stopAutoScroll();
-            
-            // Resume auto-scroll after 10 seconds of inactivity
-            setTimeout(() => {
-                isUserInteracting = false;
-                startAutoScroll();
-            }, 10000);
-        }
-        
         async function init() {
             // Load book data from JSON
             const loaded = await loadBooksData();
@@ -1995,6 +1955,47 @@
 
         function previousBook() { moveBooks(-1); }
         function nextBook() { moveBooks(1); }
+
+        // Auto-scroll functionality
+        let autoScrollInterval;
+        let isUserInteracting = false;
+        
+        function startAutoScroll() {
+            // Only start auto-scroll on mobile devices
+            const isMobile = window.innerWidth <= 768;
+            if (!isMobile) return;
+            
+            // Clear any existing interval
+            if (autoScrollInterval) {
+                clearInterval(autoScrollInterval);
+            }
+            
+            // Auto-scroll every 3 seconds
+            autoScrollInterval = setInterval(() => {
+                if (!isUserInteracting) {
+                    nextBook();
+                }
+            }, 3000);
+        }
+        
+        function stopAutoScroll() {
+            if (autoScrollInterval) {
+                clearInterval(autoScrollInterval);
+                autoScrollInterval = null;
+            }
+        }
+        
+        // Stop auto-scroll on user interaction
+        function handleUserInteraction() {
+            isUserInteracting = true;
+            stopAutoScroll();
+            
+            // Resume auto-scroll after 10 seconds of inactivity
+            setTimeout(() => {
+                isUserInteracting = false;
+                startAutoScroll();
+            }, 10000);
+        }
 
         function updateBookInfo() {
             const book = booksData[currentBook];
