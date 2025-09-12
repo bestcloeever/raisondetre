@@ -47,7 +47,7 @@ body.dark-mode .mobile-footer {
 /* Email icon - maintain original aspect ratio */
 .mobile-footer .footer-email img {
     width: auto;
-    height: 21px; /* Fixed height to maintain proportions */
+    height: 19px; /* Fixed height to maintain proportions */
     transition: transform 0.3s ease, opacity 0.3s ease;
     object-fit: contain;
 }
@@ -174,7 +174,7 @@ body.dark-mode .mobile-footer .footer-cta-button:active {
     }
     
     .mobile-footer .footer-email img {
-        height: 19px; /* Slightly smaller but maintaining aspect ratio */
+        height: 17px; /* Slightly smaller but maintaining aspect ratio */
     }
     
     .mobile-footer .footer-instagram img {

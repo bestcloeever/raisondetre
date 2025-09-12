@@ -1984,9 +1984,7 @@
         let isUserInteracting = false;
         
         function startAutoScroll() {
-            // Only start auto-scroll on mobile devices
-            const isMobile = window.innerWidth <= 768;
-            if (!isMobile) return;
+            // Auto-scroll enabled for all devices (desktop and mobile)
             
             // Clear any existing interval
             if (autoScrollInterval) {
