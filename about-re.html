@@ -263,18 +263,23 @@
             box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
         }
         
+        /* CTA Button Container for centering */
+        .cta-container {
+            text-align: center;
+            margin: 40px 0 80px 0;
+        }
+
         /* CTA Button Styles - matching index.html */
         .cta-button {
             position: relative;
-            display: block;
-            margin: 20px auto 80px auto;
-            background: linear-gradient(90deg, 
-                #0000FF 0%, 
-                #2222FF 25%, 
+            display: inline-block;
+            background: linear-gradient(90deg,
+                #0000FF 0%,
+                #2222FF 25%,
                 #4444FF 35%,
                 #6666FF 50%,
                 #4444FF 65%,
-                #2222FF 75%, 
+                #2222FF 75%,
                 #0000FF 100%);
             background-size: 200% auto;
             animation: shimmer 4s linear infinite;
@@ -472,10 +477,12 @@
             }
             
             .contact-info { display: none; }
-            .cta-button { 
-                margin: 25px auto 30px auto; 
-                padding: 12px 28px; 
-                font-size: 20px; 
+            .cta-container {
+                margin: 25px 0 30px 0;
+            }
+            .cta-button {
+                padding: 8px 16px;
+                font-size: 14px;
             }
         }
 
@@ -518,10 +525,12 @@
                 margin-bottom: 16px;
             }
             
-            .cta-button { 
-                margin: 20px auto 25px auto; 
-                padding: 10px 24px; 
-                font-size: 18px; 
+            .cta-container {
+                margin: 20px 0 25px 0;
+            }
+            .cta-button {
+                padding: 8px 14px;
+                font-size: 13px;
             }
             
             /* Contact info handled by shared-navigation.css */
@@ -601,7 +610,9 @@
         </div>
         
         <!-- CTA Button -->
-        <a href="mailto:hello@raisondetrebooks.com" class="cta-button">get yours!</a>
+        <div class="cta-container">
+            <a href="mailto:hello@raisondetrebooks.com" class="cta-button">get yours!</a>
+        </div>
     </div>
     
     <!-- Contact Info (top left) -->
