@@ -211,10 +211,10 @@
       "id": "024",
       "filename": "Ascens dels rebels.png",
       "title": "Ascens dels rebels",
-      "imprint": "",
-      "publisher": "",
-      "year": "",
-      "exploration": "Y"
+      "imprint": "elastic books",
+      "publisher": "abacus",
+      "year": "2025",
+      "exploration": "N"
     },
     {
       "id": "025",
@@ -274,9 +274,9 @@
       "id": "031",
       "filename": "Wen i Long.png",
       "title": "Wen i Long",
-      "imprint": "",
-      "publisher": "",
-      "year": "",
+      "imprint": "la galera",
+      "publisher": "abacus",
+      "year": "2024",
       "exploration": "N"
     }
   ]
