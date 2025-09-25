@@ -33,27 +33,18 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            cursor: url('brand/RE-cursor-blue-24.png') 12 12, auto;
+            cursor: url('brand/RE-cursor-white-24.png') 12 12, auto;
         }
 
         body {
             font-family: 'Apercu Pro Medium', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background: white;
+            background: #0000FF;
             margin: 0;
             padding: 0;
             min-height: 100vh;
-            cursor: url('brand/RE-cursor-blue-24.png') 12 12, auto;
+            cursor: url('brand/RE-cursor-white-24.png') 12 12, auto;
             transition: background-color 0.3s ease;
             overflow-x: hidden;
-        }
-
-        body.dark-mode {
-            background: #0000FF;
-            cursor: url('brand/RE-cursor-white-24.png') 12 12, auto;
-        }
-
-        body.dark-mode * {
-            cursor: url('brand/RE-cursor-white-24.png') 12 12, auto;
         }
 
         /* Form Container */
@@ -80,36 +71,24 @@
 
         .progress-bar {
             height: 2px;
-            background: rgba(0, 0, 255, 0.1);
+            background: rgba(255, 255, 255, 0.1);
             border-radius: 2px;
             overflow: hidden;
         }
 
-        body.dark-mode .progress-bar {
-            background: rgba(255, 255, 255, 0.1);
-        }
-
         .progress-fill {
             height: 100%;
-            background: #0000FF;
+            background: white;
             transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             border-radius: 2px;
-        }
-
-        body.dark-mode .progress-fill {
-            background: white;
         }
 
         .step-indicator {
             text-align: center;
             margin-top: 15px;
             font-size: 14px;
-            color: #0000FF;
-            opacity: 0.6;
-        }
-
-        body.dark-mode .step-indicator {
             color: white;
+            opacity: 0.6;
         }
 
         /* Form Sections */
@@ -136,15 +115,11 @@
         .section-title {
             font-family: 'Apercu Pro Bold', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
             font-size: 32px;
-            color: #0000FF;
+            color: white;
             text-align: center;
             margin-bottom: 50px;
             line-height: 1.3;
             text-transform: lowercase;
-        }
-
-        body.dark-mode .section-title {
-            color: white;
         }
 
         /* Input Fields */
@@ -156,34 +131,21 @@
             width: 100%;
             padding: 15px 0;
             border: none;
-            border-bottom: 2px solid rgba(0, 0, 255, 0.2);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
             background: transparent;
             font-family: 'Apercu Pro Medium', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
             font-size: 18px;
-            color: #0000FF;
+            color: white;
             transition: border-color 0.3s ease;
             outline: none;
         }
 
-        body.dark-mode .input-field {
-            color: white;
-            border-bottom-color: rgba(255, 255, 255, 0.2);
-        }
-
         .input-field::placeholder {
-            color: rgba(0, 0, 255, 0.4);
+            color: rgba(255, 255, 255, 0.4);
             text-transform: lowercase;
         }
 
-        body.dark-mode .input-field::placeholder {
-            color: rgba(255, 255, 255, 0.4);
-        }
-
         .input-field:focus {
-            border-bottom-color: #0000FF;
-        }
-
-        body.dark-mode .input-field:focus {
             border-bottom-color: white;
         }
 
@@ -197,21 +159,16 @@
 
         .select-button {
             padding: 15px 20px;
-            border: 2px solid #0000FF;
+            border: 2px solid white;
             background: transparent;
-            color: #0000FF;
+            color: white;
             font-family: 'Apercu Pro Medium', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
             font-size: 16px;
             text-transform: lowercase;
             border-radius: 25px;
-            cursor: url('brand/RE-cursor-blue-24.png') 12 12, pointer;
+            cursor: url('brand/RE-cursor-white-24.png') 12 12, pointer;
             transition: all 0.3s ease;
             outline: none;
-        }
-
-        body.dark-mode .select-button {
-            border-color: white;
-            color: white;
         }
 
         .select-button:hover {
@@ -219,11 +176,6 @@
         }
 
         .select-button.selected {
-            background: #0000FF;
-            color: white;
-        }
-
-        body.dark-mode .select-button.selected {
             background: white;
             color: #0000FF;
         }
@@ -233,37 +185,24 @@
             width: 100%;
             min-height: 150px;
             padding: 20px;
-            border: 2px solid rgba(0, 0, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.2);
             border-radius: 10px;
             background: transparent;
             font-family: 'Apercu Pro Medium', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
             font-size: 16px;
-            color: #0000FF;
+            color: white;
             resize: vertical;
             transition: border-color 0.3s ease;
             outline: none;
             line-height: 1.6;
         }
 
-        body.dark-mode .textarea-field {
-            color: white;
-            border-color: rgba(255, 255, 255, 0.2);
-        }
-
         .textarea-field::placeholder {
-            color: rgba(0, 0, 255, 0.4);
+            color: rgba(255, 255, 255, 0.4);
             text-transform: lowercase;
         }
 
-        body.dark-mode .textarea-field::placeholder {
-            color: rgba(255, 255, 255, 0.4);
-        }
-
         .textarea-field:focus {
-            border-color: #0000FF;
-        }
-
-        body.dark-mode .textarea-field:focus {
             border-color: white;
         }
 
@@ -277,41 +216,27 @@
 
         .nav-button {
             padding: 12px 30px;
-            background: #0000FF;
-            color: white;
+            background: white;
+            color: #0000FF;
             border: none;
             border-radius: 25px;
             font-family: 'Apercu Pro Medium', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
             font-size: 16px;
             text-transform: lowercase;
-            cursor: url('brand/RE-cursor-blue-24.png') 12 12, pointer;
+            cursor: url('brand/RE-cursor-white-24.png') 12 12, pointer;
             transition: all 0.3s ease;
             outline: none;
         }
 
-        body.dark-mode .nav-button {
-            background: white;
-            color: #0000FF;
-        }
-
         .nav-button:hover {
             transform: scale(1.05);
-            box-shadow: 0 5px 20px rgba(0, 0, 255, 0.3);
-        }
-
-        body.dark-mode .nav-button:hover {
             box-shadow: 0 5px 20px rgba(255, 255, 255, 0.3);
         }
 
         .nav-button.back {
             background: transparent;
-            color: #0000FF;
-            border: 2px solid #0000FF;
-        }
-
-        body.dark-mode .nav-button.back {
             color: white;
-            border-color: white;
+            border: 2px solid white;
         }
 
         .nav-button:disabled {
@@ -333,14 +258,10 @@
         .success-text {
             font-family: 'Apercu Pro Italic', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
             font-size: 20px;
-            color: #0000FF;
+            color: white;
             line-height: 1.6;
             max-width: 400px;
             margin: 0 auto;
-        }
-
-        body.dark-mode .success-text {
-            color: white;
         }
 
         @keyframes fadeIn {
@@ -416,18 +337,18 @@
     </style>
 </head>
 <body>
-    <!-- Logo -->
-    <a href="index.html" class="logo">
-        <img src="brand/RE-logo-text-blue.png" alt="Logo">
+    <!-- Logo - using shared styles from shared-navigation.css -->
+    <a href="index.html">
+        <img src="brand/RE-logo-text-white.png" alt="Logo" class="logo">
     </a>
 
     <!-- Contact Info -->
-    <div class="contact-info">
-        <a href="https://www.instagram.com/cloemakesbooks/" target="_blank" style="display: flex; align-items: center; text-decoration: none; color: inherit;">
-            <img src="brand/instagram-logo-blue.png" alt="Instagram" class="insta-logo">
+    <div class="contact-info" style="color: white;">
+        <a href="https://www.instagram.com/cloemakesbooks/" target="_blank" style="display: flex; align-items: center; text-decoration: none; color: white;">
+            <img src="brand/insta-logo-white.png" alt="Instagram" class="insta-logo">
         </a>
         <span>|</span>
-        <a href="mailto:hello@raisondetrebooks.com" style="color: inherit; text-decoration: none;">hello@raisondetrebooks.com</a>
+        <a href="mailto:hello@raisondetrebooks.com" style="color: white; text-decoration: none;">hello@raisondetrebooks.com</a>
     </div>
 
     <!-- Progress Bar -->
@@ -544,10 +465,24 @@
         </div>
     </div>
 
-    <!-- Bottom Logo Icon -->
-    <a href="index.html" class="bottom-logo-icon">
-        <img src="brand/RE-icon-blue.png" alt="Logo Icon">
-    </a>
+    <!-- Menu Container with Logo -->
+    <div class="menu-container">
+        <!-- Mobile menu items (visible on mobile only) -->
+        <a href="work.html" class="menu-item-mobile menu-work">OUR WORK</a>
+
+        <a href="index.html" style="text-decoration: none;">
+            <img src="brand/RE-logo-icon-white.png" alt="Logo Icon" class="bottom-logo" id="bottom-logo-icon">
+        </a>
+
+        <a href="about-re.html" class="menu-item-mobile menu-about">ABOUT RE</a>
+
+        <!-- Desktop menu popup (hidden on mobile) -->
+        <div class="menu-popup" style="background: transparent;">
+            <a href="work.html" class="menu-item" style="color: white;">OUR WORK</a>
+            <a href="about-re.html" class="menu-item" style="color: white;">ABOUT RAISON D'ÊTRE</a>
+            <a href="contact.html" class="menu-item" style="color: white;">GET YOURS</a>
+        </div>
+    </div>
 
     <script>
         let currentSection = 1;
@@ -557,10 +492,21 @@
 
         // Initialize
         document.addEventListener('DOMContentLoaded', () => {
-            // Check dark mode
-            const savedDarkMode = localStorage.getItem('darkMode') === 'true';
-            if (savedDarkMode) {
-                document.body.classList.add('dark-mode');
+            // Menu functionality
+            const menuContainer = document.querySelector('.menu-container');
+            const bottomLogo = document.getElementById('bottom-logo-icon');
+            if (menuContainer && bottomLogo) {
+                const toggleMenu = (e) => {
+                    e.stopPropagation();
+                    menuContainer.classList.toggle('auto-show');
+                };
+                bottomLogo.addEventListener('click', toggleMenu);
+                bottomLogo.addEventListener('touchstart', toggleMenu, { passive: true });
+                document.addEventListener('click', (e) => {
+                    if (!menuContainer.contains(e.target)) {
+                        menuContainer.classList.remove('auto-show');
+                    }
+                });
             }
 
             // Load saved form data
