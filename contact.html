@@ -255,12 +255,25 @@
             border-color: white;
         }
 
-        /* Section 4 specific textarea styling */
+        /* Section 4 specific styling */
+        #section4 .input-group {
+            position: relative;
+            min-height: 300px;
+        }
+
         #section4 .textarea-field {
             background: white;
             color: #0000FF;
             border: none;
             border-radius: 25px;
+            resize: vertical;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 85%;
+            max-width: 500px;
+            min-height: 250px;
         }
 
         #section4 .textarea-field::placeholder {
