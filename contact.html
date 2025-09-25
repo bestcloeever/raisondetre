@@ -29,6 +29,13 @@
             font-style: normal;
         }
 
+        @font-face {
+            font-family: 'Berranger';
+            src: url('fonts/Berranger Hand ITC Std Regular.otf') format('opentype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -137,26 +144,29 @@
             box-shadow: 0 5px 20px rgba(255, 255, 255, 0.3);
         }
 
-        /* Multi-select buttons */
-        .multi-select-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
-            margin-bottom: 40px;
+        /* Multi-select buttons - organic layout */
+        .multi-select-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            height: 350px;
+            margin: 0 auto 40px;
         }
 
         .select-button {
-            padding: 15px 20px;
+            position: absolute;
+            padding: 8px 20px;
             border: 2px solid white;
             background: transparent;
             color: white;
             font-family: 'Apercu Pro Medium', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
-            font-size: 16px;
+            font-size: 18px;
             text-transform: lowercase;
             border-radius: 25px;
             cursor: url('brand/RE-cursor-white-24.png') 12 12, pointer;
             transition: all 0.3s ease;
             outline: none;
+            white-space: nowrap;
         }
 
         .select-button:hover {
@@ -166,6 +176,54 @@
         .select-button.selected {
             background: white;
             color: #0000FF;
+        }
+
+        /* Organic positioning for each button - more spread out */
+        .select-button[data-service="book cover"] {
+            top: 10px;
+            left: 20%;
+        }
+
+        .select-button[data-service="full jacket"] {
+            top: 25px;
+            right: 15%;
+        }
+
+        .select-button[data-service="media kit"] {
+            top: 90px;
+            left: 40%;
+        }
+
+        .select-button[data-service="interiors"] {
+            top: 150px;
+            left: 5%;
+        }
+
+        .select-button[data-service="series design"] {
+            top: 170px;
+            right: 20%;
+        }
+
+        .select-button[data-service="consulting"] {
+            top: 250px;
+            left: 22%;
+        }
+
+        .select-button[data-service="help"] {
+            top: 270px;
+            right: 25%;
+        }
+
+        /* Helper text */
+        .select-helper-text {
+            position: absolute;
+            bottom: 100px;
+            right: -18%;
+            font-family: 'Berranger', cursive;
+            font-size: 22px;
+            color: white;
+            opacity: 1;
+            transform: rotate(-5deg);
         }
 
         /* Textarea */
@@ -212,6 +270,13 @@
             transition: all 0.3s ease;
             outline: none;
             z-index: 100;
+        }
+
+        /* Style the return arrow icon */
+        .return-arrow {
+            display: inline-block;
+            transform: translateY(1px);
+            margin-left: 2px;
         }
 
         .nav-button.back-btn {
@@ -350,7 +415,7 @@
 
     <!-- Navigation Buttons (fixed position) -->
     <button class="nav-button back-btn" id="backBtn" onclick="goBack()">back</button>
-    <button class="nav-button next-btn" id="nextBtn" onclick="goNext()">next</button>
+    <button class="nav-button next-btn" id="nextBtn" onclick="goNext()">next <span class="return-arrow">↩</span></button>
 
     <!-- Form Container -->
     <div class="form-container">
@@ -373,15 +438,16 @@
 
         <!-- Section 2: What do you need -->
         <div class="form-section" id="section2">
-            <h2 class="section-title" id="greetingTitle">nice to meet you! what do you need?</h2>
-            <div class="multi-select-grid" id="servicesGrid">
+            <h2 class="section-title" id="greetingTitle">nice to meet you!<br>what do you need?</h2>
+            <div class="multi-select-container" id="servicesGrid">
                 <button class="select-button" data-service="book cover">book cover</button>
+                <button class="select-button" data-service="full jacket">full jacket</button>
                 <button class="select-button" data-service="media kit">media kit</button>
                 <button class="select-button" data-service="interiors">interiors</button>
-                <button class="select-button" data-service="consulting">consulting</button>
-                <button class="select-button" data-service="full jacket">full jacket</button>
                 <button class="select-button" data-service="series design">series design</button>
+                <button class="select-button" data-service="consulting">consulting</button>
                 <button class="select-button" data-service="help">idk: help!</button>
+                <span class="select-helper-text">select all you want!</span>
             </div>
         </div>
 
@@ -613,8 +679,8 @@
             if (currentSection === 1) {
                 // Update greeting with name
                 const name = document.getElementById('name').value.trim();
-                document.getElementById('greetingTitle').textContent =
-                    `nice to meet you ${name}! what do you need?`;
+                document.getElementById('greetingTitle').innerHTML =
+                    `nice to meet you ${name}!<br>what do you need?`;
             }
 
             if (currentSection < totalSections) {
@@ -647,9 +713,9 @@
 
             // Handle next button text
             if (currentSection === 5) {
-                nextBtn.textContent = 'send it!';
+                nextBtn.innerHTML = 'send it! <span class="return-arrow">↩</span>';
             } else {
-                nextBtn.textContent = 'next';
+                nextBtn.innerHTML = 'next <span class="return-arrow">↩</span>';
             }
 
             // Hide buttons on success page
@@ -715,13 +781,36 @@
 
         // Keyboard navigation
         document.addEventListener('keydown', (e) => {
+            const activeElement = document.activeElement;
+
+            // Enter key to go next
             if (e.key === 'Enter' && !e.shiftKey) {
-                const activeElement = document.activeElement;
                 if (activeElement.tagName !== 'TEXTAREA') {
                     e.preventDefault();
                     const nextBtn = document.getElementById('nextBtn');
                     if (nextBtn && !nextBtn.disabled) {
                         nextBtn.click();
+                    }
+                }
+            }
+
+            // Arrow keys navigation
+            if (activeElement.tagName !== 'INPUT' && activeElement.tagName !== 'TEXTAREA') {
+                // Right arrow to go next
+                if (e.key === 'ArrowRight') {
+                    e.preventDefault();
+                    const nextBtn = document.getElementById('nextBtn');
+                    if (nextBtn && !nextBtn.disabled && nextBtn.style.display !== 'none') {
+                        nextBtn.click();
+                    }
+                }
+
+                // Left arrow to go back
+                if (e.key === 'ArrowLeft') {
+                    e.preventDefault();
+                    const backBtn = document.getElementById('backBtn');
+                    if (backBtn && !backBtn.classList.contains('disabled-hidden') && backBtn.style.display !== 'none') {
+                        backBtn.click();
                     }
                 }
             }
