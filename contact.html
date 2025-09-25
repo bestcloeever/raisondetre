@@ -374,6 +374,7 @@
             .section-title {
                 font-size: 24px;
                 margin-bottom: 40px;
+                padding-top: 30px; /* Add space for step indicator above title */
             }
 
             .input-field {
@@ -389,9 +390,47 @@
                 padding: 12px 15px;
             }
 
+            /* Move navigation buttons below form on mobile */
             .nav-button {
+                position: fixed;
+                bottom: 30px;
+                top: auto;
+                transform: none;
                 font-size: 14px;
                 padding: 10px 20px;
+            }
+
+            .nav-button.back-btn {
+                left: 30px;
+                right: auto;
+            }
+
+            .nav-button.next-btn {
+                right: 30px;
+                left: auto;
+            }
+
+            .nav-button:hover {
+                transform: scale(1.05);
+            }
+
+            /* Position step indicator above section title */
+            .step-indicator {
+                position: relative;
+                top: auto;
+                margin-top: 100px;
+                margin-bottom: -20px;
+                z-index: 100;
+            }
+
+            /* Make mobile menu items white */
+            .menu-item-mobile {
+                color: white !important;
+            }
+
+            /* Add padding to form container to avoid button overlap */
+            .form-container {
+                padding-bottom: 100px;
             }
         }
 
