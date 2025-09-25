@@ -58,37 +58,19 @@
             position: relative;
         }
 
-        /* Progress Bar */
-        .progress-container {
+        /* Step Indicator */
+        .step-indicator {
             position: fixed;
-            top: 100px;
+            top: 200px;
             left: 50%;
             transform: translateX(-50%);
-            width: 90%;
-            max-width: 400px;
-            z-index: 100;
-        }
-
-        .progress-bar {
-            height: 2px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 2px;
-            overflow: hidden;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: white;
-            transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            border-radius: 2px;
-        }
-
-        .step-indicator {
             text-align: center;
-            margin-top: 15px;
+            font-family: 'Apercu Pro', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
             font-size: 14px;
+            font-weight: 300;
             color: white;
-            opacity: 0.6;
+            opacity: 0.5;
+            z-index: 100;
         }
 
         /* Form Sections */
@@ -363,13 +345,8 @@
         <a href="mailto:hello@raisondetrebooks.com" style="color: white; text-decoration: none;">hello@raisondetrebooks.com</a>
     </div>
 
-    <!-- Progress Bar -->
-    <div class="progress-container">
-        <div class="progress-bar">
-            <div class="progress-fill" id="progressFill"></div>
-        </div>
-        <div class="step-indicator" id="stepIndicator">step 1 of 5</div>
-    </div>
+    <!-- Step Indicator -->
+    <div class="step-indicator" id="stepIndicator">1/5</div>
 
     <!-- Navigation Buttons (fixed position) -->
     <button class="nav-button back-btn" id="backBtn" onclick="goBack()">back</button>
@@ -695,9 +672,7 @@
         }
 
         function updateProgress() {
-            const progress = (currentSection / totalSections) * 100;
-            document.getElementById('progressFill').style.width = `${progress}%`;
-            document.getElementById('stepIndicator').textContent = `step ${currentSection} of ${totalSections}`;
+            document.getElementById('stepIndicator').textContent = `${currentSection}/${totalSections}`;
         }
 
         async function submitForm() {
@@ -723,7 +698,7 @@
                     // Show success
                     document.getElementById('section5').classList.remove('active');
                     document.getElementById('successSection').classList.add('active');
-                    document.querySelector('.progress-container').style.display = 'none';
+                    document.getElementById('stepIndicator').style.display = 'none';
                     updateButtons();
                 } else {
                     throw new Error('Failed to submit form');
