@@ -83,6 +83,11 @@
             margin-bottom: 15px;
         }
 
+        /* Hide mobile-only indicator on desktop */
+        .mobile-step-indicator {
+            display: none;
+        }
+
         /* Form Sections */
         .form-section {
             width: 100%;
@@ -409,9 +414,40 @@
                 transform: scale(1.05);
             }
 
-            /* Step indicator styling for mobile */
+            /* Hide return arrow on mobile */
+            .return-arrow {
+                display: none !important;
+            }
+
+            /* Step indicator at bottom between buttons on mobile */
             .step-indicator {
-                margin-bottom: 10px;
+                position: fixed;
+                bottom: 35px;
+                left: 50%;
+                transform: translateX(-50%);
+                margin: 0;
+                z-index: 1000;
+            }
+
+            /* Hide the step indicator inside the form on mobile */
+            .form-section .step-indicator {
+                display: none;
+            }
+
+            /* Show mobile-only step indicator */
+            .mobile-step-indicator {
+                display: block !important;
+                position: fixed;
+                bottom: 35px;
+                left: 50%;
+                transform: translateX(-50%);
+                text-align: center;
+                font-family: 'Apercu Pro', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
+                font-size: 14px;
+                font-weight: 300;
+                color: white;
+                opacity: 0.5;
+                z-index: 1000;
             }
 
             /* Make mobile menu items white */
@@ -478,6 +514,9 @@
     <!-- Navigation Buttons (fixed position) -->
     <button class="nav-button back-btn" id="backBtn" onclick="goBack()">back</button>
     <button class="nav-button next-btn" id="nextBtn" onclick="goNext()">next <span class="return-arrow">↩</span></button>
+
+    <!-- Mobile-only step indicator (between buttons at bottom) -->
+    <div class="mobile-step-indicator" id="mobileStepIndicator">1/5</div>
 
     <!-- Form Container -->
     <div class="form-container">
@@ -802,6 +841,11 @@
 
         function updateProgress() {
             document.getElementById('stepIndicator').textContent = `${currentSection}/${totalSections}`;
+            // Also update mobile indicator
+            const mobileIndicator = document.getElementById('mobileStepIndicator');
+            if (mobileIndicator) {
+                mobileIndicator.textContent = `${currentSection}/${totalSections}`;
+            }
         }
 
         async function submitForm() {
