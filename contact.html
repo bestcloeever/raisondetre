@@ -374,7 +374,8 @@
             .section-title {
                 font-size: 24px;
                 margin-bottom: 40px;
-                padding-top: 30px; /* Add space for step indicator above title */
+                padding-top: 40px; /* Add space for step indicator above title */
+                position: relative;
             }
 
             .input-field {
@@ -416,11 +417,16 @@
 
             /* Position step indicator above section title */
             .step-indicator {
-                position: relative;
-                top: auto;
-                margin-top: 100px;
-                margin-bottom: -20px;
+                position: absolute;
+                top: 120px;
+                left: 50%;
+                transform: translateX(-50%);
                 z-index: 100;
+            }
+
+            /* Adjust form container position */
+            .form-section {
+                padding-top: 60px;
             }
 
             /* Make mobile menu items white */
