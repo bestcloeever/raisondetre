@@ -83,8 +83,9 @@
             margin-bottom: 15px;
         }
 
-        /* Hide mobile-only indicator on desktop */
-        .mobile-step-indicator {
+        /* Hide mobile-only elements on desktop */
+        .mobile-step-indicator,
+        .mobile-nav-container {
             display: none;
         }
 
@@ -390,28 +391,41 @@
                 padding: 12px 15px;
             }
 
-            /* Move navigation buttons below form on mobile */
-            .nav-button {
+            /* Hide desktop buttons on mobile */
+            #backBtn,
+            #nextBtn {
+                display: none !important;
+            }
+
+            /* Show and style mobile navigation container */
+            .mobile-nav-container {
+                display: flex !important;
                 position: fixed;
                 bottom: 30px;
-                top: auto;
-                transform: none;
+                left: 0;
+                right: 0;
+                justify-content: center;
+                align-items: center;
+                gap: 30px;
+                z-index: 1000;
+                padding: 0 20px;
+            }
+
+            /* Style buttons within mobile container */
+            .mobile-nav-container .nav-button {
+                position: static !important;
+                transform: none !important;
                 font-size: 14px;
                 padding: 10px 20px;
-            }
-
-            .nav-button.back-btn {
-                left: 30px;
-                right: auto;
-            }
-
-            .nav-button.next-btn {
-                right: 30px;
-                left: auto;
+                margin: 0;
+                top: auto !important;
+                bottom: auto !important;
+                left: auto !important;
+                right: auto !important;
             }
 
             .nav-button:hover {
-                transform: scale(1.05);
+                transform: scale(1.05) !important;
             }
 
             /* Hide return arrow on mobile */
@@ -419,35 +433,22 @@
                 display: none !important;
             }
 
-            /* Step indicator at bottom between buttons on mobile */
-            .step-indicator {
-                position: fixed;
-                bottom: 35px;
-                left: 50%;
-                transform: translateX(-50%);
-                margin: 0;
-                z-index: 1000;
-            }
-
             /* Hide the step indicator inside the form on mobile */
             .form-section .step-indicator {
                 display: none;
             }
 
-            /* Show mobile-only step indicator */
+            /* Style mobile-only step indicator */
             .mobile-step-indicator {
                 display: block !important;
-                position: fixed;
-                bottom: 35px;
-                left: 50%;
-                transform: translateX(-50%);
+                position: static !important;
                 text-align: center;
                 font-family: 'Apercu Pro', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
                 font-size: 14px;
                 font-weight: 300;
                 color: white;
                 opacity: 0.5;
-                z-index: 1000;
+                transform: none !important;
             }
 
             /* Make mobile menu items white */
@@ -511,12 +512,16 @@
         <a href="mailto:hello@raisondetrebooks.com" style="color: white; text-decoration: none;">hello@raisondetrebooks.com</a>
     </div>
 
-    <!-- Navigation Buttons (fixed position) -->
+    <!-- Desktop Navigation Buttons (fixed position) -->
     <button class="nav-button back-btn" id="backBtn" onclick="goBack()">back</button>
     <button class="nav-button next-btn" id="nextBtn" onclick="goNext()">next <span class="return-arrow">↩</span></button>
 
-    <!-- Mobile-only step indicator (between buttons at bottom) -->
-    <div class="mobile-step-indicator" id="mobileStepIndicator">1/5</div>
+    <!-- Mobile Navigation Container (horizontally aligned at bottom) -->
+    <div class="mobile-nav-container">
+        <button class="nav-button back-btn" onclick="goBack()">back</button>
+        <div class="mobile-step-indicator" id="mobileStepIndicator">1/5</div>
+        <button class="nav-button next-btn" onclick="goNext()">next</button>
+    </div>
 
     <!-- Form Container -->
     <div class="form-container">
@@ -803,27 +808,37 @@
         }
 
         function updateButtons() {
+            // Update desktop buttons
             const backBtn = document.getElementById('backBtn');
             const nextBtn = document.getElementById('nextBtn');
 
+            // Update mobile buttons
+            const mobileBackBtns = document.querySelectorAll('.mobile-nav-container .nav-button.back-btn');
+            const mobileNextBtns = document.querySelectorAll('.mobile-nav-container .nav-button.next-btn');
+
             // Handle back button visibility
             if (currentSection === 1) {
-                backBtn.classList.add('disabled-hidden');
+                backBtn?.classList.add('disabled-hidden');
+                mobileBackBtns.forEach(btn => btn.classList.add('disabled-hidden'));
             } else {
-                backBtn.classList.remove('disabled-hidden');
+                backBtn?.classList.remove('disabled-hidden');
+                mobileBackBtns.forEach(btn => btn.classList.remove('disabled-hidden'));
             }
 
             // Handle next button text
             if (currentSection === 5) {
-                nextBtn.innerHTML = 'send it! <span class="return-arrow">↩</span>';
+                if (nextBtn) nextBtn.innerHTML = 'send it! <span class="return-arrow">↩</span>';
+                mobileNextBtns.forEach(btn => btn.innerHTML = 'send it!');
             } else {
-                nextBtn.innerHTML = 'next <span class="return-arrow">↩</span>';
+                if (nextBtn) nextBtn.innerHTML = 'next <span class="return-arrow">↩</span>';
+                mobileNextBtns.forEach(btn => btn.innerHTML = 'next');
             }
 
             // Hide buttons on success page
             if (document.getElementById('successSection').classList.contains('active')) {
-                backBtn.style.display = 'none';
-                nextBtn.style.display = 'none';
+                if (backBtn) backBtn.style.display = 'none';
+                if (nextBtn) nextBtn.style.display = 'none';
+                document.querySelector('.mobile-nav-container')?.style.setProperty('display', 'none', 'important');
             }
         }
 
