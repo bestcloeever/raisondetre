@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Raison d'Être</title>
+    <link rel="icon" type="image/png" href="brand/RE-cursor-blue.png">
+    <link rel="stylesheet" href="shared-navigation.css">
+    <link rel="stylesheet" href="mobile-footer.css">
+    <style>
+        @font-face {
+            font-family: 'Apercu Pro Bold';
+            src: url('fonts/Apercu Pro Font/apercu_bold_pro.otf') format('opentype');
+            font-weight: bold;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Apercu Pro Italic';
+            src: url('fonts/Apercu Pro Font/apercu_regular_italic_pro.otf') format('opentype');
+            font-weight: normal;
+            font-style: italic;
+        }
+
+        @font-face {
+            font-family: 'Apercu Pro Medium';
+            src: url('fonts/Apercu Pro Font/apercu_medium_pro.otf') format('opentype');
+            font-weight: 500;
+            font-style: normal;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: url('brand/RE-cursor-blue-24.png') 12 12, auto;
+        }
+
+        body {
+            font-family: 'Apercu Pro Medium', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: white;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            cursor: url('brand/RE-cursor-blue-24.png') 12 12, auto;
+            transition: background-color 0.3s ease;
+            overflow-x: hidden;
+        }
+
+        body.dark-mode {
+            background: #0000FF;
+            cursor: url('brand/RE-cursor-white-24.png') 12 12, auto;
+        }
+
+        body.dark-mode * {
+            cursor: url('brand/RE-cursor-white-24.png') 12 12, auto;
+        }
+
+        /* Form Container */
+        .form-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+            position: relative;
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            position: fixed;
+            top: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 400px;
+            z-index: 100;
+        }
+
+        .progress-bar {
+            height: 2px;
+            background: rgba(0, 0, 255, 0.1);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        body.dark-mode .progress-bar {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #0000FF;
+            transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 2px;
+        }
+
+        body.dark-mode .progress-fill {
+            background: white;
+        }
+
+        .step-indicator {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 14px;
+            color: #0000FF;
+            opacity: 0.6;
+        }
+
+        body.dark-mode .step-indicator {
+            color: white;
+        }
+
+        /* Form Sections */
+        .form-section {
+            width: 100%;
+            max-width: 600px;
+            display: none;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .form-section.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .form-section.fade-out {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+
+        .section-title {
+            font-family: 'Apercu Pro Bold', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
+            font-size: 32px;
+            color: #0000FF;
+            text-align: center;
+            margin-bottom: 50px;
+            line-height: 1.3;
+            text-transform: lowercase;
+        }
+
+        body.dark-mode .section-title {
+            color: white;
+        }
+
+        /* Input Fields */
+        .input-group {
+            margin-bottom: 30px;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 15px 0;
+            border: none;
+            border-bottom: 2px solid rgba(0, 0, 255, 0.2);
+            background: transparent;
+            font-family: 'Apercu Pro Medium', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
+            font-size: 18px;
+            color: #0000FF;
+            transition: border-color 0.3s ease;
+            outline: none;
+        }
+
+        body.dark-mode .input-field {
+            color: white;
+            border-bottom-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .input-field::placeholder {
+            color: rgba(0, 0, 255, 0.4);
+            text-transform: lowercase;
+        }
+
+        body.dark-mode .input-field::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .input-field:focus {
+            border-bottom-color: #0000FF;
+        }
+
+        body.dark-mode .input-field:focus {
+            border-bottom-color: white;
+        }
+
+        /* Multi-select buttons */
+        .multi-select-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .select-button {
+            padding: 15px 20px;
+            border: 2px solid #0000FF;
+            background: transparent;
+            color: #0000FF;
+            font-family: 'Apercu Pro Medium', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
+            font-size: 16px;
+            text-transform: lowercase;
+            border-radius: 25px;
+            cursor: url('brand/RE-cursor-blue-24.png') 12 12, pointer;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        body.dark-mode .select-button {
+            border-color: white;
+            color: white;
+        }
+
+        .select-button:hover {
+            transform: scale(1.05);
+        }
+
+        .select-button.selected {
+            background: #0000FF;
+            color: white;
+        }
+
+        body.dark-mode .select-button.selected {
+            background: white;
+            color: #0000FF;
+        }
+
+        /* Textarea */
+        .textarea-field {
+            width: 100%;
+            min-height: 150px;
+            padding: 20px;
+            border: 2px solid rgba(0, 0, 255, 0.2);
+            border-radius: 10px;
+            background: transparent;
+            font-family: 'Apercu Pro Medium', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
+            font-size: 16px;
+            color: #0000FF;
+            resize: vertical;
+            transition: border-color 0.3s ease;
+            outline: none;
+            line-height: 1.6;
+        }
+
+        body.dark-mode .textarea-field {
+            color: white;
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .textarea-field::placeholder {
+            color: rgba(0, 0, 255, 0.4);
+            text-transform: lowercase;
+        }
+
+        body.dark-mode .textarea-field::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .textarea-field:focus {
+            border-color: #0000FF;
+        }
+
+        body.dark-mode .textarea-field:focus {
+            border-color: white;
+        }
+
+        /* Navigation Buttons */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+            gap: 20px;
+        }
+
+        .nav-button {
+            padding: 12px 30px;
+            background: #0000FF;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-family: 'Apercu Pro Medium', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
+            font-size: 16px;
+            text-transform: lowercase;
+            cursor: url('brand/RE-cursor-blue-24.png') 12 12, pointer;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        body.dark-mode .nav-button {
+            background: white;
+            color: #0000FF;
+        }
+
+        .nav-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(0, 0, 255, 0.3);
+        }
+
+        body.dark-mode .nav-button:hover {
+            box-shadow: 0 5px 20px rgba(255, 255, 255, 0.3);
+        }
+
+        .nav-button.back {
+            background: transparent;
+            color: #0000FF;
+            border: 2px solid #0000FF;
+        }
+
+        body.dark-mode .nav-button.back {
+            color: white;
+            border-color: white;
+        }
+
+        .nav-button:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        /* Success Message */
+        .success-message {
+            text-align: center;
+            animation: fadeIn 1s ease;
+        }
+
+        .success-icon {
+            font-size: 80px;
+            margin-bottom: 30px;
+        }
+
+        .success-text {
+            font-family: 'Apercu Pro Italic', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
+            font-size: 20px;
+            color: #0000FF;
+            line-height: 1.6;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        body.dark-mode .success-text {
+            color: white;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 24px;
+                margin-bottom: 40px;
+            }
+
+            .input-field {
+                font-size: 16px;
+            }
+
+            .multi-select-grid {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            }
+
+            .select-button {
+                font-size: 14px;
+                padding: 12px 15px;
+            }
+
+            .nav-button {
+                font-size: 14px;
+                padding: 10px 20px;
+            }
+        }
+
+        /* Loading State */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Error Message */
+        .error-message {
+            color: #FF0000;
+            font-size: 14px;
+            margin-top: 10px;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+            animation: shake 0.5s;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Logo -->
+    <a href="index.html" class="logo">
+        <img src="brand/RE-logo-text-blue.png" alt="Logo">
+    </a>
+
+    <!-- Contact Info -->
+    <div class="contact-info">
+        <a href="https://www.instagram.com/cloemakesbooks/" target="_blank" style="display: flex; align-items: center; text-decoration: none; color: inherit;">
+            <img src="brand/instagram-logo-blue.png" alt="Instagram" class="insta-logo">
+        </a>
+        <span>|</span>
+        <a href="mailto:hello@raisondetrebooks.com" style="color: inherit; text-decoration: none;">hello@raisondetrebooks.com</a>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="progress-container">
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <div class="step-indicator" id="stepIndicator">step 1 of 5</div>
+    </div>
+
+    <!-- Form Container -->
+    <div class="form-container">
+        <!-- Section 1: Basic Info -->
+        <div class="form-section active" id="section1">
+            <h2 class="section-title">first things first, let's get to know each other</h2>
+            <div class="input-group">
+                <input type="text" class="input-field" id="name" placeholder="name" required>
+            </div>
+            <div class="input-group">
+                <input type="text" class="input-field" id="publisher" placeholder="publisher">
+            </div>
+            <div class="input-group">
+                <input type="email" class="input-field" id="email" placeholder="email" required>
+            </div>
+            <div class="input-group">
+                <input type="tel" class="input-field" id="phone" placeholder="phone number">
+            </div>
+            <div class="nav-buttons">
+                <div></div>
+                <button class="nav-button" onclick="nextSection(1)">continue</button>
+            </div>
+        </div>
+
+        <!-- Section 2: What do you need -->
+        <div class="form-section" id="section2">
+            <h2 class="section-title" id="greetingTitle">nice to meet you! what do you need?</h2>
+            <div class="multi-select-grid" id="servicesGrid">
+                <button class="select-button" data-service="book cover">book cover</button>
+                <button class="select-button" data-service="media kit">media kit</button>
+                <button class="select-button" data-service="interiors">interiors</button>
+                <button class="select-button" data-service="consulting">consulting</button>
+                <button class="select-button" data-service="full jacket">full jacket</button>
+                <button class="select-button" data-service="series design">series design</button>
+                <button class="select-button" data-service="help">idk: help!</button>
+            </div>
+            <div class="nav-buttons">
+                <button class="nav-button back" onclick="previousSection(2)">back</button>
+                <button class="nav-button" onclick="nextSection(2)">continue</button>
+            </div>
+        </div>
+
+        <!-- Section 3: About the book -->
+        <div class="form-section" id="section3">
+            <h2 class="section-title">tell us more about this book of yours:</h2>
+            <div class="input-group">
+                <input type="text" class="input-field" id="bookTitle" placeholder="title & subtitle">
+            </div>
+            <div class="input-group">
+                <input type="text" class="input-field" id="author" placeholder="author">
+            </div>
+            <div class="input-group">
+                <input type="text" class="input-field" id="genre" placeholder="genre">
+            </div>
+            <div class="input-group">
+                <input type="text" class="input-field" id="target" placeholder="target audience">
+            </div>
+            <div class="nav-buttons">
+                <button class="nav-button back" onclick="previousSection(3)">back</button>
+                <button class="nav-button" onclick="nextSection(3)">continue</button>
+            </div>
+        </div>
+
+        <!-- Section 4: Synopsis -->
+        <div class="form-section" id="section4">
+            <h2 class="section-title">now we need its synopsis & selling points:</h2>
+            <div class="input-group">
+                <textarea class="textarea-field" id="synopsis" placeholder="tell us everything about your book - the plot, themes, what makes it special, and why readers will love it..." rows="8"></textarea>
+            </div>
+            <div class="nav-buttons">
+                <button class="nav-button back" onclick="previousSection(4)">back</button>
+                <button class="nav-button" onclick="nextSection(4)">continue</button>
+            </div>
+        </div>
+
+        <!-- Section 5: Details -->
+        <div class="form-section" id="section5">
+            <h2 class="section-title">let's hook the last details up:</h2>
+            <div class="input-group">
+                <input type="text" class="input-field" id="format" placeholder="format & size (e.g., hardcover, 6x9)">
+            </div>
+            <div class="input-group">
+                <input type="text" class="input-field" id="effects" placeholder="special effects (foil, embossing, etc.)">
+            </div>
+            <div class="input-group">
+                <input type="text" class="input-field" id="deadline" placeholder="deadline" onfocus="(this.type='date')" onblur="if(!this.value)this.type='text'">
+            </div>
+            <div class="input-group">
+                <input type="text" class="input-field" id="launchDate" placeholder="launch date" onfocus="(this.type='date')" onblur="if(!this.value)this.type='text'">
+            </div>
+            <div class="nav-buttons">
+                <button class="nav-button back" onclick="previousSection(5)">back</button>
+                <button class="nav-button" id="submitBtn" onclick="submitForm()">send it!</button>
+            </div>
+            <div class="error-message" id="errorMessage"></div>
+        </div>
+
+        <!-- Success Page -->
+        <div class="form-section" id="successSection">
+            <div class="success-message">
+                <div class="success-icon">✨</div>
+                <h2 class="section-title">got it!</h2>
+                <p class="success-text">keep an eye out, we'll drop you an email in less than 24 hours with your personalised quote</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Logo Icon -->
+    <a href="index.html" class="bottom-logo-icon">
+        <img src="brand/RE-icon-blue.png" alt="Logo Icon">
+    </a>
+
+    <script>
+        let currentSection = 1;
+        const totalSections = 5;
+        let formData = {};
+        let selectedServices = [];
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            // Check dark mode
+            const savedDarkMode = localStorage.getItem('darkMode') === 'true';
+            if (savedDarkMode) {
+                document.body.classList.add('dark-mode');
+            }
+
+            // Load saved form data
+            const savedData = localStorage.getItem('contactFormData');
+            if (savedData) {
+                formData = JSON.parse(savedData);
+                populateFields();
+            }
+
+            // Service selection handlers
+            document.querySelectorAll('.select-button').forEach(button => {
+                button.addEventListener('click', function() {
+                    this.classList.toggle('selected');
+                    const service = this.dataset.service;
+                    if (this.classList.contains('selected')) {
+                        if (!selectedServices.includes(service)) {
+                            selectedServices.push(service);
+                        }
+                    } else {
+                        selectedServices = selectedServices.filter(s => s !== service);
+                    }
+                    saveFormData();
+                });
+            });
+
+            // Auto-save on input
+            document.querySelectorAll('input, textarea').forEach(field => {
+                field.addEventListener('input', saveFormData);
+            });
+        });
+
+        function saveFormData() {
+            // Collect all form data
+            formData = {
+                name: document.getElementById('name').value,
+                publisher: document.getElementById('publisher').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                services: selectedServices,
+                bookTitle: document.getElementById('bookTitle').value,
+                author: document.getElementById('author').value,
+                genre: document.getElementById('genre').value,
+                target: document.getElementById('target').value,
+                synopsis: document.getElementById('synopsis').value,
+                format: document.getElementById('format').value,
+                effects: document.getElementById('effects').value,
+                deadline: document.getElementById('deadline').value,
+                launchDate: document.getElementById('launchDate').value
+            };
+            localStorage.setItem('contactFormData', JSON.stringify(formData));
+        }
+
+        function populateFields() {
+            if (formData.name) document.getElementById('name').value = formData.name;
+            if (formData.publisher) document.getElementById('publisher').value = formData.publisher;
+            if (formData.email) document.getElementById('email').value = formData.email;
+            if (formData.phone) document.getElementById('phone').value = formData.phone;
+            if (formData.bookTitle) document.getElementById('bookTitle').value = formData.bookTitle;
+            if (formData.author) document.getElementById('author').value = formData.author;
+            if (formData.genre) document.getElementById('genre').value = formData.genre;
+            if (formData.target) document.getElementById('target').value = formData.target;
+            if (formData.synopsis) document.getElementById('synopsis').value = formData.synopsis;
+            if (formData.format) document.getElementById('format').value = formData.format;
+            if (formData.effects) document.getElementById('effects').value = formData.effects;
+            if (formData.deadline) document.getElementById('deadline').value = formData.deadline;
+            if (formData.launchDate) document.getElementById('launchDate').value = formData.launchDate;
+
+            // Restore selected services
+            if (formData.services) {
+                selectedServices = formData.services;
+                document.querySelectorAll('.select-button').forEach(button => {
+                    if (selectedServices.includes(button.dataset.service)) {
+                        button.classList.add('selected');
+                    }
+                });
+            }
+        }
+
+        function validateSection(section) {
+            switch(section) {
+                case 1:
+                    const name = document.getElementById('name').value.trim();
+                    const email = document.getElementById('email').value.trim();
+                    if (!name || !email) {
+                        showError('Please fill in your name and email');
+                        return false;
+                    }
+                    if (!isValidEmail(email)) {
+                        showError('Please enter a valid email address');
+                        return false;
+                    }
+                    break;
+                case 2:
+                    if (selectedServices.length === 0) {
+                        showError('Please select at least one service');
+                        return false;
+                    }
+                    break;
+            }
+            return true;
+        }
+
+        function isValidEmail(email) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
+
+        function showError(message) {
+            // Create temporary error message
+            const errorDiv = document.createElement('div');
+            errorDiv.style.cssText = 'color: #FF0000; text-align: center; margin-top: 20px; animation: shake 0.5s;';
+            errorDiv.textContent = message;
+
+            const currentSectionEl = document.getElementById(`section${currentSection}`);
+            const existingError = currentSectionEl.querySelector('[style*="color: #FF0000"]');
+            if (existingError) existingError.remove();
+
+            currentSectionEl.appendChild(errorDiv);
+            setTimeout(() => errorDiv.remove(), 3000);
+        }
+
+        function nextSection(section) {
+            if (!validateSection(section)) return;
+
+            saveFormData();
+
+            if (section === 1) {
+                // Update greeting with name
+                const name = document.getElementById('name').value.trim();
+                document.getElementById('greetingTitle').textContent =
+                    `nice to meet you ${name}! what do you need?`;
+            }
+
+            if (currentSection < totalSections) {
+                transitionSection(currentSection, currentSection + 1);
+                currentSection++;
+                updateProgress();
+            }
+        }
+
+        function previousSection(section) {
+            if (currentSection > 1) {
+                transitionSection(currentSection, currentSection - 1);
+                currentSection--;
+                updateProgress();
+            }
+        }
+
+        function transitionSection(from, to) {
+            const fromSection = document.getElementById(`section${from}`);
+            const toSection = document.getElementById(`section${to}`);
+
+            fromSection.classList.add('fade-out');
+
+            setTimeout(() => {
+                fromSection.classList.remove('active', 'fade-out');
+                toSection.classList.add('active');
+            }, 300);
+        }
+
+        function updateProgress() {
+            const progress = (currentSection / totalSections) * 100;
+            document.getElementById('progressFill').style.width = `${progress}%`;
+            document.getElementById('stepIndicator').textContent = `step ${currentSection} of ${totalSections}`;
+        }
+
+        async function submitForm() {
+            saveFormData();
+
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span class="loading"></span>';
+
+            try {
+                const response = await fetch('/api/contact', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                if (response.ok) {
+                    // Clear saved data on success
+                    localStorage.removeItem('contactFormData');
+
+                    // Show success
+                    document.getElementById('section5').classList.remove('active');
+                    document.getElementById('successSection').classList.add('active');
+                    document.querySelector('.progress-container').style.display = 'none';
+                } else {
+                    throw new Error('Failed to submit form');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('errorMessage').textContent =
+                    'Oops! Something went wrong. Please try again or email us directly.';
+                document.getElementById('errorMessage').classList.add('show');
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'send it!';
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                const activeElement = document.activeElement;
+                if (activeElement.tagName !== 'TEXTAREA') {
+                    e.preventDefault();
+                    const activeSection = document.querySelector('.form-section.active');
+                    const continueBtn = activeSection.querySelector('.nav-button:not(.back)');
+                    if (continueBtn && !continueBtn.disabled) {
+                        continueBtn.click();
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

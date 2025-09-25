@@ -1,0 +1,15 @@
+{
+  "name": "raisondetre-website",
+  "version": "1.0.0",
+  "description": "Raison d'Être Book Studio Website",
+  "private": true,
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "echo 'No build step required'",
+    "deploy": "vercel --prod"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "vercel": "^32.0.0"
+  }
+}
