@@ -125,8 +125,9 @@
             border: none;
             border-radius: 25px;
             background: white;
-            font-family: 'Apercu Pro Medium', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
+            font-family: 'Apercu Pro', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
             font-size: 16px;
+            font-weight: normal;
             color: #0000FF;
             text-align: center;
             transition: all 0.3s ease;
@@ -159,8 +160,9 @@
             border: 2px solid white;
             background: transparent;
             color: white;
-            font-family: 'Apercu Pro Medium', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
-            font-size: 18px;
+            font-family: 'Apercu Pro', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
+            font-size: 16px;
+            font-weight: normal;
             text-transform: lowercase;
             border-radius: 25px;
             cursor: url('brand/RE-cursor-white-24.png') 12 12, pointer;
@@ -234,8 +236,9 @@
             border: 2px solid rgba(255, 255, 255, 0.2);
             border-radius: 10px;
             background: transparent;
-            font-family: 'Apercu Pro Medium', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
+            font-family: 'Apercu Pro', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
             font-size: 16px;
+            font-weight: normal;
             color: white;
             resize: vertical;
             transition: border-color 0.3s ease;
@@ -250,6 +253,18 @@
 
         .textarea-field:focus {
             border-color: white;
+        }
+
+        /* Section 4 specific textarea styling */
+        #section4 .textarea-field {
+            background: white;
+            color: #0000FF;
+            border: none;
+            border-radius: 25px;
+        }
+
+        #section4 .textarea-field::placeholder {
+            color: rgba(0, 0, 255, 0.4);
         }
 
         /* Navigation Buttons */
@@ -470,7 +485,7 @@
 
         <!-- Section 4: Synopsis -->
         <div class="form-section" id="section4">
-            <h2 class="section-title">now we need its synopsis & selling points:</h2>
+            <h2 class="section-title">now we need its synopsis<br>& selling points:</h2>
             <div class="input-group">
                 <textarea class="textarea-field" id="synopsis" placeholder="tell us everything about your book - the plot, themes, what makes it special, and why readers will love it..." rows="8"></textarea>
             </div>
