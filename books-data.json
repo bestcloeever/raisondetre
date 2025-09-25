@@ -6,8 +6,8 @@
       "author": "",
       "position": "Position 2",
       "images": {
-        "cover": "covers/No vas a heredar la empresa.png",
-        "spine": "spines/No vas a heredar la empresa.png",
+        "cover": "covers/no-vas-a-heredar-la-empresa.png",
+        "spine": "spines/no-vas-a-heredar-la-empresa.png",
         "backCover": null
       },
       "colors": {
@@ -27,8 +27,8 @@
       "author": "",
       "position": "Position 1",
       "images": {
-        "cover": "covers/Regula tu estrés, encuentra tu equilibrio.png",
-        "spine": "spines/Regula tu estrés, encuentra tu equilibrio.png",
+        "cover": "covers/regula-tu-estres-encuentra-tu-equilibrio.png",
+        "spine": "spines/regula-tu-estres-encuentra-tu-equilibrio.png",
         "backCover": null
       },
       "colors": {
@@ -48,8 +48,8 @@
       "author": "",
       "position": "Position 3",
       "images": {
-        "cover": "covers/Cuñadismo.png",
-        "spine": "spines/Cuñadismo.png",
+        "cover": "covers/cunadismo.png",
+        "spine": "spines/cunadismo.png",
         "backCover": null
       },
       "colors": {
@@ -69,8 +69,8 @@
       "author": "",
       "position": "Position 2",
       "images": {
-        "cover": "covers/Escape Book.png",
-        "spine": "spines/Escape Book.png",
+        "cover": "covers/escape-book.png",
+        "spine": "spines/escape-book.png",
         "backCover": null
       },
       "colors": {
@@ -90,8 +90,8 @@
       "author": "",
       "position": "Position 5",
       "images": {
-        "cover": "covers/Hellfriend.png",
-        "spine": "spines/Hellfriend.png",
+        "cover": "covers/hellfriend.png",
+        "spine": "spines/hellfriend.png",
         "backCover": null
       },
       "colors": {
@@ -111,8 +111,8 @@
       "author": "",
       "position": "Position 1",
       "images": {
-        "cover": "covers/Dioses y Monstruos.png",
-        "spine": "spines/Dioses y Monstruos.png",
+        "cover": "covers/dioses-y-monstruos.png",
+        "spine": "spines/dioses-y-monstruos.png",
         "backCover": null
       },
       "colors": {
@@ -132,8 +132,8 @@
       "author": "",
       "position": "Position 2",
       "images": {
-        "cover": "covers/El retorn de la magia.png",
-        "spine": "spines/El retorn de la magia.png",
+        "cover": "covers/el-retorn-de-la-magia.png",
+        "spine": "spines/el-retorn-de-la-magia.png",
         "backCover": null
       },
       "colors": {
@@ -153,8 +153,8 @@
       "author": "",
       "position": "Position 3",
       "images": {
-        "cover": "covers/Forever Girls.png",
-        "spine": "spines/Forever Girls.png",
+        "cover": "covers/forever-girls.png",
+        "spine": "spines/forever-girls.png",
         "backCover": null
       },
       "colors": {
@@ -174,8 +174,8 @@
       "author": "",
       "position": "Position 1",
       "images": {
-        "cover": "covers/Social Queue.png",
-        "spine": "spines/Social Queue.png",
+        "cover": "covers/social-queue.png",
+        "spine": "spines/social-queue.png",
         "backCover": null
       },
       "colors": {
@@ -195,8 +195,8 @@
       "author": "",
       "position": "Position 5",
       "images": {
-        "cover": "covers/Sucre.png",
-        "spine": "spines/Sucre.png",
+        "cover": "covers/sucre.png",
+        "spine": "spines/sucre.png",
         "backCover": null
       },
       "colors": {
@@ -216,8 +216,8 @@
       "author": "",
       "position": "Position 2",
       "images": {
-        "cover": "covers/Un gos a les últimes.png",
-        "spine": "spines/Un gos a les últimes.png",
+        "cover": "covers/un-gos-a-les-ultimes.png",
+        "spine": "spines/un-gos-a-les-ultimes.png",
         "backCover": null
       },
       "colors": {
@@ -237,8 +237,8 @@
       "author": "",
       "position": "Position 1",
       "images": {
-        "cover": "covers/Un verano para siempre.png",
-        "spine": "spines/Un verano para siempre.png",
+        "cover": "covers/un-verano-para-siempre.png",
+        "spine": "spines/un-verano-para-siempre.png",
         "backCover": null
       },
       "colors": {
@@ -259,7 +259,7 @@
       "position": "Position 3",
       "images": {
         "cover": "covers/silencio.png",
-        "spine": "spines/Silencio.png",
+        "spine": "spines/silencio.png",
         "backCover": null
       },
       "colors": {
@@ -279,8 +279,8 @@
       "author": "",
       "position": "Position 1",
       "images": {
-        "cover": "covers/Ascens dels rebels.png",
-        "spine": "spines/Ascens dels rebels.png",
+        "cover": "covers/ascens-dels-rebels.png",
+        "spine": "spines/ascens-dels-rebels.png",
         "backCover": null
       },
       "colors": {
@@ -300,8 +300,8 @@
       "author": "",
       "position": "Position 5",
       "images": {
-        "cover": "covers/Wen i Long.png",
-        "spine": "spines/Wen i Long.png",
+        "cover": "covers/wen-i-long.png",
+        "spine": "spines/wen-i-long.png",
         "backCover": null
       },
       "colors": {

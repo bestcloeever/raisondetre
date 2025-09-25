@@ -779,9 +779,10 @@
         async function submitForm() {
             saveFormData();
 
-            const submitBtn = document.getElementById('submitBtn');
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = '<span class="loading"></span>';
+            const nextBtn = document.getElementById('nextBtn');
+            nextBtn.disabled = true;
+            const originalText = nextBtn.innerHTML;
+            nextBtn.innerHTML = '<span class="loading"></span>';
 
             try {
                 const response = await fetch('/api/contact', {
@@ -809,8 +810,8 @@
                 document.getElementById('errorMessage').textContent =
                     'Oops! Something went wrong. Please try again or email us directly.';
                 document.getElementById('errorMessage').classList.add('show');
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'send it!';
+                nextBtn.disabled = false;
+                nextBtn.innerHTML = originalText;
             }
         }
 

@@ -4,7 +4,6 @@
   "description": "Raison d'Être Book Studio Website",
   "private": true,
   "scripts": {
-    "dev": "vercel dev",
     "build": "echo 'No build step required'",
     "deploy": "vercel --prod"
   },
