@@ -166,7 +166,7 @@
         .select-button {
             position: absolute;
             padding: 8px 20px;
-            border: 2px solid white;
+            border: 1px solid white;
             background: transparent;
             color: white;
             font-family: 'Apercu Pro', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
@@ -178,6 +178,11 @@
             transition: all 0.3s ease;
             outline: none;
             white-space: nowrap;
+            height: 33.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
         }
 
         .select-button:hover {
@@ -294,10 +299,10 @@
             position: fixed;
             top: 50%;
             transform: translateY(-50%);
-            padding: 8px 16px;
+            padding: 8px 21px;
             background: transparent;
             color: white;
-            border: 2px solid white;
+            border: 1px solid white;
             border-radius: 20px;
             font-family: 'Apercu Pro', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
             font-size: 14px;
@@ -307,6 +312,10 @@
             transition: all 0.3s ease;
             outline: none;
             z-index: 100;
+            height: 33.5px;
+            display: flex;
+            align-items: center;
+            box-sizing: border-box;
         }
 
         /* Style the return arrow icon */
@@ -382,13 +391,80 @@
                 font-size: 16px;
             }
 
-            .multi-select-grid {
-                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            /* Keep container structure for mobile */
+            .multi-select-container {
+                height: 450px;
+                position: relative;
             }
 
             .select-button {
+                position: absolute !important;
                 font-size: 14px;
-                padding: 12px 15px;
+                padding: 8px 15px;
+                height: 33.5px;
+                border: 1px solid white;
+                width: auto !important;
+                min-width: fit-content !important;
+                max-width: none !important;
+                white-space: nowrap;
+                flex: none !important;
+            }
+
+            /* Mobile-specific positioning for each button - based on reference */
+            .select-button[data-service="book cover"] {
+                top: 30px;
+                left: 20%;
+                transform: none !important;
+            }
+
+            .select-button[data-service="full jacket"] {
+                top: 45px;
+                right: 15%;
+                left: auto !important;
+                transform: none !important;
+            }
+
+            .select-button[data-service="media kit"] {
+                top: 100px;
+                left: 50%;
+                transform: translateX(-50%) !important;
+            }
+
+            .select-button[data-service="series design"] {
+                top: 170px;
+                left: 15%;
+                transform: none !important;
+                width: fit-content !important;
+                display: inline-block !important;
+            }
+
+            .select-button[data-service="consulting"] {
+                top: 240px;
+                right: 20%;
+                left: auto !important;
+                transform: none !important;
+            }
+
+            .select-button[data-service="interiors"] {
+                top: 280px;
+                left: 20%;
+                transform: none !important;
+            }
+
+            .select-button[data-service="help"] {
+                top: 320px;
+                right: 15%;
+                left: auto !important;
+                transform: none !important;
+            }
+
+            /* Helper text positioning for mobile */
+            .select-helper-text {
+                position: absolute !important;
+                bottom: 40px;
+                right: 10px;
+                transform: rotate(-3deg) !important;
+                font-size: 18px;
             }
 
             /* Hide desktop buttons on mobile */
@@ -416,12 +492,17 @@
                 position: static !important;
                 transform: none !important;
                 font-size: 14px;
-                padding: 10px 20px;
+                padding: 8px 21px;
                 margin: 0;
                 top: auto !important;
                 bottom: auto !important;
                 left: auto !important;
                 right: auto !important;
+                height: 33.5px;
+                border: 1px solid white;
+                display: flex;
+                align-items: center;
+                box-sizing: border-box;
             }
 
             .nav-button:hover {
