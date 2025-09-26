@@ -382,26 +382,55 @@
 
         /* Mobile Responsive */
         @media (max-width: 768px) {
-            .section-title {
-                font-size: 24px;
-                margin-bottom: 30px;
+            /* Reset all form sections to have consistent padding */
+            .form-section {
+                padding-top: 0;
             }
 
-            /* Fix section 2 title positioning to match other sections */
-            #section2 .section-title {
-                margin-top: 50px;
+            .section-title {
+                font-size: 24px;
+                margin-top: 0;
                 margin-bottom: 30px;
+                padding-top: 60px;  /* Consistent top spacing for all titles */
+            }
+
+            /* Section 2 needs extra padding to align with other sections */
+            #section2 .section-title {
+                padding-top: 100px;  /* More padding to push it down to match section 1 */
+                margin-bottom: 5px;  /* Much less space between title and buttons */
+            }
+
+            /* Move the container up closer to title */
+            #section2 .multi-select-container {
+                margin-top: -10px;
             }
 
             .input-field {
-                font-size: 16px;
+                font-size: 14px;
+                padding: 13px 22px;
+                width: 80%;
+                max-width: 360px;
+            }
+
+            /* Smaller textarea fields on mobile */
+            .textarea-field {
+                font-size: 14px;
+                padding: 18px;
+                min-height: 135px;
+            }
+
+            #section4 .textarea-field {
+                width: 76%;
+                max-width: 450px;
+                min-height: 225px;
+                font-size: 14px;
             }
 
             /* Keep container structure for mobile */
             .multi-select-container {
                 height: 400px;
                 position: relative;
-                margin-top: 20px;
+                margin-top: 0;  /* Removed extra margin since titles are aligned */
             }
 
             .select-button {
@@ -419,26 +448,26 @@
 
             /* Mobile-specific positioning for each button - based on reference */
             .select-button[data-service="book cover"] {
-                top: 30px;
+                top: 28px;
                 left: 20%;
                 transform: none !important;
             }
 
             .select-button[data-service="full jacket"] {
-                top: 45px;
+                top: 43px;
                 right: 15%;
                 left: auto !important;
                 transform: none !important;
             }
 
             .select-button[data-service="media kit"] {
-                top: 100px;
+                top: 95px;
                 left: 50%;
                 transform: translateX(-50%) !important;
             }
 
             .select-button[data-service="series design"] {
-                top: 170px;
+                top: 162px;
                 left: 15%;
                 transform: none !important;
                 width: fit-content !important;
@@ -446,20 +475,20 @@
             }
 
             .select-button[data-service="consulting"] {
-                top: 216px;
+                top: 205px;
                 right: 20%;
                 left: auto !important;
                 transform: none !important;
             }
 
             .select-button[data-service="interiors"] {
-                top: 252px;
+                top: 239px;
                 left: 20%;
                 transform: none !important;
             }
 
             .select-button[data-service="help"] {
-                top: 288px;
+                top: 274px;
                 right: 15%;
                 left: auto !important;
                 transform: none !important;
