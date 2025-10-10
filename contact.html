@@ -658,6 +658,7 @@
 
         <!-- Section 2: What do you need -->
         <div class="form-section" id="section2">
+            <div class="step-indicator">2/5</div>
             <h2 class="section-title" id="greetingTitle">nice to meet you!<br>what do you need?</h2>
             <div class="multi-select-container" id="servicesGrid">
                 <button class="select-button" data-service="book cover">book cover</button>
@@ -674,6 +675,7 @@ you want!</span>
 
         <!-- Section 3: About the book -->
         <div class="form-section" id="section3">
+            <div class="step-indicator">3/5</div>
             <h2 class="section-title">tell us more about<br>this book of yours:</h2>
             <div class="input-group">
                 <input type="text" class="input-field" id="bookTitle" placeholder="title & subtitle">
@@ -691,6 +693,7 @@ you want!</span>
 
         <!-- Section 4: Synopsis -->
         <div class="form-section" id="section4">
+            <div class="step-indicator">4/5</div>
             <h2 class="section-title">now we need its synopsis<br>& selling points:</h2>
             <div class="input-group">
                 <textarea class="textarea-field" id="synopsis" placeholder="tell us everything about your book - the plot, themes, what makes it special, and why readers will love it..." rows="8"></textarea>
@@ -699,6 +702,7 @@ you want!</span>
 
         <!-- Section 5: Details -->
         <div class="form-section" id="section5">
+            <div class="step-indicator">5/5</div>
             <h2 class="section-title">let's wrap up the last details:</h2>
             <div class="input-group">
                 <input type="text" class="input-field" id="format" placeholder="format & size (e.g., hardcover, 6x9)">
@@ -975,7 +979,10 @@ you want!</span>
         }
 
         function updateProgress() {
-            document.getElementById('stepIndicator').textContent = `${currentSection}/${totalSections}`;
+            // Update all step indicators (desktop)
+            document.querySelectorAll('.step-indicator').forEach(indicator => {
+                indicator.textContent = `${currentSection}/${totalSections}`;
+            });
             // Also update mobile indicator
             const mobileIndicator = document.getElementById('mobileStepIndicator');
             if (mobileIndicator) {
@@ -1007,7 +1014,9 @@ you want!</span>
                     // Show success
                     document.getElementById('section5').classList.remove('active');
                     document.getElementById('successSection').classList.add('active');
-                    document.getElementById('stepIndicator').style.display = 'none';
+                    document.querySelectorAll('.step-indicator').forEach(indicator => {
+                        indicator.style.display = 'none';
+                    });
                     updateButtons();
                 } else {
                     throw new Error('Failed to submit form');
