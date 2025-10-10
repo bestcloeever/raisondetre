@@ -19,15 +19,6 @@
       "exploration": "N"
     },
     {
-      "id": "003",
-      "filename": "Cuñadismo.png",
-      "title": "Cuñadismo",
-      "imprint": "bruguera",
-      "publisher": "PRH",
-      "year": "2025",
-      "exploration": "N"
-    },
-    {
       "id": "004",
       "filename": "Escape Book.png",
       "title": "Escape Book",
@@ -133,33 +124,6 @@
       "imprint": "",
       "publisher": "",
       "year": "",
-      "exploration": "Y"
-    },
-    {
-      "id": "016",
-      "filename": "Cuñadismo-2.png",
-      "title": "Cuñadismo - Alt Cover 1",
-      "imprint": "bruguera",
-      "publisher": "PRH",
-      "year": "2025",
-      "exploration": "Y"
-    },
-    {
-      "id": "017",
-      "filename": "Cuñadismo-3.png",
-      "title": "Cuñadismo - Alt Cover 2",
-      "imprint": "bruguera",
-      "publisher": "PRH",
-      "year": "2025",
-      "exploration": "Y"
-    },
-    {
-      "id": "018",
-      "filename": "Cuñadismo-4.png",
-      "title": "Cuñadismo - Alt Cover 3",
-      "imprint": "bruguera",
-      "publisher": "PRH",
-      "year": "2025",
       "exploration": "Y"
     },
     {
@@ -278,6 +242,15 @@
       "publisher": "abacus",
       "year": "2024",
       "exploration": "N"
+    },
+    {
+      "id": "032",
+      "filename": "adrian-chico2.png",
+      "title": "Adrian Chico",
+      "imprint": "",
+      "publisher": "",
+      "year": "",
+      "exploration": "Y"
     }
   ]
 }

@@ -314,6 +314,27 @@
         "height": "auto",
         "depth": "auto"
       }
+    },
+    {
+      "id": "016",
+      "title": "Adrian Chico",
+      "author": "",
+      "position": "Position 4",
+      "images": {
+        "cover": "covers/adrian-chico2.png",
+        "spine": "spines/adrian-chico2.png",
+        "backCover": null
+      },
+      "colors": {
+        "backCover": "#3498DB",
+        "spine": "#f5f5f5",
+        "pages": "#FFFFF0"
+      },
+      "dimensions": {
+        "width": "auto",
+        "height": "auto",
+        "depth": "auto"
+      }
     }
   ],
   "globalSettings": {
