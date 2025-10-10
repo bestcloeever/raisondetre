@@ -425,8 +425,13 @@
                         const tiles = document.querySelectorAll('.book-tile');
                         tiles.forEach(tile => {
                             const bookCategory = tile.dataset.category;
+                            const bookCategories = bookCategory.split(' / ').map(cat => cat.trim());
 
-                            if (activeFilters.has('all') || activeFilters.has(bookCategory)) {
+                            // Show if "all" is selected OR if any book category matches any active filter
+                            const shouldShow = activeFilters.has('all') ||
+                                             bookCategories.some(cat => activeFilters.has(cat));
+
+                            if (shouldShow) {
                                 tile.style.display = '';
                             } else {
                                 tile.style.display = 'none';
