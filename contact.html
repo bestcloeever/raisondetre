@@ -389,7 +389,7 @@
 
             /* Section 2 needs extra padding to align with other sections */
             #section2 .section-title {
-                padding-top: 100px;  /* More padding to push it down to match section 1 */
+                padding-top: 110px;  /* More padding to push it down to match section 1 */
                 margin-bottom: 5px;  /* Much less space between title and buttons */
             }
 
@@ -413,9 +413,9 @@
             }
 
             #section4 .textarea-field {
-                width: 76%;
+                width: 84%;
                 max-width: 450px;
-                min-height: 225px;
+                min-height: 285px;
                 font-size: 14px;
             }
 
@@ -872,16 +872,24 @@ you want!</span>
         }
 
         function showError(message) {
+            // Remove any existing errors first
+            document.querySelectorAll('.temp-error-message').forEach(el => el.remove());
+
             // Create temporary error message
             const errorDiv = document.createElement('div');
-            errorDiv.style.cssText = 'color: #FF0000; text-align: center; margin-top: 20px; animation: shake 0.5s;';
+            errorDiv.className = 'temp-error-message';
             errorDiv.textContent = message;
 
-            const currentSectionEl = document.getElementById(`section${currentSection}`);
-            const existingError = currentSectionEl.querySelector('[style*="color: #FF0000"]');
-            if (existingError) existingError.remove();
+            // On mobile, position relative to nav buttons (fixed to viewport)
+            if (window.innerWidth <= 768) {
+                errorDiv.style.cssText = 'color: #FF0000; text-align: center; position: fixed; bottom: 73.5px; left: 0; right: 0; animation: shake 0.5s; z-index: 999; padding: 0 20px;';
+                document.body.appendChild(errorDiv);
+            } else {
+                errorDiv.style.cssText = 'color: #FF0000; text-align: center; margin-top: 20px; animation: shake 0.5s;';
+                const currentSectionEl = document.getElementById(`section${currentSection}`);
+                currentSectionEl.appendChild(errorDiv);
+            }
 
-            currentSectionEl.appendChild(errorDiv);
             setTimeout(() => errorDiv.remove(), 3000);
         }
 
