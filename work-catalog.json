@@ -137,7 +137,7 @@
       "imprint": "",
       "publisher": "",
       "year": "",
-      "category": "",
+      "category": "non fiction",
       "exploration": "Y"
     },
     {
@@ -289,6 +289,16 @@
       "year": "2026",
       "category": "non fiction",
       "exploration": "N"
+    },
+    {
+      "id": "034",
+      "filename": "adrian-chico3.png",
+      "title": "Adrian Chico - Alt Cover 2",
+      "imprint": "",
+      "publisher": "",
+      "year": "",
+      "category": "non fiction",
+      "exploration": "Y"
     }
   ]
 }
