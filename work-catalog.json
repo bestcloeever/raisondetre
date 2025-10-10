@@ -299,6 +299,26 @@
       "year": "",
       "category": "non fiction",
       "exploration": "Y"
+    },
+    {
+      "id": "035",
+      "filename": "reading-fox.jpg",
+      "title": "Reading Fox",
+      "imprint": "",
+      "publisher": "",
+      "year": "",
+      "category": "",
+      "exploration": "Y"
+    },
+    {
+      "id": "036",
+      "filename": "regal-bonic.png",
+      "title": "Regal Bonic",
+      "imprint": "",
+      "publisher": "",
+      "year": "",
+      "category": "",
+      "exploration": "Y"
     }
   ]
 }
