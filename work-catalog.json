@@ -7,6 +7,7 @@
       "imprint": "bruguera",
       "publisher": "PRH",
       "year": "2025",
+      "category": "",
       "exploration": "N"
     },
     {
@@ -16,6 +17,7 @@
       "imprint": "bruguera",
       "publisher": "PRH",
       "year": "2025",
+      "category": "",
       "exploration": "N"
     },
     {
@@ -25,6 +27,7 @@
       "imprint": "molino",
       "publisher": "PRH",
       "year": "2025",
+      "category": "",
       "exploration": "N"
     },
     {
@@ -34,6 +37,7 @@
       "imprint": "molino",
       "publisher": "PRH",
       "year": "2025",
+      "category": "",
       "exploration": "N"
     },
     {
@@ -43,6 +47,7 @@
       "imprint": "molino",
       "publisher": "PRH",
       "year": "2025",
+      "category": "",
       "exploration": "N"
     },
     {
@@ -52,6 +57,7 @@
       "imprint": "la galera",
       "publisher": "abacus",
       "year": "2024",
+      "category": "",
       "exploration": "N"
     },
     {
@@ -61,6 +67,7 @@
       "imprint": "inuk books",
       "publisher": "abacus",
       "year": "2024",
+      "category": "",
       "exploration": "N"
     },
     {
@@ -70,6 +77,7 @@
       "imprint": "elastic books",
       "publisher": "abacus",
       "year": "2025",
+      "category": "",
       "exploration": "N"
     },
     {
@@ -79,6 +87,7 @@
       "imprint": "inuk books",
       "publisher": "abacus",
       "year": "2024",
+      "category": "",
       "exploration": "N"
     },
     {
@@ -88,6 +97,7 @@
       "imprint": "la galera",
       "publisher": "abacus",
       "year": "2025",
+      "category": "",
       "exploration": "N"
     },
     {
@@ -97,6 +107,7 @@
       "imprint": "inuk books",
       "publisher": "abacus",
       "year": "2024",
+      "category": "",
       "exploration": "N"
     },
     {
@@ -106,6 +117,7 @@
       "imprint": "inuk books",
       "publisher": "abacus",
       "year": "2024",
+      "category": "",
       "exploration": "N"
     },
     {
@@ -115,6 +127,7 @@
       "imprint": "",
       "publisher": "",
       "year": "2",
+      "category": "",
       "exploration": "Y"
     },
     {
@@ -124,6 +137,7 @@
       "imprint": "",
       "publisher": "",
       "year": "",
+      "category": "",
       "exploration": "Y"
     },
     {
@@ -133,6 +147,7 @@
       "imprint": "molino",
       "publisher": "PRH",
       "year": "2025",
+      "category": "",
       "exploration": "Y"
     },
     {
@@ -142,6 +157,7 @@
       "imprint": "molino",
       "publisher": "PRH",
       "year": "2025",
+      "category": "",
       "exploration": "Y"
     },
     {
@@ -151,6 +167,7 @@
       "imprint": "molino",
       "publisher": "PRH",
       "year": "2025",
+      "category": "",
       "exploration": "Y"
     },
     {
@@ -160,6 +177,7 @@
       "imprint": "molino",
       "publisher": "PRH",
       "year": "2025",
+      "category": "",
       "exploration": "Y"
     },
     {
@@ -169,6 +187,7 @@
       "imprint": "molino",
       "publisher": "PRH",
       "year": "2025",
+      "category": "",
       "exploration": "Y"
     },
     {
@@ -178,6 +197,7 @@
       "imprint": "elastic books",
       "publisher": "abacus",
       "year": "2025",
+      "category": "",
       "exploration": "N"
     },
     {
@@ -187,6 +207,7 @@
       "imprint": "",
       "publisher": "",
       "year": "",
+      "category": "",
       "exploration": "Y"
     },
     {
@@ -196,6 +217,7 @@
       "imprint": "",
       "publisher": "",
       "year": "",
+      "category": "",
       "exploration": "Y"
     },
     {
@@ -205,6 +227,7 @@
       "imprint": "",
       "publisher": "",
       "year": "",
+      "category": "",
       "exploration": "Y"
     },
     {
@@ -214,6 +237,7 @@
       "imprint": "",
       "publisher": "",
       "year": "",
+      "category": "",
       "exploration": "Y"
     },
     {
@@ -223,6 +247,7 @@
       "imprint": "",
       "publisher": "",
       "year": "",
+      "category": "",
       "exploration": "Y"
     },
     {
@@ -232,6 +257,7 @@
       "imprint": "",
       "publisher": "",
       "year": "",
+      "category": "",
       "exploration": "Y"
     },
     {
@@ -241,6 +267,7 @@
       "imprint": "la galera",
       "publisher": "abacus",
       "year": "2024",
+      "category": "",
       "exploration": "N"
     },
     {
@@ -250,16 +277,18 @@
       "imprint": "",
       "publisher": "",
       "year": "",
+      "category": "",
       "exploration": "Y"
     },
     {
       "id": "033",
       "filename": "adrian-chico.png",
       "title": "Adrian Chico - Alt Cover",
-      "imprint": "",
-      "publisher": "",
-      "year": "",
-      "exploration": "Y"
+      "imprint": "bruguera",
+      "publisher": "PRH",
+      "year": "2026",
+      "category": "",
+      "exploration": "N"
     }
   ]
 }
