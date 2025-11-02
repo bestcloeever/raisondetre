@@ -1388,18 +1388,8 @@
             
             // Back cover - with thickness and texture support
             const backCoverGeometry = new THREE.BoxGeometry(width, height, coverThickness);
-            // Convert hex color string to number for Three.js
-            let backCoverColor = 0xffffff; // default white
-            if (!bookData.images.backCover && bookData.colors.backCover) {
-                const hexColor = bookData.colors.backCover;
-                if (typeof hexColor === 'string' && hexColor.startsWith('#')) {
-                    backCoverColor = parseInt(hexColor.replace('#', '0x'));
-                } else {
-                    backCoverColor = hexColor;
-                }
-            }
-            const backCoverMaterial = new THREE.MeshStandardMaterial({
-                color: backCoverColor,
+            const backCoverMaterial = new THREE.MeshStandardMaterial({ 
+                color: bookData.images.backCover ? 0xffffff : bookData.colors.backCover,
                 roughness: 0.6,
                 metalness: 0.03
             });
@@ -1879,41 +1869,21 @@
                 part.material.needsUpdate = true;
 
                 console.log(`Applied ${target} texture successfully`);
-
+                
                 // If this is a cover texture, extract color and apply to back cover
                 if (target === 'cover') {
+                    const dominantColor = extractDominantColor(texture);
                     const backCover = book.children.find(child => child.name === 'backCover');
                     if (backCover && backCover.material) {
-                        // Check if there's a specified backCover color in the JSON
-                        const bookIndex = book.userData.bookIndex;
-                        const bookData = booksData[bookIndex % booksData.length];
-                        const specifiedColor = bookData?.colors?.backCover;
-
-                        // Use JSON color if specified, otherwise auto-extract from cover
-                        let colorToApply;
-                        if (specifiedColor) {
-                            // JSON has a color - use it! (trust the JSON)
-                            if (typeof specifiedColor === 'number') {
-                                colorToApply = specifiedColor;
-                            } else if (typeof specifiedColor === 'string' && specifiedColor.startsWith('#')) {
-                                colorToApply = parseInt(specifiedColor.replace('#', '0x'));
-                            }
-                            console.log(`Using color from JSON for "${bookData?.title}": 0x${colorToApply.toString(16)}`);
-                        } else {
-                            // No JSON color - auto-extract from cover (for new books)
-                            colorToApply = extractDominantColor(texture);
-                            console.log(`Auto-extracted color for "${bookData?.title}": 0x${colorToApply.toString(16)}`);
-                        }
-
                         // For BoxGeometry, update the back face material (index 5)
                         if (Array.isArray(backCover.material)) {
-                            backCover.material[5].color.setHex(colorToApply);
+                            backCover.material[5].color.setHex(dominantColor);
                             backCover.material.forEach(mat => mat.needsUpdate = true);
                         } else {
-                            backCover.material.color.setHex(colorToApply);
+                            backCover.material.color.setHex(dominantColor);
                             backCover.material.needsUpdate = true;
                         }
-                        console.log(`Applied color to back cover: 0x${colorToApply.toString(16)}`);
+                        console.log(`Applied dominant color 0x${dominantColor.toString(16)} to back cover`);
                     }
                 }
             } else {
