@@ -64,6 +64,27 @@
       }
     },
     {
+      "id": "017",
+      "title": "El futuro es lo que haces hoy",
+      "author": "",
+      "position": "Position 3",
+      "images": {
+        "cover": "covers/el-futuro-es-lo-que-haces-hoy.png",
+        "spine": "spines/el-futuro-es-lo-que-haces-hoy.png",
+        "backCover": null
+      },
+      "colors": {
+        "backCover": "#FF6B9D",
+        "spine": "#f5f5f5",
+        "pages": "#FFFFF0"
+      },
+      "dimensions": {
+        "width": "auto",
+        "height": "auto",
+        "depth": "auto"
+      }
+    },
+    {
       "id": "004",
       "title": "Escape Book",
       "author": "",
@@ -117,6 +138,27 @@
       },
       "colors": {
         "backCover": "#DC143C",
+        "spine": "#f5f5f5",
+        "pages": "#FFFFF0"
+      },
+      "dimensions": {
+        "width": "auto",
+        "height": "auto",
+        "depth": "auto"
+      }
+    },
+    {
+      "id": "018",
+      "title": "Grief",
+      "author": "",
+      "position": "Position 1",
+      "images": {
+        "cover": "covers/grief.png",
+        "spine": "spines/grief.png",
+        "backCover": null
+      },
+      "colors": {
+        "backCover": "#FFB347",
         "spine": "#f5f5f5",
         "pages": "#FFFFF0"
       },
@@ -327,48 +369,6 @@
       },
       "colors": {
         "backCover": "#4B0082",
-        "spine": "#f5f5f5",
-        "pages": "#FFFFF0"
-      },
-      "dimensions": {
-        "width": "auto",
-        "height": "auto",
-        "depth": "auto"
-      }
-    },
-    {
-      "id": "017",
-      "title": "El futuro es lo que haces hoy",
-      "author": "",
-      "position": "Position 3",
-      "images": {
-        "cover": "covers/el-futuro-es-lo-que-haces-hoy.png",
-        "spine": "spines/el-futuro-es-lo-que-haces-hoy.png",
-        "backCover": null
-      },
-      "colors": {
-        "backCover": "#FF6B9D",
-        "spine": "#f5f5f5",
-        "pages": "#FFFFF0"
-      },
-      "dimensions": {
-        "width": "auto",
-        "height": "auto",
-        "depth": "auto"
-      }
-    },
-    {
-      "id": "018",
-      "title": "Grief",
-      "author": "",
-      "position": "Position 1",
-      "images": {
-        "cover": "covers/grief.png",
-        "spine": "spines/grief.png",
-        "backCover": null
-      },
-      "colors": {
-        "backCover": "#FFB347",
         "spine": "#f5f5f5",
         "pages": "#FFFFF0"
       },
