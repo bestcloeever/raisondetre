@@ -1889,29 +1889,34 @@
                         const bookData = booksData[bookIndex % booksData.length];
                         const specifiedColor = bookData?.colors?.backCover;
 
-                        console.log(`[DEBUG] Book: "${bookData?.title}", backCover from JSON: ${specifiedColor}, type: ${typeof specifiedColor}`);
+                        // Always extract dominant color from cover (default behavior)
+                        const extractedColor = extractDominantColor(texture);
 
-                        // Use specified color from JSON if available, otherwise extract from cover
-                        let colorToApply;
+                        // Check if JSON has a manual override color
+                        let colorToApply = extractedColor;
                         if (specifiedColor) {
-                            // If it's already a number (from initial book creation), use it directly
+                            let jsonColor;
+                            // Parse JSON color (can be number or string)
                             if (typeof specifiedColor === 'number') {
-                                colorToApply = specifiedColor;
-                                console.log(`Using specified backCover color from JSON: 0x${colorToApply.toString(16)}`);
+                                jsonColor = specifiedColor;
+                            } else if (typeof specifiedColor === 'string' && specifiedColor.startsWith('#')) {
+                                jsonColor = parseInt(specifiedColor.replace('#', '0x'));
                             }
-                            // If it's a string, parse it
-                            else if (typeof specifiedColor === 'string' && specifiedColor.startsWith('#')) {
-                                colorToApply = parseInt(specifiedColor.replace('#', '0x'));
-                                console.log(`Using specified backCover color from JSON: ${specifiedColor} (0x${colorToApply.toString(16)})`);
-                            }
-                            // Fallback to extraction
-                            else {
-                                colorToApply = extractDominantColor(texture);
-                                console.log(`Using extracted dominant color (fallback): 0x${colorToApply.toString(16)}`);
+
+                            // Check if JSON color is significantly different from extracted (manual override)
+                            if (jsonColor !== undefined) {
+                                const colorDiff = Math.abs(jsonColor - extractedColor);
+                                const threshold = 0x111111; // Allow small differences, but detect manual changes
+
+                                if (colorDiff > threshold) {
+                                    colorToApply = jsonColor;
+                                    console.log(`Using manual override from JSON for "${bookData?.title}": 0x${jsonColor.toString(16)} (extracted: 0x${extractedColor.toString(16)})`);
+                                } else {
+                                    console.log(`Using auto-extracted color for "${bookData?.title}": 0x${extractedColor.toString(16)}`);
+                                }
                             }
                         } else {
-                            colorToApply = extractDominantColor(texture);
-                            console.log(`Using extracted dominant color (no JSON color): 0x${colorToApply.toString(16)}`);
+                            console.log(`Using auto-extracted color for "${bookData?.title}": 0x${extractedColor.toString(16)}`);
                         }
 
                         // For BoxGeometry, update the back face material (index 5)
