@@ -304,11 +304,11 @@
       "id": "035",
       "filename": "el-futuro-es-lo-que-haces-hoy.png",
       "title": "El futuro es lo que haces hoy",
-      "imprint": "",
-      "publisher": "",
-      "year": "",
+      "imprint": "bruguera",
+      "publisher": "PRH",
+      "year": "2026",
       "category": "non fiction",
-      "exploration": "Y"
+      "exploration": "N"
     },
     {
       "id": "036",
@@ -347,7 +347,7 @@
       "imprint": "",
       "publisher": "",
       "year": "",
-      "category": "fiction / YA",
+      "category": "non fiction",
       "exploration": "Y"
     },
     {
@@ -357,7 +357,7 @@
       "imprint": "",
       "publisher": "",
       "year": "",
-      "category": "fiction / YA",
+      "category": "non fiction",
       "exploration": "Y"
     },
     {
@@ -367,18 +367,18 @@
       "imprint": "",
       "publisher": "",
       "year": "",
-      "category": "fiction / YA",
+      "category": "non fiction",
       "exploration": "Y"
     },
     {
       "id": "042",
       "filename": "grief.png",
       "title": "Grief",
-      "imprint": "",
-      "publisher": "",
-      "year": "",
-      "category": "fiction / YA",
-      "exploration": "Y"
+      "imprint": "bruguera",
+      "publisher": "PRH",
+      "year": "2026",
+      "category": "non fiction",
+      "exploration": "N"
     },
     {
       "id": "043",
@@ -387,7 +387,7 @@
       "imprint": "",
       "publisher": "",
       "year": "",
-      "category": "fiction / YA",
+      "category": "non fiction",
       "exploration": "Y"
     },
     {
@@ -397,7 +397,7 @@
       "imprint": "",
       "publisher": "",
       "year": "",
-      "category": "fiction / YA",
+      "category": "non fiction",
       "exploration": "Y"
     },
     {
@@ -407,7 +407,7 @@
       "imprint": "",
       "publisher": "",
       "year": "",
-      "category": "fiction / YA",
+      "category": "non fiction",
       "exploration": "Y"
     }
   ]
