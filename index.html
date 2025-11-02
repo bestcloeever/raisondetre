@@ -1869,21 +1869,35 @@
                 part.material.needsUpdate = true;
 
                 console.log(`Applied ${target} texture successfully`);
-                
+
                 // If this is a cover texture, extract color and apply to back cover
                 if (target === 'cover') {
-                    const dominantColor = extractDominantColor(texture);
                     const backCover = book.children.find(child => child.name === 'backCover');
                     if (backCover && backCover.material) {
+                        // Check if there's a specified backCover color in the JSON
+                        const bookIndex = book.userData.bookIndex;
+                        const bookData = booksData[bookIndex % booksData.length];
+                        const specifiedColor = bookData?.colors?.backCover;
+
+                        // Use specified color from JSON if available, otherwise extract from cover
+                        let colorToApply;
+                        if (specifiedColor && typeof specifiedColor === 'string' && specifiedColor.startsWith('#')) {
+                            colorToApply = parseInt(specifiedColor.replace('#', '0x'));
+                            console.log(`Using specified backCover color from JSON: ${specifiedColor} (0x${colorToApply.toString(16)})`);
+                        } else {
+                            colorToApply = extractDominantColor(texture);
+                            console.log(`Using extracted dominant color: 0x${colorToApply.toString(16)}`);
+                        }
+
                         // For BoxGeometry, update the back face material (index 5)
                         if (Array.isArray(backCover.material)) {
-                            backCover.material[5].color.setHex(dominantColor);
+                            backCover.material[5].color.setHex(colorToApply);
                             backCover.material.forEach(mat => mat.needsUpdate = true);
                         } else {
-                            backCover.material.color.setHex(dominantColor);
+                            backCover.material.color.setHex(colorToApply);
                             backCover.material.needsUpdate = true;
                         }
-                        console.log(`Applied dominant color 0x${dominantColor.toString(16)} to back cover`);
+                        console.log(`Applied color to back cover: 0x${colorToApply.toString(16)}`);
                     }
                 }
             } else {
