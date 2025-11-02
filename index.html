@@ -1889,14 +1889,29 @@
                         const bookData = booksData[bookIndex % booksData.length];
                         const specifiedColor = bookData?.colors?.backCover;
 
+                        console.log(`[DEBUG] Book: "${bookData?.title}", backCover from JSON: ${specifiedColor}, type: ${typeof specifiedColor}`);
+
                         // Use specified color from JSON if available, otherwise extract from cover
                         let colorToApply;
-                        if (specifiedColor && typeof specifiedColor === 'string' && specifiedColor.startsWith('#')) {
-                            colorToApply = parseInt(specifiedColor.replace('#', '0x'));
-                            console.log(`Using specified backCover color from JSON: ${specifiedColor} (0x${colorToApply.toString(16)})`);
+                        if (specifiedColor) {
+                            // If it's already a number (from initial book creation), use it directly
+                            if (typeof specifiedColor === 'number') {
+                                colorToApply = specifiedColor;
+                                console.log(`Using specified backCover color from JSON: 0x${colorToApply.toString(16)}`);
+                            }
+                            // If it's a string, parse it
+                            else if (typeof specifiedColor === 'string' && specifiedColor.startsWith('#')) {
+                                colorToApply = parseInt(specifiedColor.replace('#', '0x'));
+                                console.log(`Using specified backCover color from JSON: ${specifiedColor} (0x${colorToApply.toString(16)})`);
+                            }
+                            // Fallback to extraction
+                            else {
+                                colorToApply = extractDominantColor(texture);
+                                console.log(`Using extracted dominant color (fallback): 0x${colorToApply.toString(16)}`);
+                            }
                         } else {
                             colorToApply = extractDominantColor(texture);
-                            console.log(`Using extracted dominant color: 0x${colorToApply.toString(16)}`);
+                            console.log(`Using extracted dominant color (no JSON color): 0x${colorToApply.toString(16)}`);
                         }
 
                         // For BoxGeometry, update the back face material (index 5)
