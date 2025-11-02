@@ -299,6 +299,116 @@
       "year": "",
       "category": "non fiction",
       "exploration": "Y"
+    },
+    {
+      "id": "035",
+      "filename": "el-futuro-es-lo-que-haces-hoy.png",
+      "title": "El futuro es lo que haces hoy",
+      "imprint": "",
+      "publisher": "",
+      "year": "",
+      "category": "non fiction",
+      "exploration": "Y"
+    },
+    {
+      "id": "036",
+      "filename": "el-futuro-es-lo-que-haces-hoy-2.png",
+      "title": "El futuro es lo que haces hoy - Alt Cover",
+      "imprint": "",
+      "publisher": "",
+      "year": "",
+      "category": "non fiction",
+      "exploration": "Y"
+    },
+    {
+      "id": "037",
+      "filename": "el-futuro-es-lo-que-haces-hoy-3.png",
+      "title": "El futuro es lo que haces hoy - Alt Cover 2",
+      "imprint": "",
+      "publisher": "",
+      "year": "",
+      "category": "non fiction",
+      "exploration": "Y"
+    },
+    {
+      "id": "038",
+      "filename": "el-futuro-es-lo-que-haces-hoy-4.png",
+      "title": "El futuro es lo que haces hoy - Alt Cover 3",
+      "imprint": "",
+      "publisher": "",
+      "year": "",
+      "category": "non fiction",
+      "exploration": "Y"
+    },
+    {
+      "id": "039",
+      "filename": "las-malas-del-cuento-02.png",
+      "title": "Las malas del cuento",
+      "imprint": "",
+      "publisher": "",
+      "year": "",
+      "category": "fiction / YA",
+      "exploration": "Y"
+    },
+    {
+      "id": "040",
+      "filename": "las-malas-del-cuento-03.png",
+      "title": "Las malas del cuento - Alt Cover",
+      "imprint": "",
+      "publisher": "",
+      "year": "",
+      "category": "fiction / YA",
+      "exploration": "Y"
+    },
+    {
+      "id": "041",
+      "filename": "las-malas-del-cuento-04.png",
+      "title": "Las malas del cuento - Alt Cover 2",
+      "imprint": "",
+      "publisher": "",
+      "year": "",
+      "category": "fiction / YA",
+      "exploration": "Y"
+    },
+    {
+      "id": "042",
+      "filename": "grief.png",
+      "title": "Grief",
+      "imprint": "",
+      "publisher": "",
+      "year": "",
+      "category": "fiction / YA",
+      "exploration": "Y"
+    },
+    {
+      "id": "043",
+      "filename": "grief_2.png",
+      "title": "Grief - Alt Cover",
+      "imprint": "",
+      "publisher": "",
+      "year": "",
+      "category": "fiction / YA",
+      "exploration": "Y"
+    },
+    {
+      "id": "044",
+      "filename": "grief_3.png",
+      "title": "Grief - Alt Cover 2",
+      "imprint": "",
+      "publisher": "",
+      "year": "",
+      "category": "fiction / YA",
+      "exploration": "Y"
+    },
+    {
+      "id": "045",
+      "filename": "grief_4.png",
+      "title": "Grief - Alt Cover 3",
+      "imprint": "",
+      "publisher": "",
+      "year": "",
+      "category": "fiction / YA",
+      "exploration": "Y"
     }
   ]
 }
