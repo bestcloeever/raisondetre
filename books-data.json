@@ -67,14 +67,14 @@
       "id": "017",
       "title": "El futuro es lo que haces hoy",
       "author": "",
-      "position": "Position 5",
+      "position": "Position 3",
       "images": {
         "cover": "covers/el-futuro-es-lo-que-haces-hoy.png",
         "spine": "spines/el-futuro-es-lo-que-haces-hoy.png",
         "backCover": null
       },
       "colors": {
-        "backCover": "#2EAA50",
+        "backCover": "#FF6B9D",
         "spine": "#f5f5f5",
         "pages": "#FFFFF0"
       },
@@ -151,7 +151,7 @@
       "id": "018",
       "title": "Grief",
       "author": "",
-      "position": "Position 3",
+      "position": "Position 1",
       "images": {
         "cover": "covers/grief.png",
         "spine": "spines/grief.png",
