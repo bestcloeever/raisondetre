@@ -1388,8 +1388,18 @@
             
             // Back cover - with thickness and texture support
             const backCoverGeometry = new THREE.BoxGeometry(width, height, coverThickness);
-            const backCoverMaterial = new THREE.MeshStandardMaterial({ 
-                color: bookData.images.backCover ? 0xffffff : bookData.colors.backCover,
+            // Convert hex color string to number for Three.js
+            let backCoverColor = 0xffffff; // default white
+            if (!bookData.images.backCover && bookData.colors.backCover) {
+                const hexColor = bookData.colors.backCover;
+                if (typeof hexColor === 'string' && hexColor.startsWith('#')) {
+                    backCoverColor = parseInt(hexColor.replace('#', '0x'));
+                } else {
+                    backCoverColor = hexColor;
+                }
+            }
+            const backCoverMaterial = new THREE.MeshStandardMaterial({
+                color: backCoverColor,
                 roughness: 0.6,
                 metalness: 0.03
             });
