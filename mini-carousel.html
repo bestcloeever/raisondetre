@@ -2060,17 +2060,21 @@
             renderer.setSize(window.innerWidth, window.innerHeight);
         }
 
-        // Auto-rotation variables
-        let autoRotateTime = 0;
-        const AUTO_ROTATE_SPEED = 0.002; // Slow, smooth auto-rotation
+        // Auto-rotation: automatically advance to next book every 2 seconds
+        let lastAutoAdvanceTime = Date.now();
+        const AUTO_ADVANCE_INTERVAL = 2000; // 2 seconds between books
         const bookSpacing = 3; // Moved here to avoid redeclaration
 
         function animate() {
             requestAnimationFrame(animate);
 
-            // Auto-rotate through books
-            autoRotateTime += AUTO_ROTATE_SPEED;
-            targetRotation = autoRotateTime * bookSpacing;
+            // Auto-advance to next book (mimics clicking next arrow)
+            const now = Date.now();
+            if (now - lastAutoAdvanceTime > AUTO_ADVANCE_INTERVAL) {
+                currentBook = (currentBook + 1) % booksData.length;
+                targetRotation = currentBook * bookSpacing;
+                lastAutoAdvanceTime = now;
+            }
 
             // Smooth rotation with fixed easing (dragging disabled)
             const easing = 0.06;
