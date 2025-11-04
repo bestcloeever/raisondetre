@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raison d'Être Books - Email Signature</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: white;
+            overflow: hidden;
+        }
+
+        .carousel-container {
+            width: 800px;
+            height: 280px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .carousel-track {
+            display: flex;
+            gap: 20px;
+            position: absolute;
+            animation: slide 15s linear infinite;
+        }
+
+        .book {
+            flex-shrink: 0;
+            height: 250px;
+            width: auto;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.2));
+        }
+
+        @keyframes slide {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(calc(-100% / 2));
+            }
+        }
+
+        /* Pause animation on hover */
+        .carousel-container:hover .carousel-track {
+            animation-play-state: paused;
+        }
+    </style>
+</head>
+<body>
+    <div class="carousel-container">
+        <div class="carousel-track">
+            <img src="covers/no-vas-a-heredar-la-empresa.png" alt="No vas a heredar la empresa" class="book">
+            <img src="covers/regula-tu-estres-encuentra-tu-equilibrio.png" alt="Regula tu estrés" class="book">
+            <img src="covers/cunadismo.png" alt="Cuñadismo" class="book">
+            <img src="covers/el-futuro-es-lo-que-haces-hoy.png" alt="El futuro es lo que haces hoy" class="book">
+            <img src="covers/escape-book.png" alt="Escape Book" class="book">
+            <img src="covers/adrian-chico2.png" alt="Adrian Chico" class="book">
+            <!-- Duplicate for seamless loop -->
+            <img src="covers/no-vas-a-heredar-la-empresa.png" alt="No vas a heredar la empresa" class="book">
+            <img src="covers/regula-tu-estres-encuentra-tu-equilibrio.png" alt="Regula tu estrés" class="book">
+            <img src="covers/cunadismo.png" alt="Cuñadismo" class="book">
+            <img src="covers/el-futuro-es-lo-que-haces-hoy.png" alt="El futuro es lo que haces hoy" class="book">
+            <img src="covers/escape-book.png" alt="Escape Book" class="book">
+            <img src="covers/adrian-chico2.png" alt="Adrian Chico" class="book">
+        </div>
+    </div>
+</body>
+</html>
