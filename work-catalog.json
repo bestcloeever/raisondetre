@@ -409,6 +409,46 @@
       "year": "",
       "category": "non fiction",
       "exploration": "Y"
+    },
+    {
+      "id": "046",
+      "filename": "las-malas-del-cuento.png",
+      "title": "Las malas del cuento",
+      "imprint": "molino",
+      "publisher": "PRH",
+      "year": "2026",
+      "category": "fiction / kids",
+      "exploration": "N"
+    },
+    {
+      "id": "047",
+      "filename": "jugar-leer-crecer-2.png",
+      "title": "Jugar, leer, crecer",
+      "imprint": "",
+      "publisher": "",
+      "year": "",
+      "category": "non fiction",
+      "exploration": "Y"
+    },
+    {
+      "id": "048",
+      "filename": "jugar-leer-crecer-3.png",
+      "title": "Jugar, leer, crecer - Alt Cover",
+      "imprint": "",
+      "publisher": "",
+      "year": "",
+      "category": "non fiction",
+      "exploration": "Y"
+    },
+    {
+      "id": "049",
+      "filename": "jugar-leer-crecer-4.png",
+      "title": "Jugar, leer, crecer - Alt Cover 2",
+      "imprint": "",
+      "publisher": "",
+      "year": "",
+      "category": "non fiction",
+      "exploration": "Y"
     }
   ]
 }
