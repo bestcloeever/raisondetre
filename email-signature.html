@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raison d'Être - Book Carousel</title>
+    <link rel="icon" type="image/png" href="brand/RE-cursor-blue.png">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: url('brand/RE-cursor-blue-24.png') 12 12, auto;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: white;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            min-height: 100vh;
+            cursor: url('brand/RE-cursor-blue-24.png') 12 12, auto;
+        }
+
+        #canvas-container {
+            width: 100%;
+            height: 100vh;
+            position: relative;
+            cursor: url('brand/RE-cursor-blue-24.png') 12 12, auto;
+        }
+
+        canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Navigation Arrows */
+        .nav-arrow {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 60px;
+            color: #0000FF;
+            cursor: url('brand/RE-cursor-blue-24.png') 12 12, auto;
+            user-select: none;
+            z-index: 10;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+
+        .nav-arrow:hover {
+            opacity: 1;
+        }
+
+        .nav-arrow.left {
+            left: 20px;
+        }
+
+        .nav-arrow.right {
+            right: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .nav-arrow {
+                font-size: 40px;
+            }
+            .nav-arrow.left {
+                left: 10px;
+            }
+            .nav-arrow.right {
+                right: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main id="canvas-container"></main>
+
+    <!-- Navigation Arrows -->
+    <div class="nav-arrow left" id="prevArrow">‹</div>
+    <div class="nav-arrow right" id="nextArrow">›</div>
+
+    <script>
+        let scene, camera, renderer;
+        let books = [];
+        let currentBook = 0;
+        let targetRotation = 0;
+        let currentRotation = 0;
+        let dragVelocity = 0;
+        let wheelDeltaAccumulator = 0;
+        const wheelThreshold = 50;
+        let lastWheelTime = 0;
+        const wheelResetDelay = 100;
+        let wheelMovedInGesture = false;
+        let wheelGestureTimer = null;
+        let booksData = [];
+        let rotationPositions = [];
+
+        function getCenterRotation() {
+            try {
+                const preset = (rotationPositions || []).find(p => String(p.name).trim().toLowerCase() === 'position 4');
+                const fallback = (defaultRotationPositions[3] && defaultRotationPositions[3].rotation) || { x: 0, y: 0, z: 0 };
+                const rot = (preset && preset.rotation) ? preset.rotation : fallback;
+                return { x: rot.x || 0, y: rot.y || 0, z: rot.z || 0 };
+            } catch (_) {
+                const fallback = (defaultRotationPositions[3] && defaultRotationPositions[3].rotation) || { x: 0, y: 0, z: 0 };
+                return { x: fallback.x || 0, y: fallback.y || 0, z: fallback.z || 0 };
+            }
+        }
+
+        function normalizeUprightRotation(rot) {
+            try {
+                const e = new THREE.Euler(rot.x || 0, rot.y || 0, rot.z || 0, 'XYZ');
+                const q = new THREE.Quaternion().setFromEuler(e);
+                const up = new THREE.Vector3(0, 1, 0).applyQuaternion(q);
+                if (up.y < 0) {
+                    const qFix = new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0, 0, 1), Math.PI);
+                    q.premultiply(qFix);
+                    const e2 = new THREE.Euler().setFromQuaternion(q, 'XYZ');
+                    return { x: e2.x, y: e2.y, z: e2.z };
+                }
+            } catch (_) {}
+            return { x: rot.x || 0, y: rot.y || 0, z: rot.z || 0 };
+        }
+
+        const defaultRotationPositions = [
+            { name: 'Position 1', rotation: { x: -3.289999999999977, y: 2.539999999999988, z: 0 } },
+            { name: 'Position 2', rotation: { x: -3.6899999999999684, y: 3.749999999999974, z: 0 } },
+            { name: 'Position 3', rotation: { x: -0.25, y: 1.58, z: 0 } },
+            { name: 'Position 4', rotation: { x: -3.6299999999999697, y: 2.669999999999973, z: 0.19 } },
+            { name: 'Position 5', rotation: { x: -3.13999999999998, y: 2.5799999999999588, z: -0.5700000000000003 } },
+            { name: 'Position 6', rotation: { x: -3.759999999999974, y: 3.6500000000000012, z: 0 } },
+        ];
+
+        function hashString(str) {
+            let h = 0;
+            for (let i = 0; i < str.length; i++) {
+                h = ((h << 5) - h) + str.charCodeAt(i);
+                h |= 0;
+            }
+            return Math.abs(h);
+        }
+
+        const SIMILARITY_THRESHOLD = 0.35;
+        function rotationDistance(a, b) {
+            if (!a || !b) return Infinity;
+            const dx = a.x - b.x;
+            const dy = a.y - b.y;
+            const dz = a.z - b.z;
+            return Math.sqrt(dx*dx + dy*dy + dz*dz);
+        }
+
+        function pickPresetIndex(prevRotation, presets, forbiddenIdx = -1) {
+            if (!presets || presets.length === 0) return 0;
+            const candidates = [];
+            for (let i = 0; i < presets.length; i++) {
+                if (i !== forbiddenIdx && i !== 3) candidates.push(i);
+            }
+            if (candidates.length === 0) {
+                for (let i = 0; i < presets.length; i++) {
+                    if (i !== 3) candidates.push(i);
+                }
+            }
+            const r = Math.floor(Math.random() * candidates.length);
+            return candidates[r] ?? 0;
+        }
+
+        function buildAssignedPresetIndices(presets, count) {
+            const indices = new Array(count).fill(0);
+            let prevRot = null;
+            let prevIdx = -1;
+            for (let i = 0; i < count; i++) {
+                const idx = pickPresetIndex(prevRot, presets, prevIdx);
+                indices[i] = idx;
+                prevRot = presets[idx].rotation;
+                prevIdx = idx;
+            }
+            if (count > 1 && indices[0] === indices[count - 1]) {
+                const beforeLastIdx = indices[count - 2];
+                let bestIdx = indices[count - 1];
+                let bestDist = -1;
+                for (let i = 0; i < presets.length; i++) {
+                    if (i === indices[0] || i === beforeLastIdx || i === 3) continue;
+                    const d = rotationDistance(presets[i].rotation, presets[indices[count - 2]].rotation);
+                    if (d > bestDist) { bestDist = d; bestIdx = i; }
+                }
+                indices[count - 1] = bestIdx;
+            }
+            return indices;
+        }
+
+        function presetsSignature(presets) {
+            try { return String(hashString(JSON.stringify(presets.map(p => p.rotation)))); } catch { return 'no-sig'; }
+        }
+
+        function loadAssignedIndices(sig) {
+            try {
+                const raw = localStorage.getItem('rotationAssignment:' + sig);
+                if (!raw) return null;
+                const parsed = JSON.parse(raw);
+                if (!parsed || typeof parsed !== 'object') return null;
+                return parsed;
+            } catch { return null; }
+        }
+
+        function saveAssignedIndices(sig, mapping) {
+            try { localStorage.setItem('rotationAssignment:' + sig, JSON.stringify(mapping)); } catch {}
+        }
+
+        let globalSettings = {};
+        let currentAssignedRotations = [];
+
+        async function getImageDimensions(url) {
+            return new Promise((resolve) => {
+                const img = new Image();
+                img.onload = function() {
+                    resolve({ width: this.width, height: this.height });
+                };
+                img.onerror = function() {
+                    resolve({ width: 400, height: 600 });
+                };
+                img.src = url;
+            });
+        }
+
+        async function loadBooksData() {
+            try {
+                const response = await fetch('books-data.json?ts=' + Date.now(), { cache: 'no-store' });
+                const data = await response.json();
+
+                // Filter to only show first 6 books: from "No vas a heredar la empresa" to "Sobreviviendo en el mundo gay"
+                const firstSixBookIds = ['001', '002', '003', '017', '004', '016'];
+                const filteredBooks = data.books.filter(book => firstSixBookIds.includes(book.id));
+
+                const processedBooks = await Promise.all(filteredBooks.map(async (book) => {
+                    const coverDimensions = await getImageDimensions(book.images.cover);
+                    const spineDimensions = book.images.spine ?
+                        await getImageDimensions(book.images.spine) :
+                        { width: 50, height: coverDimensions.height };
+
+                    const maxHeight = 2.8;
+                    const scale = maxHeight / coverDimensions.height;
+
+                    return {
+                        ...book,
+                        colors: {
+                            backCover: parseInt(book.colors.backCover.replace('#', '0x')),
+                            spine: parseInt(book.colors.spine.replace('#', '0x')),
+                            pages: parseInt(book.colors.pages.replace('#', '0x'))
+                        },
+                        dimensions: {
+                            width: coverDimensions.width * scale,
+                            height: maxHeight,
+                            depth: spineDimensions.width * scale
+                        },
+                        imageDimensions: {
+                            cover: coverDimensions,
+                            spine: spineDimensions
+                        }
+                    };
+                }));
+
+                booksData = processedBooks;
+                globalSettings = data.globalSettings || {};
+                rotationPositions = Array.isArray(data.positions) && data.positions.length > 0
+                    ? data.positions
+                    : defaultRotationPositions;
+                return true;
+            } catch (error) {
+                console.error('Failed to load books data:', error);
+                return false;
+            }
+        }
+
+        const fallbackBooksData = [
+            {
+                title: "Sample Book 1",
+                author: "",
+                images: {
+                    cover: "covers/001_No vas a heredar la empresa_Cover.jpg",
+                    spine: "spines/001_No vas a heredar la empresa_Spine.jpg",
+                    backCover: null
+                },
+                colors: {
+                    backCover: 0xE74C3C,
+                    spine: 0xF5F5F5,
+                    pages: 0xF5E6D3
+                },
+                dimensions: { width: 1.8, height: 2.8, depth: 0.25 },
+                rotation: { angle: Math.PI / 24 }
+            }
+        ];
+
+        async function init() {
+            const loaded = await loadBooksData();
+            if (!loaded || booksData.length === 0) {
+                booksData = fallbackBooksData;
+                rotationPositions = defaultRotationPositions;
+            }
+
+            scene = new THREE.Scene();
+            scene.background = new THREE.Color(0xffffff);
+
+            const aspectRatio = window.innerWidth / window.innerHeight;
+            const frustumSize = 6.06;
+            camera = new THREE.OrthographicCamera(
+                frustumSize * aspectRatio / -2,
+                frustumSize * aspectRatio / 2,
+                frustumSize / 2,
+                frustumSize / -2,
+                0.1,
+                1000
+            );
+            camera.position.set(0, -3, 8);
+            camera.lookAt(0, 0.5, 0);
+
+            renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(window.devicePixelRatio);
+            document.getElementById('canvas-container').appendChild(renderer.domElement);
+
+            const hemiLight = new THREE.HemisphereLight(0xffffff, 0xeeeeee, 0.9);
+            hemiLight.position.set(0, 10, 0);
+            scene.add(hemiLight);
+
+            const directionalLight = new THREE.DirectionalLight(0xffffff, 0.42);
+            directionalLight.position.set(30, 18, 0);
+            directionalLight.target.position.set(0, 0.5, 0);
+            scene.add(directionalLight);
+            scene.add(directionalLight.target);
+
+            createBooks();
+            setupEventListeners();
+            animate();
+
+            setTimeout(() => {
+                startAutoScroll();
+            }, 2000);
+        }
+
+        function createBooks() {
+            try {
+                (books || []).forEach(b => {
+                    if (b.userData && b.userData.shadow) {
+                        try { scene.remove(b.userData.shadow); } catch {}
+                    }
+                    try { scene.remove(b); } catch {}
+                });
+            } catch {}
+            books = [];
+            currentBook = 0;
+            currentRotation = 0;
+            targetRotation = 0;
+            const textureLoader = new THREE.TextureLoader();
+            const bookSpacing = 3;
+            currentAssignedRotations = new Array(booksData.length).fill('');
+
+            const sig = presetsSignature(rotationPositions);
+            let byId = (loadAssignedIndices(sig) || {}).byId;
+            if (!byId) {
+                const primaryAssignedIdx = buildAssignedPresetIndices(rotationPositions, booksData.length);
+                byId = {};
+                booksData.forEach((b, i) => { byId[b.id || String(i)] = primaryAssignedIdx[i]; });
+                saveAssignedIndices(sig, { byId });
+            }
+
+            for (let set = -1; set <= 1; set++) {
+                booksData.forEach((bookData, index) => {
+                    const book = createBook(bookData, index);
+                    const x = (index + set * booksData.length) * bookSpacing;
+                    book.position.set(x, 0, 0);
+
+                    let idx = 0;
+                    if (bookData.position) {
+                        const desired = String(bookData.position).trim();
+                        const found = rotationPositions.findIndex(p => p.name === desired);
+                        idx = found >= 0 ? found : (byId[bookData.id || String(index)] ?? 0);
+                    } else {
+                        idx = byId[bookData.id || String(index)] ?? 0;
+                    }
+                    const chosen = rotationPositions[idx].rotation;
+                    const adjusted = normalizeUprightRotation(chosen);
+                    book.rotation.x = adjusted.x;
+                    book.rotation.y = adjusted.y;
+                    book.rotation.z = adjusted.z;
+
+                    book.userData = {
+                        permanentRotationX: book.rotation.x,
+                        permanentRotationY: book.rotation.y,
+                        permanentRotationZ: book.rotation.z,
+                        bookIndex: index % booksData.length,
+                        rotationName: rotationPositions[idx].name,
+                        set: set
+                    };
+
+                    if (set === 0) {
+                        currentAssignedRotations[index] = rotationPositions[idx].name;
+                    }
+
+                    scene.add(book);
+                    books.push(book);
+
+                    const shadow = createBookShadow(bookData);
+                    shadow.position.x = book.position.x;
+                    shadow.userData = { forBook: book };
+                    scene.add(shadow);
+                    book.userData.shadow = shadow;
+
+                    if (bookData.images.cover) {
+                        textureLoader.load(
+                            bookData.images.cover,
+                            (texture) => { applyTextureToBook(book, texture, 'cover'); },
+                            undefined,
+                            () => { console.log(`Could not load cover for ${bookData.title}`); }
+                        );
+                    }
+
+                    if (bookData.images.spine) {
+                        textureLoader.load(
+                            bookData.images.spine,
+                            (texture) => { applyTextureToBook(book, texture, 'spine'); },
+                            undefined,
+                            () => { console.log(`Could not load spine for ${bookData.title}`); }
+                        );
+                    }
+
+                    if (bookData.images.backCover) {
+                        textureLoader.load(
+                            bookData.images.backCover,
+                            (texture) => { applyTextureToBook(book, texture, 'backCover'); },
+                            undefined,
+                            () => { console.log(`Could not load back cover for ${bookData.title}`); }
+                        );
+                    }
+                });
+            }
+        }
+
+        function createBook(bookData, index) {
+            const group = new THREE.Group();
+
+            const width = bookData.dimensions.width;
+            const height = bookData.dimensions.height;
+            const depth = bookData.dimensions.depth;
+
+            const coverThickness = 0.02;
+            const coverGeometry = new THREE.BoxGeometry(width, height, coverThickness);
+            const coverMaterial = new THREE.MeshStandardMaterial({
+                color: 0xffffff,
+                roughness: 0.55,
+                metalness: 0.04
+            });
+            const cover = new THREE.Mesh(coverGeometry, coverMaterial);
+            cover.position.z = depth / 2 + coverThickness / 2;
+            cover.name = 'cover';
+            group.add(cover);
+
+            const backCoverGeometry = new THREE.BoxGeometry(width, height, coverThickness);
+            const backCoverMaterial = new THREE.MeshStandardMaterial({
+                color: bookData.images.backCover ? 0xffffff : bookData.colors.backCover,
+                roughness: 0.6,
+                metalness: 0.03
+            });
+            const backCover = new THREE.Mesh(backCoverGeometry, backCoverMaterial);
+            backCover.position.z = -depth / 2 - coverThickness / 2;
+            backCover.name = 'backCover';
+            group.add(backCover);
+
+            const spineGeometry = new THREE.BoxGeometry(coverThickness, height, depth);
+            let spineColor = 0xffffff;
+            if (bookData.images.spine) {
+                spineColor = 0xffffff;
+            } else if (bookData.colors.spine && typeof bookData.colors.spine === 'string') {
+                spineColor = parseInt(bookData.colors.spine.replace('#', '0x'));
+            } else {
+                spineColor = bookData.colors.spine || 0x333333;
+            }
+            const spineMaterial = new THREE.MeshStandardMaterial({
+                color: spineColor,
+                roughness: 0.7,
+                metalness: 0.02
+            });
+            const spine = new THREE.Mesh(spineGeometry, spineMaterial);
+            spine.position.x = -width / 2 - coverThickness / 2;
+            spine.name = 'spine';
+            group.add(spine);
+
+            const topGeometry = new THREE.PlaneGeometry(width, depth);
+            const topCanvas = document.createElement('canvas');
+            topCanvas.width = 256;
+            topCanvas.height = 64;
+            const topCtx = topCanvas.getContext('2d');
+            topCtx.fillStyle = '#F4E8D0';
+            topCtx.fillRect(0, 0, topCanvas.width, topCanvas.height);
+            for (let i = 0; i < topCanvas.width; i += 3) {
+                topCtx.strokeStyle = `rgba(180, 160, 140, ${0.08 + Math.random() * 0.05})`;
+                topCtx.lineWidth = 0.5;
+                topCtx.beginPath();
+                topCtx.moveTo(i, 0);
+                topCtx.lineTo(i, topCanvas.height);
+                topCtx.stroke();
+            }
+            const topGradient = topCtx.createLinearGradient(0, 0, 0, topCanvas.height);
+            topGradient.addColorStop(0, 'rgba(200, 180, 160, 0.1)');
+            topGradient.addColorStop(1, 'rgba(100, 80, 60, 0.05)');
+            topCtx.fillStyle = topGradient;
+            topCtx.fillRect(0, 0, topCanvas.width, topCanvas.height);
+            const topTexture = new THREE.CanvasTexture(topCanvas);
+            topTexture.anisotropy = renderer.capabilities.getMaxAnisotropy();
+            const topBumpTexture = new THREE.CanvasTexture(topCanvas);
+            const topMaterial = new THREE.MeshStandardMaterial({
+                map: topTexture,
+                bumpMap: topBumpTexture,
+                bumpScale: 0.012,
+                roughness: 0.8,
+                metalness: 0.0,
+                side: THREE.DoubleSide
+            });
+            const topEdge = new THREE.Mesh(topGeometry, topMaterial);
+            topEdge.position.y = height / 2;
+            topEdge.rotation.x = -Math.PI / 2;
+            topEdge.name = 'topEdge';
+            group.add(topEdge);
+
+            const bottomGeometry = new THREE.PlaneGeometry(width, depth);
+            const bottomCanvas = document.createElement('canvas');
+            bottomCanvas.width = 256;
+            bottomCanvas.height = 64;
+            const bottomCtx = bottomCanvas.getContext('2d');
+            bottomCtx.fillStyle = '#F4E8D0';
+            bottomCtx.fillRect(0, 0, bottomCanvas.width, bottomCanvas.height);
+            for (let i = 0; i < bottomCanvas.width; i += 3) {
+                bottomCtx.strokeStyle = `rgba(180, 160, 140, ${0.08 + Math.random() * 0.05})`;
+                bottomCtx.lineWidth = 0.5;
+                bottomCtx.beginPath();
+                bottomCtx.moveTo(i, 0);
+                bottomCtx.lineTo(i, bottomCanvas.height);
+                bottomCtx.stroke();
+            }
+            const bottomGradient = bottomCtx.createLinearGradient(0, 0, 0, bottomCanvas.height);
+            bottomGradient.addColorStop(0, 'rgba(100, 80, 60, 0.12)');
+            bottomGradient.addColorStop(1, 'rgba(80, 60, 40, 0.03)');
+            bottomCtx.fillStyle = bottomGradient;
+            bottomCtx.fillRect(0, 0, bottomCanvas.width, bottomCanvas.height);
+            const bottomTexture = new THREE.CanvasTexture(bottomCanvas);
+            bottomTexture.anisotropy = renderer.capabilities.getMaxAnisotropy();
+            const bottomBumpTexture = new THREE.CanvasTexture(bottomCanvas);
+            const bottomMaterial = new THREE.MeshStandardMaterial({
+                map: bottomTexture,
+                bumpMap: bottomBumpTexture,
+                bumpScale: 0.014,
+                roughness: 0.85,
+                metalness: 0.0,
+                side: THREE.DoubleSide
+            });
+            const bottomEdge = new THREE.Mesh(bottomGeometry, bottomMaterial);
+            bottomEdge.position.y = -height / 2;
+            bottomEdge.rotation.x = Math.PI / 2;
+            bottomEdge.name = 'bottomEdge';
+            group.add(bottomEdge);
+
+            const rightGeometry = new THREE.PlaneGeometry(depth, height);
+            const canvas = document.createElement('canvas');
+            canvas.width = 512;
+            canvas.height = 2048;
+            const ctx = canvas.getContext('2d');
+            ctx.fillStyle = '#F4E8D0';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            const depthGradient = ctx.createLinearGradient(0, 0, canvas.width, 0);
+            depthGradient.addColorStop(0, 'rgba(80, 70, 60, 0.12)');
+            depthGradient.addColorStop(0.15, 'rgba(30, 25, 20, 0.04)');
+            depthGradient.addColorStop(0.85, 'rgba(0, 0, 0, 0.02)');
+            depthGradient.addColorStop(1, 'rgba(60, 50, 40, 0.10)');
+            ctx.fillStyle = depthGradient;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.strokeStyle = 'rgba(0, 0, 0, 0.08)';
+            ctx.lineWidth = 0.4;
+            for (let i = 2; i < canvas.height; i += 3) {
+                ctx.beginPath();
+                ctx.moveTo(10, i);
+                ctx.lineTo(canvas.width - 10, i);
+                ctx.stroke();
+            }
+            ctx.globalAlpha = 0.02;
+            for (let i = 0; i < 200; i++) {
+                const x = Math.random() * canvas.width;
+                const y = Math.random() * canvas.height;
+                const size = Math.random() * 2;
+                ctx.fillStyle = Math.random() > 0.5 ? 'rgba(0,0,0,0.5)' : 'rgba(255,255,255,0.5)';
+                ctx.fillRect(x, y, size, size);
+            }
+            ctx.globalAlpha = 1;
+            const bindingGradient = ctx.createLinearGradient(0, 0, 30, 0);
+            bindingGradient.addColorStop(0, 'rgba(0, 0, 0, 0.18)');
+            bindingGradient.addColorStop(0.5, 'rgba(0, 0, 0, 0.08)');
+            bindingGradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+            ctx.fillStyle = bindingGradient;
+            ctx.fillRect(0, 0, 30, canvas.height);
+            ctx.strokeStyle = 'rgba(0, 0, 0, 0.08)';
+            ctx.lineWidth = 0.5;
+            ctx.beginPath();
+            ctx.moveTo(canvas.width - 1, 0);
+            ctx.lineTo(canvas.width - 1, canvas.height);
+            ctx.stroke();
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.15)';
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            ctx.moveTo(canvas.width / 2, 0);
+            ctx.lineTo(canvas.width / 2, canvas.height);
+            ctx.stroke();
+            const pageTexture = new THREE.CanvasTexture(canvas);
+            pageTexture.anisotropy = renderer.capabilities.getMaxAnisotropy();
+            pageTexture.needsUpdate = true;
+            const bumpCanvas = document.createElement('canvas');
+            bumpCanvas.width = canvas.width;
+            bumpCanvas.height = canvas.height;
+            const bumpCtx = bumpCanvas.getContext('2d');
+            bumpCtx.fillStyle = 'rgb(128,128,128)';
+            bumpCtx.fillRect(0, 0, bumpCanvas.width, bumpCanvas.height);
+            bumpCtx.strokeStyle = 'rgb(112,112,112)';
+            bumpCtx.lineWidth = 1;
+            for (let i = 2; i < bumpCanvas.height; i += 3) {
+                bumpCtx.beginPath();
+                bumpCtx.moveTo(12, i);
+                bumpCtx.lineTo(bumpCanvas.width - 12, i);
+                bumpCtx.stroke();
+            }
+            const pageBumpTexture = new THREE.CanvasTexture(bumpCanvas);
+            pageBumpTexture.anisotropy = renderer.capabilities.getMaxAnisotropy();
+            const rightMaterial = new THREE.MeshStandardMaterial({
+                map: pageTexture,
+                bumpMap: pageBumpTexture,
+                bumpScale: 0.012,
+                roughness: 0.85,
+                metalness: 0.0,
+                side: THREE.DoubleSide
+            });
+            const rightEdge = new THREE.Mesh(rightGeometry, rightMaterial);
+            rightEdge.position.x = width / 2;
+            rightEdge.rotation.y = -Math.PI / 2;
+            rightEdge.renderOrder = 1;
+            rightEdge.name = 'pages';
+            group.add(rightEdge);
+
+            return group;
+        }
+
+        function createBookShadow(bookData) {
+            const width = bookData.dimensions.width;
+            const depth = Math.max(0.55, bookData.dimensions.depth * 3.0);
+
+            const sCanvas = document.createElement('canvas');
+            sCanvas.width = 512;
+            sCanvas.height = 256;
+            const sCtx = sCanvas.getContext('2d');
+
+            const cx = sCanvas.width / 2;
+            const cy = sCanvas.height / 2;
+            const r = Math.min(cx, cy) * 0.95;
+            const grad = sCtx.createRadialGradient(cx, cy, 0, cx, cy, r);
+            grad.addColorStop(0.0, 'rgba(0,0,0,0.14)');
+            grad.addColorStop(0.4, 'rgba(0,0,0,0.08)');
+            grad.addColorStop(1.0, 'rgba(0,0,0,0)');
+            sCtx.fillStyle = grad;
+            sCtx.fillRect(0, 0, sCanvas.width, sCanvas.height);
+
+            const tex = new THREE.CanvasTexture(sCanvas);
+            tex.anisotropy = renderer.capabilities.getMaxAnisotropy();
+
+            const geo = new THREE.PlaneGeometry(width * 1.15, depth);
+            const mat = new THREE.MeshBasicMaterial({ map: tex, transparent: true, depthWrite: false });
+            const shadowMesh = new THREE.Mesh(geo, mat);
+            shadowMesh.rotation.x = -Math.PI / 2;
+            shadowMesh.position.y = -bookData.dimensions.height / 2 - 0.02;
+            shadowMesh.renderOrder = 0;
+            return shadowMesh;
+        }
+
+        function extractDominantColor(texture) {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            const img = texture.image;
+
+            const sampleSize = 64;
+            canvas.width = sampleSize;
+            canvas.height = sampleSize;
+
+            ctx.fillStyle = '#FFFFFF';
+            ctx.fillRect(0, 0, sampleSize, sampleSize);
+            ctx.drawImage(img, 0, 0, sampleSize, sampleSize);
+
+            const imageData = ctx.getImageData(0, 0, sampleSize, sampleSize);
+            const data = imageData.data;
+
+            const colorCounts = {};
+            const sampleStep = 4;
+
+            for (let y = 0; y < sampleSize; y += sampleStep) {
+                for (let x = 0; x < sampleSize; x += sampleStep) {
+                    const idx = (y * sampleSize + x) * 4;
+                    const r = data[idx];
+                    const g = data[idx + 1];
+                    const b = data[idx + 2];
+                    const a = data[idx + 3];
+
+                    if (a < 128) continue;
+
+                    const roundedR = Math.round(r / 10) * 10;
+                    const roundedG = Math.round(g / 10) * 10;
+                    const roundedB = Math.round(b / 10) * 10;
+
+                    const colorKey = `${roundedR},${roundedG},${roundedB}`;
+                    colorCounts[colorKey] = (colorCounts[colorKey] || 0) + 1;
+                }
+            }
+
+            let mostCommon = null;
+            let maxCount = 0;
+
+            for (const [colorKey, count] of Object.entries(colorCounts)) {
+                if (count > maxCount) {
+                    maxCount = count;
+                    mostCommon = colorKey;
+                }
+            }
+
+            if (mostCommon) {
+                const [r, g, b] = mostCommon.split(',').map(Number);
+                if (r === 255 && g === 255 && b === 255) {
+                    return 0xf5f5f5;
+                }
+                if (r <= 20 && g <= 20 && b <= 20) {
+                    return 0x1a1a1a;
+                }
+                return (r << 16) | (g << 8) | b;
+            }
+
+            let r = 0, g = 0, b = 0;
+            let count = 0;
+
+            for (let i = 0; i < data.length; i += 4) {
+                r += data[i];
+                g += data[i + 1];
+                b += data[i + 2];
+                count++;
+            }
+
+            r = Math.floor(r / count);
+            g = Math.floor(g / count);
+            b = Math.floor(b / count);
+
+            return (r << 16) | (g << 8) | b;
+        }
+
+        function applyTextureToBook(book, texture, target = 'cover') {
+            const part = book.children.find(child => child.name === target);
+            if (part && part.material) {
+                texture.wrapS = THREE.ClampToEdgeWrapping;
+                texture.wrapT = THREE.ClampToEdgeWrapping;
+                texture.repeat.set(1, 1);
+                texture.magFilter = THREE.LinearFilter;
+                texture.minFilter = THREE.LinearMipmapLinearFilter;
+                texture.anisotropy = renderer.capabilities.getMaxAnisotropy();
+                texture.generateMipmaps = true;
+
+                if (target === 'cover' || target === 'backCover') {
+                    const spineColor = book.userData.spineColor || 0xf5f5f5;
+                    const pageColor = 0xF4E8D0;
+
+                    const pageCanvas = document.createElement('canvas');
+                    pageCanvas.width = 64;
+                    pageCanvas.height = 256;
+                    const pageCtx = pageCanvas.getContext('2d');
+
+                    pageCtx.fillStyle = '#F4E8D0';
+                    pageCtx.fillRect(0, 0, pageCanvas.width, pageCanvas.height);
+
+                    for (let i = 0; i < pageCanvas.height; i += 2) {
+                        pageCtx.strokeStyle = `rgba(180, 160, 140, ${0.1 + Math.random() * 0.1})`;
+                        pageCtx.lineWidth = 0.5;
+                        pageCtx.beginPath();
+                        pageCtx.moveTo(0, i);
+                        pageCtx.lineTo(pageCanvas.width, i);
+                        pageCtx.stroke();
+                    }
+
+                    for (let i = 0; i < 50; i++) {
+                        const x = Math.random() * pageCanvas.width;
+                        const y = Math.random() * pageCanvas.height;
+                        const brightness = 200 + Math.random() * 40;
+                        pageCtx.fillStyle = `rgba(${brightness}, ${brightness-10}, ${brightness-20}, 0.3)`;
+                        pageCtx.fillRect(x, y, 1, 1);
+                    }
+
+                    const pageTexture = new THREE.CanvasTexture(pageCanvas);
+                    pageTexture.anisotropy = renderer.capabilities.getMaxAnisotropy();
+
+                    const materials = [
+                        new THREE.MeshStandardMaterial({ map: pageTexture, roughness: 0.9, metalness: 0 }),
+                        new THREE.MeshStandardMaterial({ color: spineColor, roughness: 0.7, metalness: 0.02 }),
+                        new THREE.MeshStandardMaterial({ color: pageColor, roughness: 0.9, metalness: 0 }),
+                        new THREE.MeshStandardMaterial({ color: pageColor, roughness: 0.9, metalness: 0 }),
+                        target === 'cover' ?
+                            new THREE.MeshStandardMaterial({ map: texture, roughness: 0.55, metalness: 0.04 }) :
+                            new THREE.MeshStandardMaterial({ color: part.material.color, roughness: 0.6, metalness: 0.03 }),
+                        target === 'backCover' ?
+                            new THREE.MeshStandardMaterial({ map: texture, roughness: 0.6, metalness: 0.03 }) :
+                            new THREE.MeshStandardMaterial({ color: part.material.color, roughness: 0.6, metalness: 0.03 })
+                    ];
+                    part.material = materials;
+                } else if (target === 'spine') {
+                    const spineColor = extractDominantColor(texture);
+                    book.userData.spineColor = spineColor;
+
+                    const materials = [
+                        new THREE.MeshStandardMaterial({ color: spineColor, roughness: 0.7, metalness: 0.02 }),
+                        new THREE.MeshStandardMaterial({ map: texture, roughness: 0.7, metalness: 0.02 }),
+                        new THREE.MeshStandardMaterial({ color: spineColor, roughness: 0.7, metalness: 0.02 }),
+                        new THREE.MeshStandardMaterial({ color: spineColor, roughness: 0.7, metalness: 0.02 }),
+                        new THREE.MeshStandardMaterial({ color: spineColor, roughness: 0.7, metalness: 0.02 }),
+                        new THREE.MeshStandardMaterial({ color: spineColor, roughness: 0.7, metalness: 0.02 })
+                    ];
+                    part.material = materials;
+
+                    const cover = book.children.find(child => child.name === 'cover');
+                    const backCover = book.children.find(child => child.name === 'backCover');
+
+                    if (cover && Array.isArray(cover.material)) {
+                        cover.material[1].color.setHex(spineColor);
+                        cover.material[1].needsUpdate = true;
+                    }
+
+                    if (backCover && Array.isArray(backCover.material)) {
+                        backCover.material[1].color.setHex(spineColor);
+                        backCover.material[1].needsUpdate = true;
+                    }
+                }
+                part.material.needsUpdate = true;
+
+                if (target === 'cover') {
+                    const dominantColor = extractDominantColor(texture);
+                    const backCover = book.children.find(child => child.name === 'backCover');
+                    if (backCover && backCover.material) {
+                        if (Array.isArray(backCover.material)) {
+                            backCover.material[5].color.setHex(dominantColor);
+                            backCover.material.forEach(mat => mat.needsUpdate = true);
+                        } else {
+                            backCover.material.color.setHex(dominantColor);
+                            backCover.material.needsUpdate = true;
+                        }
+                    }
+                }
+            }
+        }
+
+        function setupEventListeners() {
+            let touchStartX = 0;
+            let touchStartY = 0;
+            let isSwiping = false;
+
+            renderer.domElement.addEventListener('touchstart', (e) => {
+                touchStartX = e.touches[0].clientX;
+                touchStartY = e.touches[0].clientY;
+                isSwiping = false;
+                stopAutoScroll();
+            }, { passive: true });
+
+            renderer.domElement.addEventListener('touchmove', (e) => {
+                if (!isSwiping) {
+                    const deltaX = Math.abs(e.touches[0].clientX - touchStartX);
+                    const deltaY = Math.abs(e.touches[0].clientY - touchStartY);
+                    if (deltaX > 10 || deltaY > 10) {
+                        isSwiping = true;
+                    }
+                }
+            }, { passive: true });
+
+            renderer.domElement.addEventListener('touchend', (e) => {
+                if (isSwiping) {
+                    const touchEndX = e.changedTouches[0].clientX;
+                    const deltaX = touchEndX - touchStartX;
+
+                    if (Math.abs(deltaX) > 50) {
+                        if (deltaX > 0) {
+                            previousBook();
+                        } else {
+                            nextBook();
+                        }
+                    }
+                }
+                startAutoScroll();
+            }, { passive: true });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowLeft') {
+                    e.preventDefault();
+                    previousBook();
+                } else if (e.key === 'ArrowRight') {
+                    e.preventDefault();
+                    nextBook();
+                }
+            });
+
+            renderer.domElement.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                const now = Date.now();
+                const elapsed = now - lastWheelTime;
+                lastWheelTime = now;
+
+                if (elapsed > wheelResetDelay) {
+                    wheelDeltaAccumulator = 0;
+                    wheelMovedInGesture = false;
+                }
+
+                if (wheelGestureTimer) clearTimeout(wheelGestureTimer);
+                wheelGestureTimer = setTimeout(() => {
+                    wheelDeltaAccumulator = 0;
+                    wheelMovedInGesture = false;
+                }, wheelResetDelay);
+
+                if (wheelMovedInGesture) return;
+
+                wheelDeltaAccumulator += Math.abs(e.deltaY);
+
+                if (wheelDeltaAccumulator >= wheelThreshold) {
+                    if (e.deltaY > 0) {
+                        nextBook();
+                    } else {
+                        previousBook();
+                    }
+                    wheelMovedInGesture = true;
+                    wheelDeltaAccumulator = 0;
+                }
+            }, { passive: false });
+
+            document.getElementById('prevArrow').addEventListener('click', previousBook);
+            document.getElementById('nextArrow').addEventListener('click', nextBook);
+
+            window.addEventListener('resize', () => {
+                const aspectRatio = window.innerWidth / window.innerHeight;
+                const frustumSize = 6.06;
+                camera.left = frustumSize * aspectRatio / -2;
+                camera.right = frustumSize * aspectRatio / 2;
+                camera.top = frustumSize / 2;
+                camera.bottom = frustumSize / -2;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+        }
+
+        function moveBooks(deltaBooks) {
+            const bookSpacing = 3;
+            targetRotation += deltaBooks * bookSpacing;
+            const n = booksData.length || 1;
+            currentBook = ((currentBook + deltaBooks) % n + n) % n;
+        }
+
+        function previousBook() { moveBooks(-1); }
+        function nextBook() { moveBooks(1); }
+
+        let autoScrollInterval = null;
+        function startAutoScroll() {
+            if (autoScrollInterval) return;
+            autoScrollInterval = setInterval(() => {
+                nextBook();
+            }, 3000);
+        }
+
+        function stopAutoScroll() {
+            if (autoScrollInterval) {
+                clearInterval(autoScrollInterval);
+                autoScrollInterval = null;
+            }
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+
+            // Smooth rotation with easing
+            const easing = 0.06;
+            currentRotation += (targetRotation - currentRotation) * easing;
+            // Snap to exact stop when close
+            if (Math.abs(targetRotation - currentRotation) < 0.002) {
+                currentRotation = targetRotation;
+            }
+
+            // Update book positions for infinite scrolling
+            const bookSpacing = 3;
+            const totalWidth = booksData.length * bookSpacing;
+
+            // Position 4 rotation values for center focus (frontal view)
+            const position4Rotation = getCenterRotation();
+            const centerThreshold = 0.8; // Distance from center to start transitioning
+            const transitionSpeed = 0.06; // Slower rotation transition for smoother effect
+
+            books.forEach((book, index) => {
+                // Calculate the book's original position including its set offset
+                const setOffset = book.userData.set * totalWidth;
+                const basePosition = book.userData.bookIndex * bookSpacing + setOffset;
+                let newX = basePosition - currentRotation;
+
+                // Wrap around to maintain infinite scrolling
+                while (newX < -totalWidth * 1.5) newX += totalWidth * 3;
+                while (newX > totalWidth * 1.5) newX -= totalWidth * 3;
+
+                book.position.x = newX;
+
+                // Calculate distance from center (0 position)
+                const distanceFromCenter = Math.abs(newX);
+
+                // ANIMATION: Smoothly transition to Position 4 when centered
+                if (book.userData) {
+                    // Calculate interpolation factor based on distance from center
+                    const centerFactor = Math.max(0, 1 - (distanceFromCenter / centerThreshold));
+
+                    // Initialize target rotation if not set
+                    if (!book.userData.targetRotationX) {
+                        book.userData.targetRotationX = book.userData.permanentRotationX;
+                        book.userData.targetRotationY = book.userData.permanentRotationY;
+                        book.userData.targetRotationZ = book.userData.permanentRotationZ;
+                        book.userData.currentRotationX = book.userData.permanentRotationX;
+                        book.userData.currentRotationY = book.userData.permanentRotationY;
+                        book.userData.currentRotationZ = book.userData.permanentRotationZ;
+                    }
+
+                    // Set target rotation based on center factor
+                    if (centerFactor > 0) {
+                        // Interpolate towards Position 4
+                        book.userData.targetRotationX = book.userData.permanentRotationX +
+                            (position4Rotation.x - book.userData.permanentRotationX) * centerFactor;
+                        book.userData.targetRotationY = book.userData.permanentRotationY +
+                            (position4Rotation.y - book.userData.permanentRotationY) * centerFactor;
+                        book.userData.targetRotationZ = book.userData.permanentRotationZ +
+                            (position4Rotation.z - book.userData.permanentRotationZ) * centerFactor;
+                    } else {
+                        // Return to original rotation
+                        book.userData.targetRotationX = book.userData.permanentRotationX;
+                        book.userData.targetRotationY = book.userData.permanentRotationY;
+                        book.userData.targetRotationZ = book.userData.permanentRotationZ;
+                    }
+
+                    // Smooth transition to target rotation
+                    book.userData.currentRotationX += (book.userData.targetRotationX - book.userData.currentRotationX) * transitionSpeed;
+                    book.userData.currentRotationY += (book.userData.targetRotationY - book.userData.currentRotationY) * transitionSpeed;
+                    book.userData.currentRotationZ += (book.userData.targetRotationZ - book.userData.currentRotationZ) * transitionSpeed;
+
+                    // Apply the smoothly animated rotation
+                    book.rotation.x = book.userData.currentRotationX;
+                    book.rotation.y = book.userData.currentRotationY;
+                    book.rotation.z = book.userData.currentRotationZ;
+                }
+
+                // Keep Y and Z position fixed
+                book.position.y = 0;
+                book.position.z = 0;
+
+                // Keep the fake shadow aligned horizontally under the book
+                if (book.userData && book.userData.shadow) {
+                    const shadow = book.userData.shadow;
+                    shadow.position.x = book.position.x;
+                    shadow.rotation.x = -Math.PI / 2;
+                }
+            });
+
+            renderer.render(scene, camera);
+        }
+
+        window.addEventListener('load', async () => {
+            await init();
+        });
+    </script>
+</body>
+</html>
