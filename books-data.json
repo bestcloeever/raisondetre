@@ -1,6 +1,27 @@
 {
   "books": [
     {
+      "id": "019",
+      "title": "Las malas del cuento",
+      "author": "",
+      "position": "Position 3",
+      "images": {
+        "cover": "covers/las-malas-del-cuento.png",
+        "spine": "spines/las-malas-del-cuento.png",
+        "backCover": null
+      },
+      "colors": {
+        "backCover": "#8B0000",
+        "spine": "#f5f5f5",
+        "pages": "#FFFFF0"
+      },
+      "dimensions": {
+        "width": "auto",
+        "height": "auto",
+        "depth": "auto"
+      }
+    },
+    {
       "id": "001",
       "title": "No vas a heredar la empresa",
       "author": "",
@@ -22,17 +43,17 @@
       }
     },
     {
-      "id": "002",
-      "title": "Regula tu estrés, encuentra tu equilibrio",
+      "id": "021",
+      "title": "Posible",
       "author": "",
       "position": "Position 1",
       "images": {
-        "cover": "covers/regula-tu-estres-encuentra-tu-equilibrio.png",
-        "spine": "spines/regula-tu-estres-encuentra-tu-equilibrio.png",
+        "cover": "covers/posible.png",
+        "spine": "spines/posible.png",
         "backCover": null
       },
       "colors": {
-        "backCover": "#7FB069",
+        "backCover": "#6B5B95",
         "spine": "#f5f5f5",
         "pages": "#FFFFF0"
       },
@@ -43,17 +64,17 @@
       }
     },
     {
-      "id": "003",
-      "title": "Cuñadismo",
+      "id": "009",
+      "title": "Social Queue",
       "author": "",
-      "position": "Position 3",
+      "position": "Position 5",
       "images": {
-        "cover": "covers/cunadismo.png",
-        "spine": "spines/cunadismo.png",
+        "cover": "covers/social-queue.png",
+        "spine": "spines/social-queue.png",
         "backCover": null
       },
       "colors": {
-        "backCover": "#F39C12",
+        "backCover": "#d85577",
         "spine": "#f5f5f5",
         "pages": "#FFFFF0"
       },
@@ -67,7 +88,7 @@
       "id": "017",
       "title": "El futuro es lo que haces hoy",
       "author": "",
-      "position": "Position 5",
+      "position": "Position 2",
       "images": {
         "cover": "covers/el-futuro-es-lo-que-haces-hoy.png",
         "spine": "spines/el-futuro-es-lo-que-haces-hoy.png",
@@ -85,80 +106,17 @@
       }
     },
     {
-      "id": "004",
-      "title": "Escape Book",
-      "author": "",
-      "position": "Position 2",
-      "images": {
-        "cover": "covers/escape-book.png",
-        "spine": "spines/escape-book.png",
-        "backCover": null
-      },
-      "colors": {
-        "backCover": "#8B4513",
-        "spine": "#f5f5f5",
-        "pages": "#FFFFF0"
-      },
-      "dimensions": {
-        "width": "auto",
-        "height": "auto",
-        "depth": "auto"
-      }
-    },
-    {
       "id": "016",
       "title": "Adrian Chico",
       "author": "",
-      "position": "Position 2",
+      "position": "Position 3",
       "images": {
         "cover": "covers/adrian-chico2.png",
         "spine": "spines/adrian-chico2.png",
         "backCover": null
       },
       "colors": {
-        "backCover": "#3498DB",
-        "spine": "#f5f5f5",
-        "pages": "#FFFFF0"
-      },
-      "dimensions": {
-        "width": "auto",
-        "height": "auto",
-        "depth": "auto"
-      }
-    },
-    {
-      "id": "005",
-      "title": "Hellfriend",
-      "author": "",
-      "position": "Position 5",
-      "images": {
-        "cover": "covers/hellfriend.png",
-        "spine": "spines/hellfriend.png",
-        "backCover": null
-      },
-      "colors": {
-        "backCover": "#DC143C",
-        "spine": "#f5f5f5",
-        "pages": "#FFFFF0"
-      },
-      "dimensions": {
-        "width": "auto",
-        "height": "auto",
-        "depth": "auto"
-      }
-    },
-    {
-      "id": "018",
-      "title": "Grief",
-      "author": "",
-      "position": "Position 3",
-      "images": {
-        "cover": "covers/grief.png",
-        "spine": "spines/grief.png",
-        "backCover": null
-      },
-      "colors": {
-        "backCover": "#FFB347",
+        "backCover": "#365996",
         "spine": "#f5f5f5",
         "pages": "#FFFFF0"
       },
@@ -190,80 +148,17 @@
       }
     },
     {
-      "id": "007",
-      "title": "El retorn de la magia",
-      "author": "",
-      "position": "Position 2",
-      "images": {
-        "cover": "covers/el-retorn-de-la-magia.png",
-        "spine": "spines/el-retorn-de-la-magia.png",
-        "backCover": null
-      },
-      "colors": {
-        "backCover": "#9B59B6",
-        "spine": "#f5f5f5",
-        "pages": "#FFFFF0"
-      },
-      "dimensions": {
-        "width": "auto",
-        "height": "auto",
-        "depth": "auto"
-      }
-    },
-    {
-      "id": "008",
-      "title": "Forever Girls",
-      "author": "",
-      "position": "Position 3",
-      "images": {
-        "cover": "covers/forever-girls.png",
-        "spine": "spines/forever-girls.png",
-        "backCover": null
-      },
-      "colors": {
-        "backCover": "#FF69B4",
-        "spine": "#f5f5f5",
-        "pages": "#FFFFF0"
-      },
-      "dimensions": {
-        "width": "auto",
-        "height": "auto",
-        "depth": "auto"
-      }
-    },
-    {
-      "id": "009",
-      "title": "Social Queue",
-      "author": "",
-      "position": "Position 1",
-      "images": {
-        "cover": "covers/social-queue.png",
-        "spine": "spines/social-queue.png",
-        "backCover": null
-      },
-      "colors": {
-        "backCover": "#1ABC9C",
-        "spine": "#f5f5f5",
-        "pages": "#FFFFF0"
-      },
-      "dimensions": {
-        "width": "auto",
-        "height": "auto",
-        "depth": "auto"
-      }
-    },
-    {
-      "id": "010",
-      "title": "Sucre",
+      "id": "014",
+      "title": "Ascens dels rebels",
       "author": "",
       "position": "Position 5",
       "images": {
-        "cover": "covers/sucre.png",
-        "spine": "spines/sucre.png",
+        "cover": "covers/ascens-dels-rebels.png",
+        "spine": "spines/ascens-dels-rebels.png",
         "backCover": null
       },
       "colors": {
-        "backCover": "#FFB6C1",
+        "backCover": "#2C3E50",
         "spine": "#f5f5f5",
         "pages": "#FFFFF0"
       },
@@ -274,17 +169,143 @@
       }
     },
     {
-      "id": "011",
-      "title": "Un gos a les últimes",
+      "id": "018",
+      "title": "Grief",
       "author": "",
       "position": "Position 2",
       "images": {
-        "cover": "covers/un-gos-a-les-ultimes.png",
-        "spine": "spines/un-gos-a-les-ultimes.png",
+        "cover": "covers/grief.png",
+        "spine": "spines/grief.png",
         "backCover": null
       },
       "colors": {
-        "backCover": "#D2691E",
+        "backCover": "#FFB347",
+        "spine": "#f5f5f5",
+        "pages": "#FFFFF0"
+      },
+      "dimensions": {
+        "width": "auto",
+        "height": "auto",
+        "depth": "auto"
+      }
+    },
+    {
+      "id": "022",
+      "title": "Tessa Soul",
+      "author": "",
+      "position": "Position 3",
+      "images": {
+        "cover": "covers/tessa-soul.png",
+        "spine": "spines/tessa-soul.png",
+        "backCover": null
+      },
+      "colors": {
+        "backCover": "#E8B4B8",
+        "spine": "#f5f5f5",
+        "pages": "#FFFFF0"
+      },
+      "dimensions": {
+        "width": "auto",
+        "height": "auto",
+        "depth": "auto"
+      }
+    },
+    {
+      "id": "020",
+      "title": "Jugar, leer, crecer",
+      "author": "",
+      "position": "Position 1",
+      "images": {
+        "cover": "covers/jugar-leer-crecer.png",
+        "spine": "spines/jugar-leer-crecer.png",
+        "backCover": null
+      },
+      "colors": {
+        "backCover": "#FFD700",
+        "spine": "#f5f5f5",
+        "pages": "#FFFFF0"
+      },
+      "dimensions": {
+        "width": "auto",
+        "height": "auto",
+        "depth": "auto"
+      }
+    },
+    {
+      "id": "005",
+      "title": "Hellfriend",
+      "author": "",
+      "position": "Position 4",
+      "images": {
+        "cover": "covers/hellfriend.png",
+        "spine": "spines/hellfriend.png",
+        "backCover": null
+      },
+      "colors": {
+        "backCover": "#DC143C",
+        "spine": "#f5f5f5",
+        "pages": "#FFFFF0"
+      },
+      "dimensions": {
+        "width": "auto",
+        "height": "auto",
+        "depth": "auto"
+      }
+    },
+    {
+      "id": "023",
+      "title": "Jugar",
+      "author": "",
+      "position": "Position 5",
+      "images": {
+        "cover": "covers/jugar.png",
+        "spine": "spines/jugar.png",
+        "backCover": null
+      },
+      "colors": {
+        "backCover": "#F0E68C",
+        "spine": "#f5f5f5",
+        "pages": "#FFFFF0"
+      },
+      "dimensions": {
+        "width": "auto",
+        "height": "auto",
+        "depth": "auto"
+      }
+    },
+    {
+      "id": "002",
+      "title": "Regula tu estrés, encuentra tu equilibrio",
+      "author": "",
+      "position": "Position 2",
+      "images": {
+        "cover": "covers/regula-tu-estres-encuentra-tu-equilibrio.png",
+        "spine": "spines/regula-tu-estres-encuentra-tu-equilibrio.png",
+        "backCover": null
+      },
+      "colors": {
+        "backCover": "#7FB069",
+        "spine": "#f5f5f5",
+        "pages": "#FFFFF0"
+      },
+      "dimensions": {
+        "width": "auto",
+        "height": "auto",
+        "depth": "auto"
+      }
+    },
+    {
+      "id": "015",
+      "title": "Wen i Long",
+      "author": "",
+      "position": "Position 3",
+      "images": {
+        "cover": "covers/wen-i-long.png",
+        "spine": "spines/wen-i-long.png",
+        "backCover": null
+      },
+      "colors": {
+        "backCover": "#4B0082",
         "spine": "#f5f5f5",
         "pages": "#FFFFF0"
       },
@@ -316,80 +337,17 @@
       }
     },
     {
-      "id": "013",
-      "title": "Silencio",
-      "author": "",
-      "position": "Position 3",
-      "images": {
-        "cover": "covers/silencio.png",
-        "spine": "spines/silencio.png",
-        "backCover": null
-      },
-      "colors": {
-        "backCover": "#696969",
-        "spine": "#f5f5f5",
-        "pages": "#FFFFF0"
-      },
-      "dimensions": {
-        "width": "auto",
-        "height": "auto",
-        "depth": "auto"
-      }
-    },
-    {
-      "id": "014",
-      "title": "Ascens dels rebels",
-      "author": "",
-      "position": "Position 1",
-      "images": {
-        "cover": "covers/ascens-dels-rebels.png",
-        "spine": "spines/ascens-dels-rebels.png",
-        "backCover": null
-      },
-      "colors": {
-        "backCover": "#2C3E50",
-        "spine": "#f5f5f5",
-        "pages": "#FFFFF0"
-      },
-      "dimensions": {
-        "width": "auto",
-        "height": "auto",
-        "depth": "auto"
-      }
-    },
-    {
-      "id": "015",
-      "title": "Wen i Long",
+      "id": "003",
+      "title": "Cuñadismo",
       "author": "",
       "position": "Position 5",
       "images": {
-        "cover": "covers/wen-i-long.png",
-        "spine": "spines/wen-i-long.png",
+        "cover": "covers/cunadismo.png",
+        "spine": "spines/cunadismo.png",
         "backCover": null
       },
       "colors": {
-        "backCover": "#4B0082",
-        "spine": "#f5f5f5",
-        "pages": "#FFFFF0"
-      },
-      "dimensions": {
-        "width": "auto",
-        "height": "auto",
-        "depth": "auto"
-      }
-    },
-    {
-      "id": "019",
-      "title": "Las malas del cuento",
-      "author": "",
-      "position": "Position 3",
-      "images": {
-        "cover": "covers/las-malas-del-cuento.png",
-        "spine": "spines/las-malas-del-cuento.png",
-        "backCover": null
-      },
-      "colors": {
-        "backCover": "#8B0000",
+        "backCover": "#F39C12",
         "spine": "#f5f5f5",
         "pages": "#FFFFF0"
       },

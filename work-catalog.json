@@ -231,16 +231,6 @@
       "exploration": "Y"
     },
     {
-      "id": "028",
-      "filename": "escape book-2.png",
-      "title": "Escape Book - Alt Cover 2",
-      "imprint": "",
-      "publisher": "",
-      "year": "",
-      "category": "non fiction / YA",
-      "exploration": "Y"
-    },
-    {
       "id": "029",
       "filename": "hombresfueradeserie.png",
       "title": "Hombres fuera de serie",
@@ -279,16 +269,6 @@
       "year": "",
       "category": "non fiction",
       "exploration": "Y"
-    },
-    {
-      "id": "033",
-      "filename": "adrian-chico.png",
-      "title": "Adrian Chico - Alt Cover",
-      "imprint": "bruguera",
-      "publisher": "PRH",
-      "year": "2026",
-      "category": "non fiction",
-      "exploration": "N"
     },
     {
       "id": "034",
@@ -381,16 +361,6 @@
       "exploration": "N"
     },
     {
-      "id": "043",
-      "filename": "grief_2.png",
-      "title": "Grief - Alt Cover",
-      "imprint": "",
-      "publisher": "",
-      "year": "",
-      "category": "non fiction",
-      "exploration": "Y"
-    },
-    {
       "id": "044",
       "filename": "grief_3.png",
       "title": "Grief - Alt Cover 2",
@@ -444,6 +414,96 @@
       "id": "049",
       "filename": "jugar-leer-crecer-4.png",
       "title": "Jugar, leer, crecer - Alt Cover 2",
+      "imprint": "",
+      "publisher": "",
+      "year": "",
+      "category": "non fiction",
+      "exploration": "Y"
+    },
+    {
+      "id": "050",
+      "filename": "jugar-leer-crecer.png",
+      "title": "Jugar, leer, crecer",
+      "imprint": "bruguera",
+      "publisher": "PRH",
+      "year": "2026",
+      "category": "non fiction",
+      "exploration": "N"
+    },
+    {
+      "id": "051",
+      "filename": "super-futbol.png",
+      "title": "Super Futbol",
+      "imprint": "b de blok",
+      "publisher": "PRH",
+      "year": "2026",
+      "category": "non fiction / kids",
+      "exploration": "Y"
+    },
+    {
+      "id": "052",
+      "filename": "misterio-sa.jpg",
+      "title": "Misterio SA",
+      "imprint": "b de blok",
+      "publisher": "PRH",
+      "year": "2026",
+      "category": "fiction / kids",
+      "exploration": "N"
+    },
+    {
+      "id": "053",
+      "filename": "rita1.jpg",
+      "title": "Rita 1",
+      "imprint": "b de blok",
+      "publisher": "PRH",
+      "year": "2026",
+      "category": "fiction / kids",
+      "exploration": "N"
+    },
+    {
+      "id": "054",
+      "filename": "rita2.jpg",
+      "title": "Rita 2",
+      "imprint": "b de blok",
+      "publisher": "PRH",
+      "year": "2026",
+      "category": "fiction / kids",
+      "exploration": "N"
+    },
+    {
+      "id": "055",
+      "filename": "un-cadaver.jpg",
+      "title": "Un Cadáver",
+      "imprint": "molino",
+      "publisher": "PRH",
+      "year": "2026",
+      "category": "fiction / kids",
+      "exploration": "N"
+    },
+    {
+      "id": "056",
+      "filename": "un-santo.jpg",
+      "title": "Un Santo",
+      "imprint": "molino",
+      "publisher": "PRH",
+      "year": "2026",
+      "category": "fiction / kids",
+      "exploration": "N"
+    },
+    {
+      "id": "057",
+      "filename": "tessa-soul.png",
+      "title": "Tessa Soul",
+      "imprint": "b de blok",
+      "publisher": "PRH",
+      "year": "2026",
+      "category": "fiction / kids",
+      "exploration": "N"
+    },
+    {
+      "id": "058",
+      "filename": "posible.png",
+      "title": "Posible",
       "imprint": "",
       "publisher": "",
       "year": "",
