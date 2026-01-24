@@ -111,6 +111,11 @@
             margin: 0 auto;
             text-align: center;
         }
+
+        /* Desktop-only line breaks - hidden on mobile */
+        .br-desktop {
+            display: inline;
+        }
         
         .about-text p {
             font-family: 'Apercu Pro Italic', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
@@ -437,7 +442,12 @@
                 height: auto;
                 min-height: 100vh;
             }
-            
+
+            /* Hide desktop line breaks on mobile */
+            .br-desktop {
+                display: none;
+            }
+
             .header-bg {
                 display: block;
                 height: 90px;
@@ -552,9 +562,9 @@
     <div class="main-content">
         <h1 class="page-title">about raison d'être:</h1>
         <div class="about-text">
-            <p>raison d'être is a concept-first book design studio. we know the cover is your book's first argument so we make it decisive, pairing literary insight with market sense to create covers that get picked up and remembered.</p>
-            <p>our approach blends editorial rigor with commercial clarity—concept development, art direction, illustrator scouting, series systems, and rock-solid prepress. we keep the process simple, the thinking sharp, and the delivery on time.</p>
-            <p>we collaborate in english, spanish, and french with publishers and authors worldwide to deliver memorable, market-smart design.</p>
+            <p>raison d'être is a concept-first book design studio. <br class="br-desktop">we know the cover is your book's first argument so we make it decisive, <br class="br-desktop">pairing literary insight with market sense to create covers that get <br class="br-desktop">picked up and remembered.</p>
+            <p>our approach blends editorial rigor with commercial clarity:<br class="br-desktop">concept development, art direction, illustrator scouting, series systems, <br class="br-desktop">and rock-solid prepress. we keep the process simple, the thinking <br class="br-desktop">sharp, and the delivery on time.</p>
+            <p>we collaborate in english, spanish, and french with publishers <br class="br-desktop">and authors worldwide to deliver memorable, market-smart design.</p>
         </div>
         
         <h2 class="page-title" style="margin-top: 60px;">publishers we've worked with:</h2>
