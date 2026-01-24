@@ -618,25 +618,37 @@
             // const cursorPath = (isDarkMode || hasIntro) ? 'brand/RE-cursor-white.png' : 'brand/RE-cursor-blue.png';
             // applyPngCursorFromSvg(cursorPath, cssSize, [0, 0]);
             
-            // Auto-show menu immediately on page load to draw attention
+            // Auto-show menu to draw attention
+            // Check if intro overlay is showing (first visit)
+            const hasIntroOverlay = document.getElementById('intro-overlay');
+            const hasSeenIntro = sessionStorage.getItem('hasSeenIntro');
+            const referrer = document.referrer;
+            const currentHost = window.location.host;
+            const cameFromSameSite = referrer && referrer.includes(currentHost);
+            const isFirstVisit = hasIntroOverlay && !hasSeenIntro && !cameFromSameSite;
+
+            // Delay longer on first visit (wait for intro to fade), shorter on return visits
+            const initialDelay = isFirstVisit ? 4200 : 100;
+            const showDuration = isFirstVisit ? 2500 : 2000;
+
             setTimeout(() => {
                 const menuContainer = document.querySelector('.menu-container');
                 if (menuContainer) {
                     // Add attention animation
                     menuContainer.classList.add('attention');
-                    
+
                     // Show menu after a very short delay
                     setTimeout(() => {
                         menuContainer.classList.add('auto-show');
-                        
-                        // Hide menu after 2 seconds
+
+                        // Hide menu after showing
                         setTimeout(() => {
                             menuContainer.classList.remove('auto-show');
                             menuContainer.classList.remove('attention');
-                        }, 2000);
+                        }, showDuration);
                     }, 200);
                 }
-            }, 100); // Start animation almost immediately after page load
+            }, initialDelay);
         });
     </script>
     <script>
@@ -1872,18 +1884,29 @@
                 
                 // If this is a cover texture, extract color and apply to back cover
                 if (target === 'cover') {
-                    const dominantColor = extractDominantColor(texture);
-                    const backCover = book.children.find(child => child.name === 'backCover');
-                    if (backCover && backCover.material) {
-                        // For BoxGeometry, update the back face material (index 5)
-                        if (Array.isArray(backCover.material)) {
-                            backCover.material[5].color.setHex(dominantColor);
-                            backCover.material.forEach(mat => mat.needsUpdate = true);
-                        } else {
-                            backCover.material.color.setHex(dominantColor);
-                            backCover.material.needsUpdate = true;
+                    const bookIndex = book.userData.bookIndex;
+                    const actualBookData = booksData[bookIndex % booksData.length];
+                    const bookTitle = actualBookData?.title || '';
+
+                    // Skip dominant color override for specific books that have manually set backCover colors
+                    const skipAutoBackCover = ['Social Queue', 'Adrian Chico'];
+
+                    if (!skipAutoBackCover.includes(bookTitle)) {
+                        const dominantColor = extractDominantColor(texture);
+                        const backCover = book.children.find(child => child.name === 'backCover');
+                        if (backCover && backCover.material) {
+                            // For BoxGeometry, update the back face material (index 5)
+                            if (Array.isArray(backCover.material)) {
+                                backCover.material[5].color.setHex(dominantColor);
+                                backCover.material.forEach(mat => mat.needsUpdate = true);
+                            } else {
+                                backCover.material.color.setHex(dominantColor);
+                                backCover.material.needsUpdate = true;
+                            }
+                            console.log(`Applied dominant color 0x${dominantColor.toString(16)} to back cover`);
                         }
-                        console.log(`Applied dominant color 0x${dominantColor.toString(16)} to back cover`);
+                    } else {
+                        console.log(`Skipping auto back cover color for "${bookTitle}" - using JSON color`);
                     }
                 }
             } else {
