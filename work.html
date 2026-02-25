@@ -145,7 +145,7 @@
         /* Grid layout for book covers */
         .work-grid {
             display: grid;
-            grid-template-columns: repeat(5, 240px);
+            grid-template-columns: repeat(auto-fill, 240px);
             gap: 20px;
             padding: 0 20px;
             justify-content: center;
@@ -408,10 +408,16 @@
 
                 // Filter functionality
                 const filterButtons = document.querySelectorAll('.filter-btn');
-                const activeFilters = new Set(['all']);
+                const activeFilters = new Set(['non fiction']);
 
-                // Set "all" button as active by default
-                document.querySelector('.filter-btn[data-category="all"]').classList.add('active');
+                // Set "non fiction" button as active by default
+                document.querySelector('.filter-btn[data-category="non fiction"]').classList.add('active');
+
+                // Apply initial filter (show only non fiction)
+                document.querySelectorAll('.book-tile').forEach(tile => {
+                    const bookCategories = (tile.dataset.category || '').split(' / ').map(cat => cat.trim());
+                    tile.style.display = bookCategories.some(cat => activeFilters.has(cat)) ? '' : 'none';
+                });
 
                 filterButtons.forEach(button => {
                     button.addEventListener('click', () => {
