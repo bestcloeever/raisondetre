@@ -85,6 +85,27 @@
       }
     },
     {
+      "id": "024",
+      "title": "Plan B",
+      "author": "",
+      "position": "Position 2",
+      "images": {
+        "cover": "covers/plan-b.webp",
+        "spine": "spines/plan-b.webp",
+        "backCover": null
+      },
+      "colors": {
+        "backCover": "#D42B2B",
+        "spine": "#f5f5f5",
+        "pages": "#FFFFF0"
+      },
+      "dimensions": {
+        "width": "auto",
+        "height": "auto",
+        "depth": "auto"
+      }
+    },
+    {
       "id": "017",
       "title": "El futuro es lo que haces hoy",
       "author": "",
