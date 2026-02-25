@@ -2,7 +2,7 @@
   "books": [
     {
       "id": "001",
-      "filename": "No vas a heredar la empresa.png",
+      "filename": "No vas a heredar la empresa.webp",
       "title": "No vas a heredar la empresa",
       "imprint": "bruguera",
       "publisher": "PRH",
@@ -12,8 +12,8 @@
     },
     {
       "id": "002",
-      "filename": "regula-tu-estres-encuentra-tu-equilibrio.png",
-      "title": "Regula tu estrés, encuentra tu equilibrio",
+      "filename": "regula-tu-estres-encuentra-tu-equilibrio.webp",
+      "title": "Regula tu estr\u00e9s, encuentra tu equilibrio",
       "imprint": "bruguera",
       "publisher": "PRH",
       "year": "2025",
@@ -22,7 +22,7 @@
     },
     {
       "id": "004",
-      "filename": "Escape Book.png",
+      "filename": "Escape Book.webp",
       "title": "Escape Book",
       "imprint": "molino",
       "publisher": "PRH",
@@ -32,7 +32,7 @@
     },
     {
       "id": "005",
-      "filename": "Hellfriend.png",
+      "filename": "Hellfriend.webp",
       "title": "Hellfriend",
       "imprint": "molino",
       "publisher": "PRH",
@@ -42,7 +42,7 @@
     },
     {
       "id": "006",
-      "filename": "Dioses y Monstruos.png",
+      "filename": "Dioses y Monstruos.webp",
       "title": "Dioses y Monstruos",
       "imprint": "molino",
       "publisher": "PRH",
@@ -52,7 +52,7 @@
     },
     {
       "id": "007",
-      "filename": "El retorn de la magia.png",
+      "filename": "El retorn de la magia.webp",
       "title": "El retorn de la magia",
       "imprint": "la galera",
       "publisher": "abacus",
@@ -62,7 +62,7 @@
     },
     {
       "id": "008",
-      "filename": "Forever Girls.png",
+      "filename": "Forever Girls.webp",
       "title": "Forever Girls",
       "imprint": "inuk books",
       "publisher": "abacus",
@@ -72,7 +72,7 @@
     },
     {
       "id": "009",
-      "filename": "Social Queue.png",
+      "filename": "Social Queue.webp",
       "title": "Social Queue",
       "imprint": "elastic books",
       "publisher": "abacus",
@@ -82,7 +82,7 @@
     },
     {
       "id": "010",
-      "filename": "Sucre.png",
+      "filename": "Sucre.webp",
       "title": "Sucre",
       "imprint": "inuk books",
       "publisher": "abacus",
@@ -92,8 +92,8 @@
     },
     {
       "id": "011",
-      "filename": "un-gos-a-les-ultimes.png",
-      "title": "Un gos a les últimes",
+      "filename": "un-gos-a-les-ultimes.webp",
+      "title": "Un gos a les \u00faltimes",
       "imprint": "la galera",
       "publisher": "abacus",
       "year": "2025",
@@ -102,7 +102,7 @@
     },
     {
       "id": "012",
-      "filename": "Un verano para siempre.png",
+      "filename": "Un verano para siempre.webp",
       "title": "Un verano para siempre",
       "imprint": "inuk books",
       "publisher": "abacus",
@@ -112,7 +112,7 @@
     },
     {
       "id": "013",
-      "filename": "silencio.png",
+      "filename": "silencio.webp",
       "title": "Silencio",
       "imprint": "inuk books",
       "publisher": "abacus",
@@ -122,8 +122,8 @@
     },
     {
       "id": "014",
-      "filename": "ya-no-puedo-mas.png",
-      "title": "Ya no puedo más",
+      "filename": "ya-no-puedo-mas.webp",
+      "title": "Ya no puedo m\u00e1s",
       "imprint": "",
       "publisher": "",
       "year": "2",
@@ -132,7 +132,7 @@
     },
     {
       "id": "015",
-      "filename": "No vas a heredar la empresa-2.png",
+      "filename": "No vas a heredar la empresa-2.webp",
       "title": "No vas a heredar la empresa - Alt Cover",
       "imprint": "",
       "publisher": "",
@@ -142,7 +142,7 @@
     },
     {
       "id": "019",
-      "filename": "hellfriend-2.png",
+      "filename": "hellfriend-2.webp",
       "title": "Hellfriend - Alt Cover 1",
       "imprint": "molino",
       "publisher": "PRH",
@@ -152,7 +152,7 @@
     },
     {
       "id": "020",
-      "filename": "hellfriend-3.png",
+      "filename": "hellfriend-3.webp",
       "title": "Hellfriend - Alt Cover 2",
       "imprint": "molino",
       "publisher": "PRH",
@@ -162,7 +162,7 @@
     },
     {
       "id": "021",
-      "filename": "hellfriend-4.png",
+      "filename": "hellfriend-4.webp",
       "title": "Hellfriend - Alt Cover 3",
       "imprint": "molino",
       "publisher": "PRH",
@@ -172,7 +172,7 @@
     },
     {
       "id": "022",
-      "filename": "hellfriend-5.png",
+      "filename": "hellfriend-5.webp",
       "title": "Hellfriend - Alt Cover 4",
       "imprint": "molino",
       "publisher": "PRH",
@@ -182,7 +182,7 @@
     },
     {
       "id": "023",
-      "filename": "escape book-3.png",
+      "filename": "escape book-3.webp",
       "title": "Escape Book - Alt Cover",
       "imprint": "molino",
       "publisher": "PRH",
@@ -192,7 +192,7 @@
     },
     {
       "id": "024",
-      "filename": "Ascens dels rebels.png",
+      "filename": "Ascens dels rebels.webp",
       "title": "Ascens dels rebels",
       "imprint": "elastic books",
       "publisher": "abacus",
@@ -202,7 +202,7 @@
     },
     {
       "id": "025",
-      "filename": "No vas a heredar la empresa-3.png",
+      "filename": "No vas a heredar la empresa-3.webp",
       "title": "No vas a heredar la empresa - Alt Cover 2",
       "imprint": "",
       "publisher": "",
@@ -212,8 +212,8 @@
     },
     {
       "id": "026",
-      "filename": "ya-no-puedo-mas-2.png",
-      "title": "Ya no puedo más - Alt Cover",
+      "filename": "ya-no-puedo-mas-2.webp",
+      "title": "Ya no puedo m\u00e1s - Alt Cover",
       "imprint": "",
       "publisher": "",
       "year": "",
@@ -222,7 +222,7 @@
     },
     {
       "id": "027",
-      "filename": "el quinto nombre.png",
+      "filename": "el quinto nombre.webp",
       "title": "El quinto nombre",
       "imprint": "",
       "publisher": "",
@@ -232,7 +232,7 @@
     },
     {
       "id": "029",
-      "filename": "hombresfueradeserie.png",
+      "filename": "hombresfueradeserie.webp",
       "title": "Hombres fuera de serie",
       "imprint": "",
       "publisher": "",
@@ -242,7 +242,7 @@
     },
     {
       "id": "030",
-      "filename": "romanos.png",
+      "filename": "romanos.webp",
       "title": "Romanos",
       "imprint": "",
       "publisher": "",
@@ -252,7 +252,7 @@
     },
     {
       "id": "031",
-      "filename": "Wen i Long.png",
+      "filename": "Wen i Long.webp",
       "title": "Wen i Long",
       "imprint": "la galera",
       "publisher": "abacus",
@@ -262,7 +262,7 @@
     },
     {
       "id": "032",
-      "filename": "adrian-chico2.png",
+      "filename": "adrian-chico2.webp",
       "title": "Adrian Chico",
       "imprint": "",
       "publisher": "",
@@ -272,7 +272,7 @@
     },
     {
       "id": "034",
-      "filename": "adrian-chico3.png",
+      "filename": "adrian-chico3.webp",
       "title": "Adrian Chico - Alt Cover 2",
       "imprint": "",
       "publisher": "",
@@ -282,7 +282,7 @@
     },
     {
       "id": "035",
-      "filename": "el-futuro-es-lo-que-haces-hoy.png",
+      "filename": "el-futuro-es-lo-que-haces-hoy.webp",
       "title": "El futuro es lo que haces hoy",
       "imprint": "bruguera",
       "publisher": "PRH",
@@ -292,7 +292,7 @@
     },
     {
       "id": "036",
-      "filename": "el-futuro-es-lo-que-haces-hoy-2.png",
+      "filename": "el-futuro-es-lo-que-haces-hoy-2.webp",
       "title": "El futuro es lo que haces hoy - Alt Cover",
       "imprint": "",
       "publisher": "",
@@ -302,7 +302,7 @@
     },
     {
       "id": "037",
-      "filename": "el-futuro-es-lo-que-haces-hoy-3.png",
+      "filename": "el-futuro-es-lo-que-haces-hoy-3.webp",
       "title": "El futuro es lo que haces hoy - Alt Cover 2",
       "imprint": "",
       "publisher": "",
@@ -312,7 +312,7 @@
     },
     {
       "id": "038",
-      "filename": "el-futuro-es-lo-que-haces-hoy-4.png",
+      "filename": "el-futuro-es-lo-que-haces-hoy-4.webp",
       "title": "El futuro es lo que haces hoy - Alt Cover 3",
       "imprint": "",
       "publisher": "",
@@ -322,7 +322,7 @@
     },
     {
       "id": "039",
-      "filename": "las-malas-del-cuento-02.png",
+      "filename": "las-malas-del-cuento-02.webp",
       "title": "Las malas del cuento",
       "imprint": "",
       "publisher": "",
@@ -332,7 +332,7 @@
     },
     {
       "id": "040",
-      "filename": "las-malas-del-cuento-03.png",
+      "filename": "las-malas-del-cuento-03.webp",
       "title": "Las malas del cuento - Alt Cover",
       "imprint": "",
       "publisher": "",
@@ -342,7 +342,7 @@
     },
     {
       "id": "041",
-      "filename": "las-malas-del-cuento-04.png",
+      "filename": "las-malas-del-cuento-04.webp",
       "title": "Las malas del cuento - Alt Cover 2",
       "imprint": "",
       "publisher": "",
@@ -352,7 +352,7 @@
     },
     {
       "id": "042",
-      "filename": "grief.png",
+      "filename": "grief.webp",
       "title": "Grief",
       "imprint": "bruguera",
       "publisher": "PRH",
@@ -362,7 +362,7 @@
     },
     {
       "id": "044",
-      "filename": "grief_3.png",
+      "filename": "grief_3.webp",
       "title": "Grief - Alt Cover 2",
       "imprint": "",
       "publisher": "",
@@ -372,7 +372,7 @@
     },
     {
       "id": "045",
-      "filename": "grief_4.png",
+      "filename": "grief_4.webp",
       "title": "Grief - Alt Cover 3",
       "imprint": "",
       "publisher": "",
@@ -382,7 +382,7 @@
     },
     {
       "id": "046",
-      "filename": "las-malas-del-cuento.png",
+      "filename": "las-malas-del-cuento.webp",
       "title": "Las malas del cuento",
       "imprint": "bruguera",
       "publisher": "PRH",
@@ -392,7 +392,7 @@
     },
     {
       "id": "047",
-      "filename": "jugar-leer-crecer-2.png",
+      "filename": "jugar-leer-crecer-2.webp",
       "title": "Jugar, leer, crecer",
       "imprint": "",
       "publisher": "",
@@ -402,7 +402,7 @@
     },
     {
       "id": "048",
-      "filename": "jugar-leer-crecer-3.png",
+      "filename": "jugar-leer-crecer-3.webp",
       "title": "Jugar, leer, crecer - Alt Cover",
       "imprint": "",
       "publisher": "",
@@ -412,7 +412,7 @@
     },
     {
       "id": "049",
-      "filename": "jugar-leer-crecer-4.png",
+      "filename": "jugar-leer-crecer-4.webp",
       "title": "Jugar, leer, crecer - Alt Cover 2",
       "imprint": "",
       "publisher": "",
@@ -422,7 +422,7 @@
     },
     {
       "id": "050",
-      "filename": "jugar-leer-crecer.png",
+      "filename": "jugar-leer-crecer.webp",
       "title": "Jugar, leer, crecer",
       "imprint": "bruguera",
       "publisher": "PRH",
@@ -432,7 +432,7 @@
     },
     {
       "id": "051",
-      "filename": "super-futbol.png",
+      "filename": "super-futbol.webp",
       "title": "Super Futbol",
       "imprint": "b de blok",
       "publisher": "PRH",
@@ -473,7 +473,7 @@
     {
       "id": "055",
       "filename": "un-cadaver.jpg",
-      "title": "Un Cadáver",
+      "title": "Un Cad\u00e1ver",
       "imprint": "molino",
       "publisher": "PRH",
       "year": "2026",
@@ -492,7 +492,7 @@
     },
     {
       "id": "057",
-      "filename": "tessa-soul.png",
+      "filename": "tessa-soul.webp",
       "title": "Tessa Soul",
       "imprint": "b de blok",
       "publisher": "PRH",
@@ -502,7 +502,7 @@
     },
     {
       "id": "058",
-      "filename": "posible.png",
+      "filename": "posible.webp",
       "title": "Posible",
       "imprint": "",
       "publisher": "",

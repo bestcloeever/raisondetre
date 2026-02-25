@@ -1,9 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WZB3ZCQPGL"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-WZB3ZCQPGL');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Work - Raison d'Être</title>
+    <title>Our Work - Raison d'Être Book Design Studio</title>
+    <meta name="description" content="Explore our portfolio of book cover designs for publishers like Penguin Random House, Planeta, and Flamboyant. Covers designed to be picked up.">
+    <link rel="canonical" href="https://raisondetrebooks.com/work.html">
+    <!-- Open Graph -->
+    <meta property="og:title" content="Our Work - Raison d'Être Book Design Studio">
+    <meta property="og:description" content="Explore our portfolio of book cover designs for publishers like Penguin Random House, Planeta, and Flamboyant.">
+    <meta property="og:image" content="https://raisondetrebooks.com/brand/RE-logo-text-blue.png">
+    <meta property="og:url" content="https://raisondetrebooks.com/work.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Raison d'Être">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Our Work - Raison d'Être Book Design Studio">
+    <meta name="twitter:description" content="Explore our portfolio of book cover designs for publishers like Penguin Random House, Planeta, and Flamboyant.">
+    <meta name="twitter:image" content="https://raisondetrebooks.com/brand/RE-logo-text-blue.png">
     <link rel="icon" type="image/png" href="brand/RE-cursor-blue.png">
     <link rel="stylesheet" href="shared-navigation.css">
     <link rel="stylesheet" href="mobile-footer.css">
@@ -353,6 +375,7 @@
                     img.src = `work/${book.filename}`;
                     img.alt = book.title;
                     img.className = 'book-cover';
+                    img.loading = 'lazy';
                     
                     const info = document.createElement('div');
                     info.className = 'book-info';
@@ -475,7 +498,24 @@
         </a>
     </div>
 
+    <!-- JSON-LD Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": "Our Work - Raison d'Être",
+      "url": "https://raisondetrebooks.com/work.html",
+      "description": "Portfolio of book cover designs by Raison d'Être for publishers like Penguin Random House, Planeta, and Flamboyant.",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "Raison d'Être",
+        "url": "https://raisondetrebooks.com"
+      }
+    }
+    </script>
     <!-- Vercel Analytics -->
     <script defer src="/_vercel/insights/script.js"></script>
+    <!-- Vercel Speed Insights -->
+    <script defer src="/_vercel/speed-insights/script.js"></script>
 </body>
 </html>
