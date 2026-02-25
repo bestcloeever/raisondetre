@@ -509,6 +509,96 @@
       "year": "",
       "category": "non fiction",
       "exploration": "Y"
+    },
+    {
+      "id": "062",
+      "filename": "recibo2.webp",
+      "title": "Cariño, ¿y este recibo...?",
+      "imprint": "bruguera",
+      "publisher": "PRH",
+      "year": "2026",
+      "category": "non fiction",
+      "exploration": "N"
+    },
+    {
+      "id": "063",
+      "filename": "recibo3.webp",
+      "title": "Cariño, ¿y este recibo...? - Alt Cover",
+      "imprint": "",
+      "publisher": "",
+      "year": "",
+      "category": "non fiction",
+      "exploration": "Y"
+    },
+    {
+      "id": "064",
+      "filename": "plan-b.webp",
+      "title": "Este libro es tu Plan B",
+      "imprint": "bruguera",
+      "publisher": "PRH",
+      "year": "2026",
+      "category": "non fiction",
+      "exploration": "N"
+    },
+    {
+      "id": "065",
+      "filename": "plan-b-2.webp",
+      "title": "Este libro es tu Plan B - Alt Cover",
+      "imprint": "",
+      "publisher": "",
+      "year": "",
+      "category": "non fiction",
+      "exploration": "Y"
+    },
+    {
+      "id": "066",
+      "filename": "plan-b-3.webp",
+      "title": "Este libro es tu Plan B - Alt Cover 2",
+      "imprint": "",
+      "publisher": "",
+      "year": "",
+      "category": "non fiction",
+      "exploration": "Y"
+    },
+    {
+      "id": "003",
+      "filename": "cunadismo.webp",
+      "title": "Cuñadismo",
+      "imprint": "bruguera",
+      "publisher": "PRH",
+      "year": "2025",
+      "category": "non fiction",
+      "exploration": "N"
+    },
+    {
+      "id": "059",
+      "filename": "cunadismo-2.webp",
+      "title": "Cuñadismo - Alt Cover",
+      "imprint": "",
+      "publisher": "",
+      "year": "",
+      "category": "non fiction",
+      "exploration": "Y"
+    },
+    {
+      "id": "060",
+      "filename": "cunadismo-3.webp",
+      "title": "Cuñadismo - Alt Cover 2",
+      "imprint": "",
+      "publisher": "",
+      "year": "",
+      "category": "non fiction",
+      "exploration": "Y"
+    },
+    {
+      "id": "061",
+      "filename": "cunadismo-4.webp",
+      "title": "Cuñadismo - Alt Cover 3",
+      "imprint": "",
+      "publisher": "",
+      "year": "",
+      "category": "non fiction",
+      "exploration": "Y"
     }
   ]
 }
