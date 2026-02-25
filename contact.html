@@ -1,9 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WZB3ZCQPGL"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-WZB3ZCQPGL');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact - Raison d'Être</title>
+    <title>Get a Quote - Raison d'Être Book Design Studio</title>
+    <meta name="description" content="Get a personalised quote for your book cover design. We collaborate in English, Spanish, and French with publishers and authors worldwide.">
+    <link rel="canonical" href="https://raisondetrebooks.com/contact.html">
+    <!-- Open Graph -->
+    <meta property="og:title" content="Get a Quote - Raison d'Être Book Design Studio">
+    <meta property="og:description" content="Get a personalised quote for your book cover design. We collaborate in English, Spanish, and French with publishers and authors worldwide.">
+    <meta property="og:image" content="https://raisondetrebooks.com/brand/RE-logo-text-blue.png">
+    <meta property="og:url" content="https://raisondetrebooks.com/contact.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Raison d'Être">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Get a Quote - Raison d'Être Book Design Studio">
+    <meta name="twitter:description" content="Get a personalised quote for your book cover design. We collaborate in English, Spanish, and French with publishers and authors worldwide.">
+    <meta name="twitter:image" content="https://raisondetrebooks.com/brand/RE-logo-text-blue.png">
     <link rel="icon" type="image/png" href="brand/RE-cursor-blue.png">
     <link rel="stylesheet" href="shared-navigation.css">
     <link rel="stylesheet" href="mobile-footer.css">
@@ -625,6 +647,7 @@
         <a href="mailto:hello@raisondetrebooks.com" style="color: white; text-decoration: none;">hello@raisondetrebooks.com</a>
     </div>
 
+    <h1 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0;">Get a Quote - Raison d'Être Book Design</h1>
     <!-- Desktop Navigation Buttons (fixed position) -->
     <button class="nav-button back-btn" id="backBtn" onclick="goBack()">back</button>
     <button class="nav-button next-btn" id="nextBtn" onclick="goNext()">next <span class="return-arrow">↩</span></button>
@@ -730,13 +753,13 @@ you want!</span>
     <!-- Menu Container with Logo -->
     <div class="menu-container">
         <!-- Mobile menu items (visible on mobile only) -->
-        <a href="work.html" class="menu-item-mobile menu-work">OUR WORK</a>
+        <a href="about-re.html" class="menu-item-mobile menu-about">ABOUT RE</a>
 
         <a href="index.html" style="text-decoration: none;">
             <img src="brand/RE-logo-icon-white.png" alt="Logo Icon" class="bottom-logo" id="bottom-logo-icon">
         </a>
 
-        <a href="about-re.html" class="menu-item-mobile menu-about">ABOUT RE</a>
+        <a href="work.html" class="menu-item-mobile menu-work">OUR WORK</a>
 
         <!-- Desktop menu popup (hidden on mobile) -->
         <div class="menu-popup" style="background: transparent;">
@@ -1072,7 +1095,24 @@ you want!</span>
         updateButtons();
     </script>
 
+    <!-- JSON-LD Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ContactPage",
+      "name": "Get a Quote - Raison d'Être",
+      "url": "https://raisondetrebooks.com/contact.html",
+      "description": "Get a personalised quote for your book cover design.",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "Raison d'Être",
+        "url": "https://raisondetrebooks.com"
+      }
+    }
+    </script>
     <!-- Vercel Analytics -->
     <script defer src="/_vercel/insights/script.js"></script>
+    <!-- Vercel Speed Insights -->
+    <script defer src="/_vercel/speed-insights/script.js"></script>
 </body>
 </html>
