@@ -6,8 +6,8 @@
       "author": "",
       "position": "Position 3",
       "images": {
-        "cover": "covers/las-malas-del-cuento.png",
-        "spine": "spines/las-malas-del-cuento.png",
+        "cover": "covers/las-malas-del-cuento.webp",
+        "spine": "spines/las-malas-del-cuento.webp",
         "backCover": null
       },
       "colors": {
@@ -27,8 +27,8 @@
       "author": "",
       "position": "Position 2",
       "images": {
-        "cover": "covers/no-vas-a-heredar-la-empresa.png",
-        "spine": "spines/no-vas-a-heredar-la-empresa.png",
+        "cover": "covers/no-vas-a-heredar-la-empresa.webp",
+        "spine": "spines/no-vas-a-heredar-la-empresa.webp",
         "backCover": null
       },
       "colors": {
@@ -48,8 +48,8 @@
       "author": "",
       "position": "Position 1",
       "images": {
-        "cover": "covers/posible.png",
-        "spine": "spines/posible.png",
+        "cover": "covers/posible.webp",
+        "spine": "spines/posible.webp",
         "backCover": null
       },
       "colors": {
@@ -69,8 +69,8 @@
       "author": "",
       "position": "Position 5",
       "images": {
-        "cover": "covers/social-queue.png",
-        "spine": "spines/social-queue.png",
+        "cover": "covers/social-queue.webp",
+        "spine": "spines/social-queue.webp",
         "backCover": null
       },
       "colors": {
@@ -90,8 +90,8 @@
       "author": "",
       "position": "Position 2",
       "images": {
-        "cover": "covers/el-futuro-es-lo-que-haces-hoy.png",
-        "spine": "spines/el-futuro-es-lo-que-haces-hoy.png",
+        "cover": "covers/el-futuro-es-lo-que-haces-hoy.webp",
+        "spine": "spines/el-futuro-es-lo-que-haces-hoy.webp",
         "backCover": null
       },
       "colors": {
@@ -111,8 +111,8 @@
       "author": "",
       "position": "Position 3",
       "images": {
-        "cover": "covers/adrian-chico2.png",
-        "spine": "spines/adrian-chico2.png",
+        "cover": "covers/adrian-chico2.webp",
+        "spine": "spines/adrian-chico2.webp",
         "backCover": null
       },
       "colors": {
@@ -132,8 +132,8 @@
       "author": "",
       "position": "Position 1",
       "images": {
-        "cover": "covers/dioses-y-monstruos.png",
-        "spine": "spines/dioses-y-monstruos.png",
+        "cover": "covers/dioses-y-monstruos.webp",
+        "spine": "spines/dioses-y-monstruos.webp",
         "backCover": null
       },
       "colors": {
@@ -153,8 +153,8 @@
       "author": "",
       "position": "Position 5",
       "images": {
-        "cover": "covers/ascens-dels-rebels.png",
-        "spine": "spines/ascens-dels-rebels.png",
+        "cover": "covers/ascens-dels-rebels.webp",
+        "spine": "spines/ascens-dels-rebels.webp",
         "backCover": null
       },
       "colors": {
@@ -174,8 +174,8 @@
       "author": "",
       "position": "Position 2",
       "images": {
-        "cover": "covers/grief.png",
-        "spine": "spines/grief.png",
+        "cover": "covers/grief.webp",
+        "spine": "spines/grief.webp",
         "backCover": null
       },
       "colors": {
@@ -195,8 +195,8 @@
       "author": "",
       "position": "Position 3",
       "images": {
-        "cover": "covers/tessa-soul.png",
-        "spine": "spines/tessa-soul.png",
+        "cover": "covers/tessa-soul.webp",
+        "spine": "spines/tessa-soul.webp",
         "backCover": null
       },
       "colors": {
@@ -216,8 +216,8 @@
       "author": "",
       "position": "Position 1",
       "images": {
-        "cover": "covers/jugar-leer-crecer.png",
-        "spine": "spines/jugar-leer-crecer.png",
+        "cover": "covers/jugar-leer-crecer.webp",
+        "spine": "spines/jugar-leer-crecer.webp",
         "backCover": null
       },
       "colors": {
@@ -237,8 +237,8 @@
       "author": "",
       "position": "Position 4",
       "images": {
-        "cover": "covers/hellfriend.png",
-        "spine": "spines/hellfriend.png",
+        "cover": "covers/hellfriend.webp",
+        "spine": "spines/hellfriend.webp",
         "backCover": null
       },
       "colors": {
@@ -258,8 +258,8 @@
       "author": "",
       "position": "Position 5",
       "images": {
-        "cover": "covers/jugar.png",
-        "spine": "spines/jugar.png",
+        "cover": "covers/jugar.webp",
+        "spine": "spines/jugar.webp",
         "backCover": null
       },
       "colors": {
@@ -275,12 +275,12 @@
     },
     {
       "id": "002",
-      "title": "Regula tu estrés, encuentra tu equilibrio",
+      "title": "Regula tu estr\u00e9s, encuentra tu equilibrio",
       "author": "",
       "position": "Position 2",
       "images": {
-        "cover": "covers/regula-tu-estres-encuentra-tu-equilibrio.png",
-        "spine": "spines/regula-tu-estres-encuentra-tu-equilibrio.png",
+        "cover": "covers/regula-tu-estres-encuentra-tu-equilibrio.webp",
+        "spine": "spines/regula-tu-estres-encuentra-tu-equilibrio.webp",
         "backCover": null
       },
       "colors": {
@@ -300,8 +300,8 @@
       "author": "",
       "position": "Position 3",
       "images": {
-        "cover": "covers/wen-i-long.png",
-        "spine": "spines/wen-i-long.png",
+        "cover": "covers/wen-i-long.webp",
+        "spine": "spines/wen-i-long.webp",
         "backCover": null
       },
       "colors": {
@@ -321,8 +321,8 @@
       "author": "",
       "position": "Position 1",
       "images": {
-        "cover": "covers/un-verano-para-siempre.png",
-        "spine": "spines/un-verano-para-siempre.png",
+        "cover": "covers/un-verano-para-siempre.webp",
+        "spine": "spines/un-verano-para-siempre.webp",
         "backCover": null
       },
       "colors": {
@@ -338,12 +338,12 @@
     },
     {
       "id": "003",
-      "title": "Cuñadismo",
+      "title": "Cu\u00f1adismo",
       "author": "",
       "position": "Position 5",
       "images": {
-        "cover": "covers/cunadismo.png",
-        "spine": "spines/cunadismo.png",
+        "cover": "covers/cunadismo.webp",
+        "spine": "spines/cunadismo.webp",
         "backCover": null
       },
       "colors": {
@@ -394,9 +394,9 @@
     {
       "name": "Position 3",
       "rotation": {
-        "x": -0.10,
+        "x": -0.1,
         "y": -0.55,
-        "z": 0.20
+        "z": 0.2
       }
     },
     {

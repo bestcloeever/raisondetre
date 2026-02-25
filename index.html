@@ -1,9 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WZB3ZCQPGL"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-WZB3ZCQPGL');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Raison d'Être - Book Studio</title>
+    <title>Raison d'Être - Book Design Studio</title>
+    <meta name="description" content="Concept-first book design studio. Editorial and book cover design for publishers and authors worldwide. Covers designed to be picked up.">
+    <link rel="canonical" href="https://raisondetrebooks.com/">
+    <!-- Open Graph -->
+    <meta property="og:title" content="Raison d'Être - Book Design Studio">
+    <meta property="og:description" content="Concept-first book design studio. Editorial and book cover design for publishers and authors worldwide.">
+    <meta property="og:image" content="https://raisondetrebooks.com/brand/RE-logo-text-blue.png">
+    <meta property="og:url" content="https://raisondetrebooks.com/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Raison d'Être">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Raison d'Être - Book Design Studio">
+    <meta name="twitter:description" content="Concept-first book design studio. Editorial and book cover design for publishers and authors worldwide.">
+    <meta name="twitter:image" content="https://raisondetrebooks.com/brand/RE-logo-text-blue.png">
     <link rel="icon" type="image/png" href="brand/RE-cursor-blue.png">
     <link rel="stylesheet" href="shared-navigation.css">
     <link rel="stylesheet" href="mobile-footer.css">
@@ -1186,6 +1208,17 @@
             currentRotation = 0;
             targetRotation = 0;
             const textureLoader = new THREE.TextureLoader();
+            const textureCache = {};
+            function cachedLoadTexture(url, onLoad, onError) {
+                if (textureCache[url]) {
+                    onLoad(textureCache[url]);
+                    return;
+                }
+                textureLoader.load(url, (texture) => {
+                    textureCache[url] = texture;
+                    onLoad(texture);
+                }, undefined, onError);
+            }
             const bookSpacing = 3; // Space between books
             currentAssignedRotations = new Array(booksData.length).fill('');
             // Precompute or load stable preset indices per book id, ensuring no adjacent duplicates
@@ -1250,30 +1283,27 @@
 
                     // Load cover if available
                     if (bookData.images.cover) {
-                        textureLoader.load(
+                        cachedLoadTexture(
                             bookData.images.cover,
                             (texture) => { applyTextureToBook(book, texture, 'cover'); },
-                            undefined,
                             () => { console.log(`Could not load cover for ${bookData.title}`); }
                         );
                     }
 
                     // Load spine image if available
                     if (bookData.images.spine) {
-                        textureLoader.load(
+                        cachedLoadTexture(
                             bookData.images.spine,
                             (texture) => { applyTextureToBook(book, texture, 'spine'); },
-                            undefined,
                             (error) => { console.error(`Could not load spine for ${bookData.title}:`, error); }
                         );
                     }
 
                     // Load back cover if available
                     if (bookData.images.backCover) {
-                        textureLoader.load(
+                        cachedLoadTexture(
                             bookData.images.backCover,
                             (texture) => { applyTextureToBook(book, texture, 'backCover'); },
-                            undefined,
                             () => { console.log(`Could not load back cover for ${bookData.title}`); }
                         );
                     }
@@ -2304,7 +2334,33 @@
         observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
     </script>
 
+    <!-- JSON-LD Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Raison d'Être",
+      "url": "https://raisondetrebooks.com",
+      "logo": "https://raisondetrebooks.com/brand/RE-logo-text-blue.png",
+      "description": "Concept-first book design studio. Editorial and book cover design for publishers and authors worldwide.",
+      "email": "hello@raisondetrebooks.com",
+      "sameAs": [
+        "https://www.instagram.com/cloemakesbooks/"
+      ],
+      "knowsLanguage": ["English", "Spanish", "French"],
+      "makesOffer": {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Book Cover Design",
+          "description": "Concept development, art direction, illustrator scouting, series systems, and prepress for book covers."
+        }
+      }
+    }
+    </script>
     <!-- Vercel Analytics -->
     <script defer src="/_vercel/insights/script.js"></script>
+    <!-- Vercel Speed Insights -->
+    <script defer src="/_vercel/speed-insights/script.js"></script>
 </body>
 </html>
