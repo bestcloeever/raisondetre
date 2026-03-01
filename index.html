@@ -2130,7 +2130,7 @@
             animationFrameId = requestAnimationFrame(animate);
             
             // Smooth rotation with fixed easing (dragging disabled)
-            const easing = 0.06;
+            const easing = 0.12;
             currentRotation += (targetRotation - currentRotation) * easing;
             // Snap to exact stop when close
             if (Math.abs(targetRotation - currentRotation) < 0.002) {
@@ -2146,7 +2146,7 @@
             // Read from JSON presets so it's easy to tweak
             const position4Rotation = getCenterRotation();
             const centerThreshold = 0.8; // Distance from center to start transitioning
-            const transitionSpeed = 0.06; // Slower rotation transition for smoother effect
+            const transitionSpeed = 0.12; // Rotation transition for smooth effect
             
             books.forEach((book, index) => {
                 // Calculate the book's original position including its set offset
