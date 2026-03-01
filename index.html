@@ -1136,10 +1136,26 @@
 
             renderer = new THREE.WebGLRenderer({ antialias: true });
             renderer.setSize(window.innerWidth, window.innerHeight);
-            renderer.setPixelRatio(window.devicePixelRatio);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
             renderer.shadowMap.enabled = false;  // Disable real-time shadows to avoid artifacts
             renderer.shadowMap.type = THREE.PCFSoftShadowMap;
             document.getElementById('canvas-container').appendChild(renderer.domElement);
+
+            // Handle WebGL context loss and recovery (prevents blank screen on mobile)
+            renderer.domElement.addEventListener('webglcontextlost', (e) => {
+                e.preventDefault();
+                console.log('[WebGL] Context lost — pausing render loop');
+                stopAutoScroll();
+                if (animationFrameId) {
+                    cancelAnimationFrame(animationFrameId);
+                    animationFrameId = null;
+                }
+            });
+            renderer.domElement.addEventListener('webglcontextrestored', () => {
+                console.log('[WebGL] Context restored — restarting render loop');
+                animate();
+                startAutoScroll();
+            });
 
             // Realistic lighting: hemisphere + shadowed directional key light
             // Brighter, neutral ambient without tint
@@ -1173,7 +1189,6 @@
 
             createBooks();
             setupEventListeners();
-            animate();
             // Start auto-scroll on mobile after a short delay
             setTimeout(() => {
                 startAutoScroll();
@@ -2048,6 +2063,9 @@
         function previousBook() { moveBooks(-1); }
         function nextBook() { moveBooks(1); }
 
+        // Animation frame tracking (prevents double loops & enables cleanup)
+        let animationFrameId;
+
         // Auto-scroll functionality
         let autoScrollInterval;
         let isUserInteracting = false;
@@ -2104,12 +2122,12 @@
             camera.bottom = frustumSize / -2;
             
             camera.updateProjectionMatrix();
-            renderer.setPixelRatio(Math.min(3, window.devicePixelRatio || 1));
+            renderer.setPixelRatio(Math.min(2, window.devicePixelRatio || 1));
             renderer.setSize(window.innerWidth, window.innerHeight);
         }
 
         function animate() {
-            requestAnimationFrame(animate);
+            animationFrameId = requestAnimationFrame(animate);
             
             // Smooth rotation with fixed easing (dragging disabled)
             const easing = 0.06;
@@ -2283,6 +2301,38 @@
                     });
                 }
             } catch (_) {}
+        });
+
+        // Page lifecycle: pause/resume when navigating away and back (fixes blank screen on mobile)
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                // Page hidden — pause everything to save resources
+                stopAutoScroll();
+                if (animationFrameId) {
+                    cancelAnimationFrame(animationFrameId);
+                    animationFrameId = null;
+                }
+            } else {
+                // Page visible again — restart
+                if (!animationFrameId && renderer) {
+                    animate();
+                    startAutoScroll();
+                }
+            }
+        });
+
+        // BFCache: reinitialize when restored via back/forward navigation
+        window.addEventListener('pageshow', (e) => {
+            if (e.persisted) {
+                // Page was restored from BFCache
+                if (renderer && renderer.getContext().isContextLost()) {
+                    console.log('[PageShow] BFCache restore with lost context — reinitializing');
+                    renderer.forceContextRestore();
+                } else if (!animationFrameId && renderer) {
+                    animate();
+                    startAutoScroll();
+                }
+            }
         });
     </script>
 
