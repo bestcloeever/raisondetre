@@ -1882,12 +1882,17 @@
                     part.material = materials;
                 } else if (target === 'spine') {
                     // Extract the dominant color from the spine texture
-                    const spineColor = extractDominantColor(texture);
-                    
-                    // Debug: Log the extracted color  
+                    let spineColor = extractDominantColor(texture);
+
+                    // Debug: Log the extracted color
                     const bookData = book.userData.bookData;
                     const bookIndex = book.userData.bookIndex;
                     const actualBookData = booksData[bookIndex % booksData.length];
+
+                    // Allow manual spine color override from JSON
+                    if (actualBookData && actualBookData.colors && actualBookData.colors.spine && actualBookData.colors.spine !== 0xf5f5f5) {
+                        spineColor = actualBookData.colors.spine;
+                    }
                     console.log(`Spine color for "${actualBookData?.title}": 0x${spineColor.toString(16)}`);
                     
                     // Save spine color to book userData for use by other parts
