@@ -2,7 +2,7 @@
   "books": [
     {
       "id": "001",
-      "filename": "No vas a heredar la empresa.webp",
+      "filename": "no-vas-a-heredar-la-empresa.webp",
       "title": "No vas a heredar la empresa",
       "imprint": "bruguera",
       "publisher": "PRH",
@@ -22,7 +22,7 @@
     },
     {
       "id": "004",
-      "filename": "Escape Book.webp",
+      "filename": "escape-book.webp",
       "title": "Escape Book",
       "imprint": "molino",
       "publisher": "PRH",
@@ -42,7 +42,7 @@
     },
     {
       "id": "006",
-      "filename": "Dioses y Monstruos.webp",
+      "filename": "dioses-y-monstruos.webp",
       "title": "Dioses y Monstruos",
       "imprint": "molino",
       "publisher": "PRH",
@@ -52,7 +52,7 @@
     },
     {
       "id": "007",
-      "filename": "El retorn de la magia.webp",
+      "filename": "el-retorn-de-la-magia.webp",
       "title": "El retorn de la magia",
       "imprint": "la galera",
       "publisher": "abacus",
@@ -62,7 +62,7 @@
     },
     {
       "id": "008",
-      "filename": "Forever Girls.webp",
+      "filename": "forever-girls.webp",
       "title": "Forever Girls",
       "imprint": "inuk books",
       "publisher": "abacus",
@@ -72,7 +72,7 @@
     },
     {
       "id": "009",
-      "filename": "Social Queue.webp",
+      "filename": "social-queue.webp",
       "title": "Social Queue",
       "imprint": "elastic books",
       "publisher": "abacus",
@@ -102,7 +102,7 @@
     },
     {
       "id": "012",
-      "filename": "Un verano para siempre.webp",
+      "filename": "un-verano-para-siempre.webp",
       "title": "Un verano para siempre",
       "imprint": "inuk books",
       "publisher": "abacus",
@@ -132,7 +132,7 @@
     },
     {
       "id": "015",
-      "filename": "No vas a heredar la empresa-2.webp",
+      "filename": "no-vas-a-heredar-la-empresa-2.webp",
       "title": "No vas a heredar la empresa - Alt Cover",
       "imprint": "",
       "publisher": "",
@@ -182,7 +182,7 @@
     },
     {
       "id": "023",
-      "filename": "escape book-3.webp",
+      "filename": "escape-book-3.webp",
       "title": "Escape Book - Alt Cover",
       "imprint": "molino",
       "publisher": "PRH",
@@ -192,7 +192,7 @@
     },
     {
       "id": "024",
-      "filename": "Ascens dels rebels.webp",
+      "filename": "ascens-dels-rebels.webp",
       "title": "Ascens dels rebels",
       "imprint": "elastic books",
       "publisher": "abacus",
@@ -202,7 +202,7 @@
     },
     {
       "id": "025",
-      "filename": "No vas a heredar la empresa-3.webp",
+      "filename": "no-vas-a-heredar-la-empresa-3.webp",
       "title": "No vas a heredar la empresa - Alt Cover 2",
       "imprint": "",
       "publisher": "",
@@ -222,7 +222,7 @@
     },
     {
       "id": "027",
-      "filename": "el quinto nombre.webp",
+      "filename": "el-quinto-nombre.webp",
       "title": "El quinto nombre",
       "imprint": "",
       "publisher": "",
@@ -252,7 +252,7 @@
     },
     {
       "id": "031",
-      "filename": "Wen i Long.webp",
+      "filename": "wen-i-long.webp",
       "title": "Wen i Long",
       "imprint": "la galera",
       "publisher": "abacus",
