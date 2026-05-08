@@ -389,7 +389,7 @@
         "backCover": null
       },
       "colors": {
-        "backCover": "#7CB342",
+        "backCover": "#FFFFFF",
         "spine": "#f5f5f5",
         "pages": "#FFFFF0"
       },
@@ -411,7 +411,7 @@
       },
       "colors": {
         "backCover": "#0288D1",
-        "spine": "#f5f5f5",
+        "spine": "#FFE600",
         "pages": "#FFFFF0"
       },
       "dimensions": {
@@ -452,7 +452,7 @@
         "backCover": null
       },
       "colors": {
-        "backCover": "#FDD835",
+        "backCover": "#000000",
         "spine": "#f5f5f5",
         "pages": "#FFFFF0"
       },
