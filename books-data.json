@@ -377,6 +377,90 @@
         "height": "auto",
         "depth": "auto"
       }
+    },
+    {
+      "id": "025",
+      "title": "Lo que tu cuerpo sabe de la calma",
+      "author": "",
+      "position": "Position 3",
+      "images": {
+        "cover": "covers/calma.webp",
+        "spine": "spines/calma.webp",
+        "backCover": null
+      },
+      "colors": {
+        "backCover": "#7CB342",
+        "spine": "#f5f5f5",
+        "pages": "#FFFFF0"
+      },
+      "dimensions": {
+        "width": "auto",
+        "height": "auto",
+        "depth": "auto"
+      }
+    },
+    {
+      "id": "026",
+      "title": "Cansadas de quedar bien",
+      "author": "",
+      "position": "Position 1",
+      "images": {
+        "cover": "covers/cansadas.webp",
+        "spine": "spines/cansadas.webp",
+        "backCover": null
+      },
+      "colors": {
+        "backCover": "#0288D1",
+        "spine": "#f5f5f5",
+        "pages": "#FFFFF0"
+      },
+      "dimensions": {
+        "width": "auto",
+        "height": "auto",
+        "depth": "auto"
+      }
+    },
+    {
+      "id": "027",
+      "title": "Cari\u00f1o, \u00bfy este recibo?",
+      "author": "",
+      "position": "Position 2",
+      "images": {
+        "cover": "covers/recibo.webp",
+        "spine": "spines/recibo.webp",
+        "backCover": null
+      },
+      "colors": {
+        "backCover": "#E91E63",
+        "spine": "#f5f5f5",
+        "pages": "#FFFFF0"
+      },
+      "dimensions": {
+        "width": "auto",
+        "height": "auto",
+        "depth": "auto"
+      }
+    },
+    {
+      "id": "028",
+      "title": "Este libro es tu Plan B",
+      "author": "",
+      "position": "Position 5",
+      "images": {
+        "cover": "covers/plan-b-1.webp",
+        "spine": "spines/plan-b-1.webp",
+        "backCover": null
+      },
+      "colors": {
+        "backCover": "#FDD835",
+        "spine": "#f5f5f5",
+        "pages": "#FFFFF0"
+      },
+      "dimensions": {
+        "width": "auto",
+        "height": "auto",
+        "depth": "auto"
+      }
     }
   ],
   "globalSettings": {

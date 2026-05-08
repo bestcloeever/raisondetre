@@ -569,6 +569,96 @@
       "year": "",
       "category": "non fiction",
       "exploration": "Y"
+    },
+    {
+      "id": "067",
+      "filename": "calma.webp",
+      "title": "Lo que tu cuerpo sabe de la calma",
+      "imprint": "bruguera",
+      "publisher": "PRH",
+      "year": "2026",
+      "category": "non fiction",
+      "exploration": "N"
+    },
+    {
+      "id": "068",
+      "filename": "calma2.webp",
+      "title": "Lo que tu cuerpo sabe de la calma - Alt Cover",
+      "imprint": "",
+      "publisher": "",
+      "year": "",
+      "category": "non fiction",
+      "exploration": "Y"
+    },
+    {
+      "id": "069",
+      "filename": "calma3.webp",
+      "title": "Lo que tu cuerpo sabe de la calma - Alt Cover 2",
+      "imprint": "",
+      "publisher": "",
+      "year": "",
+      "category": "non fiction",
+      "exploration": "Y"
+    },
+    {
+      "id": "070",
+      "filename": "cansadas2.webp",
+      "title": "Cansadas de quedar bien",
+      "imprint": "bruguera",
+      "publisher": "PRH",
+      "year": "2026",
+      "category": "non fiction",
+      "exploration": "N"
+    },
+    {
+      "id": "071",
+      "filename": "cansadas3.webp",
+      "title": "Cansadas de quedar bien - Alt Cover",
+      "imprint": "",
+      "publisher": "",
+      "year": "",
+      "category": "non fiction",
+      "exploration": "Y"
+    },
+    {
+      "id": "072",
+      "filename": "cansadas4.webp",
+      "title": "Cansadas de quedar bien - Alt Cover 2",
+      "imprint": "",
+      "publisher": "",
+      "year": "",
+      "category": "non fiction",
+      "exploration": "Y"
+    },
+    {
+      "id": "073",
+      "filename": "cansadas5.webp",
+      "title": "Cansadas de quedar bien - Alt Cover 3",
+      "imprint": "",
+      "publisher": "",
+      "year": "",
+      "category": "non fiction",
+      "exploration": "Y"
+    },
+    {
+      "id": "074",
+      "filename": "recibo.webp",
+      "title": "Cariño, ¿y este recibo?",
+      "imprint": "bruguera",
+      "publisher": "PRH",
+      "year": "2026",
+      "category": "non fiction",
+      "exploration": "Y"
+    },
+    {
+      "id": "075",
+      "filename": "plan-b-1.webp",
+      "title": "Este libro es tu Plan B - Alt Cover",
+      "imprint": "",
+      "publisher": "",
+      "year": "",
+      "category": "non fiction",
+      "exploration": "Y"
     }
   ]
 }
