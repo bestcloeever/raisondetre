@@ -461,6 +461,90 @@
         "height": "auto",
         "depth": "auto"
       }
+    },
+    {
+      "id": "029",
+      "title": "¿Qué tal el adulting? Fatal, gracias",
+      "author": "",
+      "position": "Position 1",
+      "images": {
+        "cover": "covers/adulting.webp",
+        "spine": "spines/adulting.webp",
+        "backCover": null
+      },
+      "colors": {
+        "backCover": "#2B2B2B",
+        "spine": "#4DB6AC",
+        "pages": "#FFFFF0"
+      },
+      "dimensions": {
+        "width": "auto",
+        "height": "auto",
+        "depth": "auto"
+      }
+    },
+    {
+      "id": "030",
+      "title": "La España que no nos contaron",
+      "author": "",
+      "position": "Position 2",
+      "images": {
+        "cover": "covers/bulos.webp",
+        "spine": "spines/bulos.webp",
+        "backCover": null
+      },
+      "colors": {
+        "backCover": "#E2231A",
+        "spine": "#E2231A",
+        "pages": "#FFFFF0"
+      },
+      "dimensions": {
+        "width": "auto",
+        "height": "auto",
+        "depth": "auto"
+      }
+    },
+    {
+      "id": "031",
+      "title": "Con Dios todo lo puedo",
+      "author": "",
+      "position": "Position 3",
+      "images": {
+        "cover": "covers/dios.webp",
+        "spine": "spines/dios.webp",
+        "backCover": null
+      },
+      "colors": {
+        "backCover": "#2E3A87",
+        "spine": "#2E3A87",
+        "pages": "#FFFFF0"
+      },
+      "dimensions": {
+        "width": "auto",
+        "height": "auto",
+        "depth": "auto"
+      }
+    },
+    {
+      "id": "032",
+      "title": "El regalo de la sensibilidad",
+      "author": "",
+      "position": "Position 5",
+      "images": {
+        "cover": "covers/sensibilidad.webp",
+        "spine": "spines/sensibilidad.webp",
+        "backCover": null
+      },
+      "colors": {
+        "backCover": "#FFFFFF",
+        "spine": "#FFFFFF",
+        "pages": "#FFFFF0"
+      },
+      "dimensions": {
+        "width": "auto",
+        "height": "auto",
+        "depth": "auto"
+      }
     }
   ],
   "globalSettings": {

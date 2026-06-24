@@ -659,6 +659,66 @@
       "year": "",
       "category": "non fiction",
       "exploration": "Y"
+    },
+    {
+      "id": "076",
+      "filename": "adulting.webp",
+      "title": "¿Qué tal el adulting? Fatal, gracias",
+      "imprint": "bruguera",
+      "publisher": "PRH",
+      "year": "2026",
+      "category": "non fiction",
+      "exploration": "N"
+    },
+    {
+      "id": "077",
+      "filename": "bulos.webp",
+      "title": "La España que no nos contaron",
+      "imprint": "bruguera",
+      "publisher": "PRH",
+      "year": "2026",
+      "category": "non fiction",
+      "exploration": "N"
+    },
+    {
+      "id": "078",
+      "filename": "dios.webp",
+      "title": "Con Dios todo lo puedo",
+      "imprint": "bruguera",
+      "publisher": "PRH",
+      "year": "2026",
+      "category": "non fiction",
+      "exploration": "N"
+    },
+    {
+      "id": "079",
+      "filename": "dios-2.webp",
+      "title": "Con Dios todo lo puedo - Alt Cover",
+      "imprint": "bruguera",
+      "publisher": "PRH",
+      "year": "2026",
+      "category": "non fiction",
+      "exploration": "N"
+    },
+    {
+      "id": "080",
+      "filename": "dios-3.webp",
+      "title": "Con Dios todo lo puedo - Alt Cover 2",
+      "imprint": "bruguera",
+      "publisher": "PRH",
+      "year": "2026",
+      "category": "non fiction",
+      "exploration": "N"
+    },
+    {
+      "id": "081",
+      "filename": "sensibilidad.webp",
+      "title": "El regalo de la sensibilidad",
+      "imprint": "bruguera",
+      "publisher": "PRH",
+      "year": "2026",
+      "category": "non fiction",
+      "exploration": "N"
     }
   ]
 }
